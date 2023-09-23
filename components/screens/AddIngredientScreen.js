@@ -1,20 +1,78 @@
 import IngredientsSearch from "../search/IngredientsSearch.js";
-import {
-  View,
-  StyleSheet,
-  Text,
-} from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, FlatList, Text, TouchableOpacity } from "react-native";
+import { SearchBar } from "@rneui/themed";
+import { useData } from '../../DataContext';
 
-const ChooseIngredientScreen = ({ navigation, route }) => {
+const AddIngredientScreen = ({ navigation, route }) => {
+
+  const { addItem } = useData();
+  const [newIngredientID, setNewIngredientID] = useState('');
+  const [newIngredientName, setNewIngredientName] = useState('');
+  
+  const [searchValue, setSearchValue] = useState(searchValue);
+  const [selectedIngredientID, setSelectedIngredientID] = useState(selectedIngredientID);
+
+  const [data, setData] = useState([
+    { id: "1", name: "Apple" },
+    { id: "2", name: "Banana" },
+    { id: "3", name: "Cherry" },
+    { id: "4", name: "Tomato" },
+  ]);
+
+  const filteredData =
+    searchValue == ("" || undefined)
+      ? []
+      : data.filter((item) =>
+          item.name.toLowerCase().includes(searchValue.toLowerCase())
+        );
+
+  const addToData = (newIngredientID, newIngredientName) => {
+    setNewIngredientID(newIngredientID)
+    setNewIngredientName(newIngredientName)
+    addItem({ id: newIngredientID, name: newIngredientName});
+    navigation.goBack();
+  };
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity
+      style={[
+        styles.resultItem,
+        { backgroundColor: item.id === selectedIngredientID ? "lightgrey" : "white" },
+      ]}
+      onPress={() => {
+        setSelectedIngredientID(item.id)
+        addToData(item.id, item.name)
+      }}
+    >
+      <Text style={styles.resultItem}>{item.name}</Text>
+    </TouchableOpacity>
+  );
+
   return (
     <View style={styles.container}>
-      {<View style={styles.searchBar}>{<IngredientsSearch />}</View>}
-      {<Text>This is {route.params.name}'s choose ingredient</Text>}
+      {
+        <View style={styles.searchBar}>
+          <View>
+            <SearchBar
+              placeholder="Type Here..."
+              onChangeText={setSearchValue}
+              value={searchValue}
+              onSubmitEditing={() => console.log(`SearchBar: User typed ${searchValue}`)}
+            />
+            <FlatList
+              data={filteredData}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={renderItem}
+            />
+          </View>
+        </View>
+      }
     </View>
   );
 };
 
-export default ChooseIngredientScreen;
+export default AddIngredientScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -50,5 +108,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "white",
+  },
+  input: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    marginBottom: 16,
+    paddingLeft: 8,
+  },
+  resultItem: {
+    fontSize: 18,
+    marginBottom: 5,
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10,
   },
 });

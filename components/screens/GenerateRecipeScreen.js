@@ -1,22 +1,39 @@
+import React, { useState, createContext } from "react";
 import { Pressable, View, StyleSheet, Text, Alert } from "react-native";
+import { useData } from "../../DataContext"; // Import the useData hook
+
+const DataContext = createContext();
 
 const GenerateRecipeScreen = ({ navigation }) => {
+  const { data, addItem } = useData();
+
   return (
     <View style={styles.container}>
-      <View style={{flex: 1, flexDirection:"row", alignItems:"flex-end", marginBottom: 20}}>
+      { console.log(data) }
+        {data === undefined || data.length == 0 ? null : (
+          <View>
+            {data.map((ingredient, index) => (
+              <Text key={index} style={styles.ingredientsText}>{ingredient.name}</Text>
+            ))}
+          </View>
+        )}
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          alignItems: "flex-end",
+          marginBottom: 20,
+        }}
+      >
         <View style={styles.addIngredientBtn}>
-          <Pressable
-            onPress={() =>
-              navigation.navigate("Add Ingredient", { name: "Tomato" })
-            }
-          >
-            <Text style={styles.text}>{"Add Ingredient"}</Text>
+          <Pressable onPress={() => navigation.navigate("Add Ingredient")}>
+            <Text style={styles.buttonText}>{"Add Ingredient"}</Text>
           </Pressable>
         </View>
         <View style={styles.genRecipeBtn}>
           {
             <Pressable onPress={() => Alert.alert("Integrate with backend")}>
-              <Text style={styles.text}>{"Generate Recipe"}</Text>
+              <Text style={styles.buttonText}>{"Generate Recipe"}</Text>
             </Pressable>
           }
         </View>
@@ -53,11 +70,21 @@ const styles = StyleSheet.create({
     backgroundColor: "grey",
     marginTop: 20,
   },
-  text: {
+  buttonText: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "white",
+  },
+  ingredientsText: {
+    fontSize: 18,
+    marginBottom: 5,
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    lineHeight: 21,
+    letterSpacing: 0.25,
+    color: "black",
   },
 });

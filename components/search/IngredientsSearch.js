@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { SearchBar } from "@rneui/themed";
 import { View, StyleSheet, FlatList, Text, TouchableOpacity } from "react-native";
+import { useData } from '../../DataContext';
 
-const IngredientsSearch = () => {
+const IngredientsSearch = ({ navigation }) => {
   const [searchValue, setSearchValue] = useState(searchValue);
-  const [selectedItemID, setSelectedItemID] = useState(selectedItemID);
+  const [selectedIngredientID, setSelectedIngredientID] = useState(selectedIngredientID);
 
   const [data, setData] = useState([
     { id: "1", name: "Apple" },
@@ -22,23 +23,33 @@ const IngredientsSearch = () => {
 
   const changeTextHandler = (searchValue) => {
     setSearchValue(searchValue);
-    console.log(searchValue);
   };
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={[
         styles.resultItem,
-        { backgroundColor: item.id === selectedItemID ? "lightgrey" : "white" },
+        { backgroundColor: item.id === selectedIngredientID ? "lightgrey" : "white" },
       ]}
       onPress={() => {
-        console.log(item.id)
-        setSelectedItemID(item.id)
+        setSelectedIngredientID(item.id)
+        addToData()
       }}
     >
       <Text style={styles.resultItem}>{item.name}</Text>
     </TouchableOpacity>
   );
+
+  const { addItem } = useData();
+
+  const [newIngredientName, setNewIngredientName] = useState('');
+  const [newIngredientID, setNewIngredientID] = useState('');
+
+
+  const addToData = () => {
+    addItem({ id: newIngredientID, name: newIngredientName});
+    navigation.goBack();
+  };
 
   return (
     <View>
@@ -52,9 +63,10 @@ const IngredientsSearch = () => {
         data={filteredData}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
-        onPress={() => setSelectedItemID(item.id)}
+        onPress={() => {
+          setSelectedIngredientID(item.id)
+        }}
       />
-      <Text>Selected Item: {selectedItemID || "None"}</Text>
     </View>
   );
 };
