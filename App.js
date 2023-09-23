@@ -1,14 +1,30 @@
-import { SafeAreaView, View } from "react-native";
-import Search from "./components/search/Search.js";
-import IngredientsList from "./components/ingredients/IngredientsList.js";
+import * as React from "react";
+import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export default function App() {
+import GenerateRecipeScreen from "./components/screens/GenerateRecipeScreen.js";
+import ChooseIngredientScreen from "./components/screens/AddIngredientScreen.js";
+
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: "transparent" }}>
-        {<Search />}
-        {<IngredientsList />}
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <StatusBar style="auto" />
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Generate Recipe"
+          component={GenerateRecipeScreen}
+          options={{ title: "Generate Recipe" }}
+        />
+        <Stack.Screen
+          name="Add Ingredient"
+          component={ChooseIngredientScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default App;
