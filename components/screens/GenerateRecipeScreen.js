@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { Pressable, View, StyleSheet, Text, Alert } from "react-native";
+import { Pressable, View, StyleSheet, Text, Alert, ScrollView } from "react-native";
 import { useData } from "../../DataContext"; // Import the useData hook
 
 const DataContext = createContext();
@@ -7,22 +7,40 @@ const DataContext = createContext();
 const GenerateRecipeScreen = ({ navigation }) => {
   const { data, addItem } = useData();
 
+  // data1 = [
+  //   { name: "Banana"},
+  //   { name: "Banana"},
+  //   { name: "Banana"},
+  //   { name: "Banana"},
+  //   { name: "Banana"},
+  //   { name: "Banana"},
+  //   { name: "Banana"},
+  //   { name: "Banana"},
+  //   { name: "Banana"},
+  //   { name: "Banana"},
+  // ]
+
   return (
     <View style={styles.container}>
-      { console.log(data) }
-        {data === undefined || data.length == 0 ? null : (
+      {console.log(data)}
+      {data === undefined || data.length == 0 ? null : (
+        <ScrollView style={styles.scrollView}>
           <View>
             {data.map((ingredient, index) => (
-              <Text key={index} style={styles.ingredientsText}>{ingredient.name}</Text>
+              <Text key={index} style={styles.ingredientsText}>
+                {ingredient.name}
+              </Text>
             ))}
           </View>
-        )}
+        </ScrollView>
+      )}
       <View
         style={{
           flex: 1,
           flexDirection: "row",
           alignItems: "flex-end",
           marginBottom: 20,
+          marginTop: 20,
         }}
       >
         <View style={styles.addIngredientBtn}>
@@ -79,12 +97,16 @@ const styles = StyleSheet.create({
   },
   ingredientsText: {
     fontSize: 18,
-    marginBottom: 5,
-    marginTop: 5,
+    marginBottom: 0,
+    marginTop: 10,
     marginLeft: 10,
     marginRight: 10,
     lineHeight: 21,
     letterSpacing: 0.25,
     color: "black",
+  },
+  scrollView: {
+    marginHorizontal: 10,
+    marginBottom: "15%",
   },
 });
