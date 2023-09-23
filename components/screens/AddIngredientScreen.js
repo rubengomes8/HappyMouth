@@ -1,4 +1,4 @@
-import Search from "../search/Search.js";
+import IngredientsSearch from "../search/IngredientsSearch.js";
 import {
   View,
   StyleSheet,
@@ -8,7 +8,7 @@ import {
 const ChooseIngredientScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
-      {<View style={styles.searchBar}>{<Search />}</View>}
+      {<View style={styles.searchBar}>{<IngredientsSearch />}</View>}
       {<Text>This is {route.params.name}'s choose ingredient</Text>}
     </View>
   );
