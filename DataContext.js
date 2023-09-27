@@ -9,8 +9,12 @@ export const DataProvider = ({ children }) => {
     setData([...data, item]);
   };
 
+  const clearData = () => {
+    setData([]);
+  };
+
   return (
-    <DataContext.Provider value={{ data, addItem }}>
+    <DataContext.Provider value={{ data, addItem, clearData }}>
       {children}
     </DataContext.Provider>
   );
