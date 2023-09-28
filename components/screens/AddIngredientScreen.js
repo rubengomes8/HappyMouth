@@ -1,19 +1,27 @@
-import IngredientsSearch from "../search/IngredientsSearch.js";
 import React, { useState } from "react";
-import { View, StyleSheet, FlatList, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { SearchBar } from "@rneui/themed";
-import { useData } from '../../DataContext';
+import { useData } from "../../DataContext";
 
 const AddIngredientScreen = ({ navigation, route }) => {
-
   const { addItem } = useData();
-  const [newIngredientID, setNewIngredientID] = useState('');
-  const [newIngredientName, setNewIngredientName] = useState('');
-  
-  const [searchValue, setSearchValue] = useState(searchValue);
-  const [selectedIngredientID, setSelectedIngredientID] = useState(selectedIngredientID);
+  const [newIngredientID, setNewIngredientID] = useState("");
+  const [newIngredientName, setNewIngredientName] = useState("");
 
-  const [data, setData] = useState([
+  const [searchValue, setSearchValue] = useState(searchValue);
+  const [selectedIngredientID, setSelectedIngredientID] =
+    useState(selectedIngredientID);
+
+  const chosenIngredients = route.params?.data.chosenIngredients || [];
+  console.log(route.params.data.chosenIngredients)
+
+  const [allIngredients, setAllIngredients] = useState([
     { id: "1", name: "Apple" },
     { id: "2", name: "Banana" },
     { id: "3", name: "Cherry" },
@@ -23,14 +31,18 @@ const AddIngredientScreen = ({ navigation, route }) => {
   const filteredData =
     searchValue == ("" || undefined)
       ? []
-      : data.filter((item) =>
-          item.name.toLowerCase().includes(searchValue.toLowerCase())
-        );
+      : allIngredients
+          .filter((item) =>
+            item.name.toLowerCase().includes(searchValue.toLowerCase())
+          )
+          .filter((item) => 
+            {return !chosenIngredients.some((obj) => obj.name === item.name);}
+          );
 
   const addToData = (newIngredientID, newIngredientName) => {
-    setNewIngredientID(newIngredientID)
-    setNewIngredientName(newIngredientName)
-    addItem({ id: newIngredientID, name: newIngredientName});
+    setNewIngredientID(newIngredientID);
+    setNewIngredientName(newIngredientName);
+    addItem({ id: newIngredientID, name: newIngredientName });
     navigation.goBack();
   };
 
@@ -38,11 +50,14 @@ const AddIngredientScreen = ({ navigation, route }) => {
     <TouchableOpacity
       style={[
         styles.resultItem,
-        { backgroundColor: item.id === selectedIngredientID ? "lightgrey" : "white" },
+        {
+          backgroundColor:
+            item.id === selectedIngredientID ? "lightgrey" : "white",
+        },
       ]}
       onPress={() => {
-        setSelectedIngredientID(item.id)
-        addToData(item.id, item.name)
+        setSelectedIngredientID(item.id);
+        addToData(item.id, item.name);
       }}
     >
       <Text style={styles.resultItem}>{item.name}</Text>
@@ -58,7 +73,9 @@ const AddIngredientScreen = ({ navigation, route }) => {
               placeholder="Type Here..."
               onChangeText={setSearchValue}
               value={searchValue}
-              onSubmitEditing={() => console.log(`SearchBar: User typed ${searchValue}`)}
+              onSubmitEditing={() =>
+                console.log(`SearchBar: User typed ${searchValue}`)
+              }
             />
             <FlatList
               data={filteredData}

@@ -38,19 +38,6 @@ const GenerateRecipeScreen = ({ navigation }) => {
     setIsLoading(false);
   };
 
-  // data1 = [
-  //   { name: "Banana"},
-  //   { name: "Banana"},
-  //   { name: "Banana"},
-  //   { name: "Banana"},
-  //   { name: "Banana"},
-  //   { name: "Banana"},
-  //   { name: "Banana"},
-  //   { name: "Banana"},
-  //   { name: "Banana"},
-  //   { name: "Banana"},
-  // ]
-
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -82,10 +69,16 @@ const GenerateRecipeScreen = ({ navigation }) => {
           <Pressable
             onPress={() => {
               setRecipe("");
-              navigation.navigate("Add Ingredient");
+              navigation.navigate(
+                "Add Ingredient",
+                {
+                  data: {
+                    chosenIngredients: data,
+                  }
+                });
             }}
           >
-            <Text style={styles.buttonText}>{"Add Ingredient"}</Text>
+            <Text style={styles.buttonText}>{data.length == 0 ? "Create Recipe" : "Add Ingredient"}</Text>
           </Pressable>
         </View>
         <View style={styles.genRecipeBtn}>
