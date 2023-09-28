@@ -73,9 +73,9 @@ const AddIngredientScreen = ({ navigation, route }) => {
               placeholder="Type Here..."
               onChangeText={setSearchValue}
               value={searchValue}
-              onSubmitEditing={() =>
-                console.log(`SearchBar: User typed ${searchValue}`)
-              }
+              // onSubmitEditing={() =>
+              //   console.log(`SearchBar: User typed ${searchValue}`)
+              // }
             />
             <FlatList
               data={filteredData}
