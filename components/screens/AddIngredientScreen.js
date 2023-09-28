@@ -11,9 +11,6 @@ import { useData } from "../../DataContext";
 
 const AddIngredientScreen = ({ navigation, route }) => {
   const { addItem } = useData();
-  const [newIngredientID, setNewIngredientID] = useState("");
-  const [newIngredientName, setNewIngredientName] = useState("");
-
   const [searchValue, setSearchValue] = useState(searchValue);
   const [selectedIngredientID, setSelectedIngredientID] =
     useState(selectedIngredientID);
@@ -21,27 +18,23 @@ const AddIngredientScreen = ({ navigation, route }) => {
   const chosenIngredients = route.params?.data.chosenIngredients || [];
   console.log(route.params.data.chosenIngredients)
 
-  const [allIngredients, setAllIngredients] = useState([
+  const allIngredients = [
     { id: "1", name: "Apple" },
     { id: "2", name: "Banana" },
     { id: "3", name: "Cherry" },
     { id: "4", name: "Tomato" },
-  ]);
+  ];
 
   const filteredData =
     searchValue == ("" || undefined)
       ? []
       : allIngredients
-          .filter((item) =>
-            item.name.toLowerCase().includes(searchValue.toLowerCase())
-          )
+          .filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
           .filter((item) => 
-            {return !chosenIngredients.some((obj) => obj.name === item.name);}
+            {return !chosenIngredients.some((obj) => obj.name === item.name)}
           );
 
   const addToData = (newIngredientID, newIngredientName) => {
-    setNewIngredientID(newIngredientID);
-    setNewIngredientName(newIngredientName);
     addItem({ id: newIngredientID, name: newIngredientName });
     navigation.goBack();
   };
@@ -52,7 +45,7 @@ const AddIngredientScreen = ({ navigation, route }) => {
         styles.resultItem,
         {
           backgroundColor:
-            item.id === selectedIngredientID ? "lightgrey" : "white",
+          item.id === selectedIngredientID ? "lightgrey" : "white",
         },
       ]}
       onPress={() => {
@@ -70,16 +63,13 @@ const AddIngredientScreen = ({ navigation, route }) => {
         <View style={styles.searchBar}>
           <View>
             <SearchBar
-              placeholder="Type Here..."
+              placeholder="Type Ingredient..."
               onChangeText={setSearchValue}
               value={searchValue}
-              // onSubmitEditing={() =>
-              //   console.log(`SearchBar: User typed ${searchValue}`)
-              // }
             />
             <FlatList
               data={filteredData}
-              keyExtractor={(item) => item.id.toString()}
+              keyExtractor={(ingredient) => ingredient.id.toString()}
               renderItem={renderItem}
             />
           </View>

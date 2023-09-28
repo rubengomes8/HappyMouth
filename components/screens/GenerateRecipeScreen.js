@@ -4,14 +4,14 @@ import {
   View,
   StyleSheet,
   Text,
-  Alert,
+  ActivityIndicator,
   ScrollView,
 } from "react-native";
 import axios from "axios";
-import { useData } from "../../DataContext"; // Import the useData hook
+
 
 const DataContext = createContext();
-const HOST = "http://192.168.1.227:8080";
+const HOST = "http://192.168.1.227:8080"; // TODO: should use .env
 
 const GenerateRecipeScreen = ({ navigation }) => {
   const { data, clearData } = useData();
@@ -20,9 +20,10 @@ const GenerateRecipeScreen = ({ navigation }) => {
 
   handleGenerateRecipe = async () => {
     setIsLoading(true);
+    includeIngredients = data.map((obj) => obj.name);
     try {
       const response = await axios.post(`${HOST}/api/recipes`, {
-        include_ingredients: ["Apple"],
+        include_ingredients: includeIngredients,
         exclude_ingredients: ["Onion"],
       });
 
@@ -40,22 +41,28 @@ const GenerateRecipeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        {data === undefined || data.length == 0 ? null : (
-          <View>
-            {data.map((ingredient, index) => (
-              <Text key={index} style={styles.ingredientsText}>
-                {ingredient.name}
-              </Text>
-            ))}
-          </View>
-        )}
-        {recipe === undefined || recipe === "" ? null : (
-          <View>
-            <Text style={styles.ingredientsText}>{recipe}</Text>
-          </View>
-        )}
-      </ScrollView>
+      {isLoading ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="lightgrey" />
+        </View>
+      ) : (
+        <ScrollView style={styles.scrollView}>
+          {data.length > 0 ? (
+            <View>
+              {data.map((ingredient, index) => (
+                <Text key={index} style={styles.ingredientsText}>
+                  {ingredient.name}
+                </Text>
+              ))}
+            </View>
+          ) : null}
+          {recipe === undefined || recipe === "" ? null : (
+            <View>
+              <Text style={styles.ingredientsText}>{recipe}</Text>
+            </View>
+          )}
+        </ScrollView>
+      )}
 
       <View
         style={{
@@ -69,21 +76,25 @@ const GenerateRecipeScreen = ({ navigation }) => {
           <Pressable
             onPress={() => {
               setRecipe("");
-              navigation.navigate(
-                "Add Ingredient",
-                {
-                  data: {
-                    chosenIngredients: data,
-                  }
-                });
+              navigation.navigate("Add Ingredient", {
+                data: {
+                  chosenIngredients: data,
+                },
+              });
             }}
+            disabled={isLoading}
           >
-            <Text style={styles.buttonText}>{data.length == 0 ? "Create Recipe" : "Add Ingredient"}</Text>
+            <Text style={styles.buttonText}>
+              {data.length == 0 ? "Create Recipe" : "Add Ingredient"}
+            </Text>
           </Pressable>
         </View>
         <View style={styles.genRecipeBtn}>
           {
-            <Pressable onPress={handleGenerateRecipe}>
+            <Pressable
+              onPress={handleGenerateRecipe}
+              disabled={isLoading || data.length == 0}
+            >
               <Text style={styles.buttonText}>{"Generate Recipe"}</Text>
             </Pressable>
           }
@@ -100,6 +111,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignContent: "center",
+  },
+  loadingContainer: {
+    position: "absolute",
+    backgroundColor: "#fff",
+    width: '100%',
+    height: '85%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   addIngredientBtn: {
     flex: 1,
@@ -121,7 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "grey",
     marginRight: 20,
-    marginLeft: 10
+    marginLeft: 10,
   },
   buttonText: {
     fontSize: 16,
