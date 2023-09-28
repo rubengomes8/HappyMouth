@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import axios from "axios";
-
+import { useData } from "../../DataContext";
 
 const DataContext = createContext();
 const HOST = "http://192.168.1.227:8080"; // TODO: should use .env
