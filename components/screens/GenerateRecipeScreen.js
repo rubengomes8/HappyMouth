@@ -18,10 +18,6 @@ const GenerateRecipeScreen = ({ navigation }) => {
   const [recipe, setRecipe] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleClearData = () => {
-    clearData();
-  };
-  
   handleGenerateRecipe = async () => {
     setIsLoading(true);
     try {
@@ -31,10 +27,10 @@ const GenerateRecipeScreen = ({ navigation }) => {
       });
 
       if (response.status === 200) {
-        handleClearData();
+        clearData();
         setRecipe(response.data.recipe);
       } else {
-        throw new Error("An error has occurred");
+        throw new Error("Something went wrong.");
       }
     } catch (error) {
       alert(error);
@@ -69,7 +65,7 @@ const GenerateRecipeScreen = ({ navigation }) => {
         )}
         {recipe === undefined || recipe === "" ? null : (
           <View>
-            <Text>{recipe}</Text>
+            <Text style={styles.ingredientsText}>{recipe}</Text>
           </View>
         )}
       </ScrollView>
@@ -79,21 +75,21 @@ const GenerateRecipeScreen = ({ navigation }) => {
           flex: 1,
           flexDirection: "row",
           alignItems: "flex-end",
-          marginBottom: 20,
-          marginTop: 20,
+          marginBottom: 50,
         }}
       >
         <View style={styles.addIngredientBtn}>
-          <Pressable onPress={() => {
-            setRecipe("");
-            navigation.navigate("Add Ingredient")
-            }}>
+          <Pressable
+            onPress={() => {
+              setRecipe("");
+              navigation.navigate("Add Ingredient");
+            }}
+          >
             <Text style={styles.buttonText}>{"Add Ingredient"}</Text>
           </Pressable>
         </View>
         <View style={styles.genRecipeBtn}>
           {
-            // <Pressable onPress={() => Alert.alert("Integrate with backend")}>
             <Pressable onPress={handleGenerateRecipe}>
               <Text style={styles.buttonText}>{"Generate Recipe"}</Text>
             </Pressable>
@@ -120,7 +116,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "grey",
-    marginTop: 35,
+    marginRight: 10,
+    marginLeft: 20,
   },
   genRecipeBtn: {
     flex: 1,
@@ -130,7 +127,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "grey",
-    marginTop: 20,
+    marginRight: 20,
+    marginLeft: 10
   },
   buttonText: {
     fontSize: 16,
