@@ -9,16 +9,16 @@ import {
 } from "react-native";
 import axios from "axios";
 import { useData } from "../../DataContext";
+import RemovableIngredient from "../ingredients/RemovableIngredient";
 
 const DataContext = createContext();
-const HOST = "http://192.168.1.227:8080"; // TODO: should use .env
 
-const GenerateRecipeScreen = ({ navigation }) => {
+const DisplayRecipeScreen = ({ navigation }) => {
   const { data, clearData } = useData();
-  const [recipe, setRecipe] = useState("");
+  const [displayedRecipe, setDisplayedRecipe] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  handleGenerateRecipe = async () => {
+  handleCreateRecipe = async () => {
     setIsLoading(true);
     includeIngredients = data.map((obj) => obj.name);
     try {
@@ -39,6 +39,12 @@ const GenerateRecipeScreen = ({ navigation }) => {
     setIsLoading(false);
   };
 
+  const removeIngredient = (ingredientID) => {
+    const updatedData = data.filter((ingredient) => ingredient.id !== ingredientID);
+    console.log("setData(updatedData)");
+  };
+
+
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -49,10 +55,12 @@ const GenerateRecipeScreen = ({ navigation }) => {
         <ScrollView style={styles.scrollView}>
           {data.length > 0 ? (
             <View>
-              {data.map((ingredient, index) => (
-                <Text key={index} style={styles.ingredientsText}>
-                  {ingredient.name}
-                </Text>
+              {data.map((ingredient) => (
+                <RemovableIngredient
+                  name={ingredient.name}
+                  id={ingredient.id}
+                  onRemove={removeIngredient}
+                />
               ))}
             </View>
           ) : null}
@@ -92,7 +100,7 @@ const GenerateRecipeScreen = ({ navigation }) => {
         <View style={styles.genRecipeBtn}>
           {
             <Pressable
-              onPress={handleGenerateRecipe}
+              onPress={handleCreateRecipe}
               disabled={isLoading || data.length == 0}
             >
               <Text style={styles.buttonText}>{"Generate Recipe"}</Text>
@@ -104,7 +112,9 @@ const GenerateRecipeScreen = ({ navigation }) => {
   );
 };
 
-export default GenerateRecipeScreen;
+
+
+export default DisplayRecipeScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -115,51 +125,13 @@ const styles = StyleSheet.create({
   loadingContainer: {
     position: "absolute",
     backgroundColor: "#fff",
-    width: '100%',
-    height: '85%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  addIngredientBtn: {
-    flex: 1,
-    width: "40%",
-    height: 50,
-    borderRadius: 10,
-    alignItems: "center",
+    width: "100%",
+    height: "85%",
     justifyContent: "center",
-    backgroundColor: "grey",
-    marginRight: 10,
-    marginLeft: 20,
-  },
-  genRecipeBtn: {
-    flex: 1,
-    width: "40%",
-    height: 50,
-    borderRadius: 10,
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "grey",
-    marginRight: 20,
-    marginLeft: 10,
-  },
-  buttonText: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "white",
-  },
-  ingredientsText: {
-    fontSize: 18,
-    marginBottom: 0,
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10,
-    lineHeight: 21,
-    letterSpacing: 0.25,
-    color: "black",
   },
   scrollView: {
+    paddingTop: 8,
     marginHorizontal: 10,
     marginBottom: "15%",
   },

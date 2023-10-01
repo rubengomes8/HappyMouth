@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { DataProvider } from "./DataContext";
-import GenerateRecipeScreen from "./components/screens/GenerateRecipeScreen.js";
+import CreateRecipeScreen from "./components/screens/CreateRecipeScreen.js";
 import AddIngredientScreen from "./components/screens/AddIngredientScreen.js";
 
 const Stack = createNativeStackNavigator();
@@ -16,9 +16,9 @@ const App = () => {
         <StatusBar style="auto" />
         <Stack.Navigator>
           <Stack.Screen
-            name="Generate Recipe"
-            component={GenerateRecipeScreen}
-            options={{ title: "Generate Recipe" }}
+            name="Create Recipe"
+            component={CreateRecipeScreen}
+            options={{ title: "Create Recipe" }}
           />
           <Stack.Screen
             name="Add Ingredient"
