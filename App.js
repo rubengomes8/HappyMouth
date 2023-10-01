@@ -1,33 +1,71 @@
-import * as React from "react";
+import { StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
+
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome } from "react-native-vector-icons";
 
-import { DataProvider } from "./DataContext";
-import CreateRecipeScreen from "./components/screens/CreateRecipeScreen.js";
-import AddIngredientScreen from "./components/screens/AddIngredientScreen.js";
+// Screens imports
+import RecipesScreen from "./screens/RecipesScreen.js";
+import ProfileScreen from "./screens/ProfileScreen.js";
+import SettingsScreen from "./screens/SettingsScreen.js";
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
-    <DataProvider>
-      <NavigationContainer>
-        <StatusBar style="auto" />
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Create Recipe"
-            component={CreateRecipeScreen}
-            options={{ title: "Create Recipe" }}
-          />
-          <Stack.Screen
-            name="Add Ingredient"
-            component={AddIngredientScreen}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </DataProvider>
+    <NavigationContainer>
+      <StatusBar style={styles.statusBar} />
+      <Tab.Navigator
+        initialRouteName="Recipes"
+        screenOptions={() => ({
+          tabBarActiveTintColor: "black",
+          tabBarInactiveTintColor: "lightgray",
+        })}
+      >
+        <Tab.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="user" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Recipes"
+          component={RecipesScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="book" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="gear" size={size} color={color} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
+  },
+  statusBar: {
+    backgroundColor: "blue",
+    barStyle: "light-content",
+  },
+});
 
 export default App;
