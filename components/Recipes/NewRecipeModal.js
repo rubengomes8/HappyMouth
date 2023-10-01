@@ -64,8 +64,6 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   };
 
   const handleSubmit = () => {
-    // Perform form submission logic
-    // This is where you would send the data to your server or perform any other necessary actions.
     onClose();
   };
 
