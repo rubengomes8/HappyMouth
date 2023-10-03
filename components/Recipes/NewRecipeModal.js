@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import TrashIcon from "../TrashIcon";
 
 // Step 1 component
-const Step1 = ({ onNext }) => {
+const Step1 = ({ onNext, onClose }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <View
         style={{
           flexDirection: "row",
@@ -19,14 +19,17 @@ const Step1 = ({ onNext }) => {
       </View>
       <Text style={styles.stepTitleText}>Step 1: Enter recipe name</Text>
       {/* Add input fields and Next button */}
+      <View style={styles.trashIconContainer}>
+        <TrashIcon onClose={onClose} />
+      </View>
     </View>
   );
 };
 
 // Step 2 component
-const Step2 = ({ onPrevious, onNext }) => {
+const Step2 = ({ onPrevious, onNext, onClose }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <View
         style={{
           flexDirection: "row",
@@ -47,14 +50,17 @@ const Step2 = ({ onPrevious, onNext }) => {
       </View>
       <Text style={styles.stepTitleText}>Step 2: Enter ingredients</Text>
       {/* Add input fields and Previous/Next buttons */}
+      <View style={styles.trashIconContainer}>
+        <TrashIcon onClose={onClose} />
+      </View>
     </View>
   );
 };
 
 // Step 3 component
-const Step3 = ({ onPrevious, onSubmit }) => {
+const Step3 = ({ onPrevious, onSubmit, onClose }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <View
         style={{
           flexDirection: "row",
@@ -67,9 +73,17 @@ const Step3 = ({ onPrevious, onSubmit }) => {
             <Text style={styles.prevStepText}>Previous</Text>
           </TouchableOpacity>
         </View>
+        <View>
+          <TouchableOpacity onPress={onSubmit}>
+            <Text style={styles.submitText}>Submit</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <Text style={styles.stepTitleText}>Step 3: Enter instructions</Text>
       {/* Add input fields and Previous/Submit buttons */}
+      <View style={styles.trashIconContainer}>
+        <TrashIcon onClose={onClose} />
+      </View>
     </View>
   );
 };
@@ -98,14 +112,24 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   let stepComponent;
   switch (currentStep) {
     case 1:
-      stepComponent = <Step1 onNext={handleNext} />;
+      stepComponent = <Step1 onNext={handleNext} onClose={onClose} />;
       break;
     case 2:
-      stepComponent = <Step2 onPrevious={handlePrevious} onNext={handleNext} />;
+      stepComponent = (
+        <Step2
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          onClose={onClose}
+        />
+      );
       break;
     case 3:
       stepComponent = (
-        <Step3 onPrevious={handlePrevious} onSubmit={handleSubmit} />
+        <Step3
+          onPrevious={handlePrevious}
+          onSubmit={handleSubmit}
+          onClose={onClose}
+        />
       );
       break;
     default:
@@ -120,18 +144,7 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
       onRequestClose={onClose}
     >
       <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
-          {stepComponent}
-          <View style={{
-          flexDirection: "column",
-          justifyContent: "center",
-          paddingHorizontal: 10,
-        }}>
-            <TouchableOpacity onPress={onClose}>
-              <Icon name="trash" size={30} color="red" />
-            </TouchableOpacity>
-          </View>
-        </View>
+        <View style={styles.modalContent}>{stepComponent}</View>
       </View>
     </Modal>
   );
@@ -140,6 +153,9 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
 export default NewRecipeModal;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   modalContainer: {
     flex: 1,
     justifyContent: "flex-end",
@@ -173,6 +189,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
+    marginTop: 10,
   },
   nextStepText: {
     color: "blue",
@@ -181,5 +198,16 @@ const styles = StyleSheet.create({
   prevStepText: {
     color: "blue",
     fontSize: 16,
+  },
+  submitText: {
+    color: "blue",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  trashIconContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-end",
+    paddingBottom: 20,
   },
 });
