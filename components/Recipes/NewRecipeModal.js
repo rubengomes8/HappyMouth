@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 // Step 1 component
 const Step1 = ({ onNext }) => {
   return (
     <View>
-      <Text>Step 1: Enter recipe name</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "flex-end",
+          paddingHorizontal: 10,
+        }}
+      >
+        <TouchableOpacity onPress={onNext}>
+          <Text style={styles.nextStepText}>Next</Text>
+        </TouchableOpacity>
+      </View>
+      <Text style={styles.stepTitleText}>Step 1: Enter recipe name</Text>
       {/* Add input fields and Next button */}
-      <TouchableOpacity onPress={onNext}>
-        <Text>Next</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -18,14 +27,26 @@ const Step1 = ({ onNext }) => {
 const Step2 = ({ onPrevious, onNext }) => {
   return (
     <View>
-      <Text>Step 2: Enter ingredients</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          paddingHorizontal: 10,
+        }}
+      >
+        <View>
+          <TouchableOpacity onPress={onPrevious}>
+            <Text style={styles.prevStepText}>Previous</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity onPress={onNext}>
+            <Text style={styles.nextStepText}>Next</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <Text style={styles.stepTitleText}>Step 2: Enter ingredients</Text>
       {/* Add input fields and Previous/Next buttons */}
-      <TouchableOpacity onPress={onPrevious}>
-        <Text>Previous</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onNext}>
-        <Text>Next</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -34,14 +55,21 @@ const Step2 = ({ onPrevious, onNext }) => {
 const Step3 = ({ onPrevious, onSubmit }) => {
   return (
     <View>
-      <Text>Step 3: Enter instructions</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          paddingHorizontal: 10,
+        }}
+      >
+        <View>
+          <TouchableOpacity onPress={onPrevious}>
+            <Text style={styles.prevStepText}>Previous</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <Text style={styles.stepTitleText}>Step 3: Enter instructions</Text>
       {/* Add input fields and Previous/Submit buttons */}
-      <TouchableOpacity onPress={onPrevious}>
-        <Text>Previous</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onSubmit}>
-        <Text>Submit</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -94,9 +122,15 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           {stepComponent}
-          <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-            <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
+          <View style={{
+          flexDirection: "column",
+          justifyContent: "center",
+          paddingHorizontal: 10,
+        }}>
+            <TouchableOpacity onPress={onClose}>
+              <Icon name="trash" size={30} color="red" />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </Modal>
@@ -131,6 +165,20 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   closeButtonText: {
+    color: "blue",
+    fontSize: 16,
+  },
+  stepTitleText: {
+    color: "black",
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  nextStepText: {
+    color: "blue",
+    fontSize: 16,
+  },
+  prevStepText: {
     color: "blue",
     fontSize: 16,
   },
