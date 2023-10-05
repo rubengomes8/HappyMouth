@@ -23,7 +23,7 @@ const Step2 = ({ onPrevious, onNext, onClose }) => {
             </TouchableOpacity>
           </View>
         </View>
-        <Text style={styles.stepTitleText}>Step 2: Enter ingredients</Text>
+        <Text style={styles.stepTitleText}>Step 2: Ingredients to exclude</Text>
         {/* Add input fields and Previous/Next buttons */}
         <View style={styles.trashIconContainer}>
           <TrashIcon onClose={onClose} />

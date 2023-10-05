@@ -16,7 +16,7 @@ const Step1 = ({ onNext, onClose }) => {
             <Text style={styles.nextStepText}>Next</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.stepTitleText}>Step 1: Enter recipe name</Text>
+        <Text style={styles.stepTitleText}>Step 1: Ingredients to include</Text>
         {/* Add input fields and Next button */}
         <View style={styles.trashIconContainer}>
           <TrashIcon onClose={onClose} />

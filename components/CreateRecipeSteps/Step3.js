@@ -23,7 +23,7 @@ const Step3 = ({ onPrevious, onSubmit, onClose }) => {
             </TouchableOpacity>
           </View>
         </View>
-        <Text style={styles.stepTitleText}>Step 3: Enter instructions</Text>
+        <Text style={styles.stepTitleText}>Summary</Text>
         {/* Add input fields and Previous/Submit buttons */}
         <View style={styles.trashIconContainer}>
           <TrashIcon onClose={onClose} />
