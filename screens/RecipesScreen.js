@@ -11,8 +11,9 @@ const RecipesScreen = ({}) => {
   const [isRecipeDetailsModalVisible, setRecipeDetailsModalVisible] =
     useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState({});
+  const [myRecipes, setMyRecipes] = useState(ExampleRecipes);
 
-  // New recipe modal
+  // NEW RECIPE MODAL
   const openNewRecipeModal = () => {
     setNewRecipeModalVisible(true);
   };
@@ -30,7 +31,7 @@ const RecipesScreen = ({}) => {
     console.log("Press card handler");
   };
 
-  // Recipe details modal
+  // RECIPE DETAILS MODAL
   const openRecipeDetailsModal = (recipe) => {
     setSelectedRecipe(recipe);
     setRecipeDetailsModalVisible(true);
@@ -45,7 +46,17 @@ const RecipesScreen = ({}) => {
     openRecipeDetailsModal(recipe);
     console.log("recipe details handler");
   };
-  const myRecipes = ExampleRecipes;
+
+  // FAVORITE RECIPE TOGGLE
+  const onToggleFavorite = (recipeToUpdate) => {
+    setMyRecipes((myRecipes) =>
+      myRecipes.map((recipe) =>
+        recipe.id === recipeToUpdate.id
+          ? { ...recipe, is_favorite: !recipe.is_favorite }
+          : recipe
+      )
+    );
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -55,6 +66,7 @@ const RecipesScreen = ({}) => {
             key={recipe.id}
             recipe={recipe}
             onPress={() => recipeDetailsHandler(recipe)}
+            onToggleFavorite={() => onToggleFavorite(recipe)}
           ></RecipeCard>
         ))}
       </ScrollView>

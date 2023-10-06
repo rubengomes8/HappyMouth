@@ -3,7 +3,7 @@ const ExampleRecipes = [
     id: 1,
     title: "Delicious Pasta",
     short_description: "Pasta with tomato and parmesan cheese",
-    favourite: true,
+    is_favorite: true,
     definitions: {
       include_ingredients: ["Tomato", "Cheese"],
       exclude_ingredients: ["Onion"],
@@ -22,7 +22,7 @@ const ExampleRecipes = [
     id: 2,
     title: "Delicious steak with french fries",
     short_description: "Grilled steak with french fries",
-    favourite: true,
+    is_favorite: true,
     definitions: {
       include_ingredients: ["Meat", "Potato", "Oregon"],
       exclude_ingredients: ["Onion"],
