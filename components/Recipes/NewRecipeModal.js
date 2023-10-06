@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { View, Modal, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Modal, StyleSheet } from "react-native";
 import Step1 from "../CreateRecipeSteps/Step1.js";
 import Step2 from "../CreateRecipeSteps/Step2.js";
 import Step3 from "../CreateRecipeSteps/Step3.js";
 
 const NewRecipeModal = ({ isVisible, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   React.useEffect(() => {
     if (isVisible) {
@@ -23,6 +24,27 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
 
   const handleSubmit = () => {
     onClose();
+    handleCreateRecipe();
+  };
+
+  handleCreateRecipe = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post(`${HOST}/api/recipes`, {
+        include_ingredients: ["Tomato", "Mushroom"],
+        exclude_ingredients: ["Onion"],
+      });
+
+      if (response.status === 200) {
+        console.log("success generating recipe")
+      } else {
+        throw new Error("Something went wrong.");
+      }
+    } catch (error) {
+      alert(error);
+    }
+    setIsLoading(false);
   };
 
   let stepComponent;

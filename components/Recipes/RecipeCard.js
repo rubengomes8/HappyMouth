@@ -2,13 +2,13 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-const RecipeCard = ({ title, onPress }) => {
+const RecipeCard = ({ recipe, onPress }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>{recipe.title}</Text>
         <View style={styles.content}>
-          {<Text>Some content here and here.</Text>}
+          {<Text>{recipe.shortDescription}</Text>}
         </View>
         <View style={styles.iconContainer}>
           <Icon name="star" size={20} color="black" />
