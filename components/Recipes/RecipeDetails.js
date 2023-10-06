@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 
 const RecipeDetails = ({ recipe, onClose }) => {
   return (
@@ -8,6 +14,11 @@ const RecipeDetails = ({ recipe, onClose }) => {
         <Text style={styles.onCloseText}>Close</Text>
       </TouchableOpacity>
       <Text style={styles.title}>{recipe.title}</Text>
+      <ScrollView>
+        {recipe.instructions.map((instruction, index) => 
+          <Text key={index}>{instruction}</Text>
+        )}
+      </ScrollView>
     </View>
   );
 };
