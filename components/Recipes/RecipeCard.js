@@ -8,7 +8,7 @@ const RecipeCard = ({ recipe, onPress }) => {
       <View style={styles.card}>
         <Text style={styles.title}>{recipe.title}</Text>
         <View style={styles.content}>
-          {<Text>{recipe.shortDescription}</Text>}
+          {<Text>{recipe.short_description}</Text>}
         </View>
         <View style={styles.iconContainer}>
           <Icon name="star" size={20} color="black" />
