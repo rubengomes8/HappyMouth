@@ -6,7 +6,7 @@ const CreateRecipeButton = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress} style={styles.button}>
-        <Icon name="plus" size={25} color="black" />
+        <Icon name="plus" size={25} color="black" alignItems='center' justifyContent='center'/>
       </TouchableOpacity>
     </View>
   );
