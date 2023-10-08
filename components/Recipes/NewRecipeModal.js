@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { View, Modal, StyleSheet } from "react-native";
+import axios from "axios";
 import Step1 from "../CreateRecipeSteps/Step1.js";
 import Step2 from "../CreateRecipeSteps/Step2.js";
 import Step3 from "../CreateRecipeSteps/Step3.js";
+
+const HOST = "http://192.168.1.92:8080"
 
 const NewRecipeModal = ({ isVisible, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -29,21 +32,22 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
 
   handleCreateRecipe = async () => {
     setIsLoading(true);
-
     try {
+      
       const response = await axios.post(`${HOST}/api/recipes`, {
-        include_ingredients: ["Tomato", "Mushroom"],
-        exclude_ingredients: ["Onion"],
+        include_ingredients: ["Tomato"],
+        exclude_ingredients: ["Onion"]
       });
 
       if (response.status === 200) {
-        console.log("success generating recipe")
+        console.log(response)
       } else {
-        throw new Error("Something went wrong.");
+        throw new Error("Something went wrong. " + response);
       }
     } catch (error) {
       alert(error);
     }
+
     setIsLoading(false);
   };
 
