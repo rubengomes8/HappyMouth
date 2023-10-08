@@ -8,6 +8,13 @@ const ExampleRecipes = [
       include_ingredients: ["Tomato", "Cheese"],
       exclude_ingredients: ["Onion"],
     },
+    ingredients: [
+      "1 L water",
+      "300 mg of pasta",
+      "2 cloves of garlic, minced",
+      "100 mg of parmesan cheese",
+      "Salt and pepper"
+    ],
     instructions: [
       "Boil water in a large pot.",
       "Add pasta and cook until al dente.",
@@ -27,6 +34,13 @@ const ExampleRecipes = [
       include_ingredients: ["Meat", "Potato", "Oregon"],
       exclude_ingredients: ["Onion"],
     },
+    ingredients: [
+      "4 potatoes",
+      "2 tablespoons of olive oil",
+      "2 cloves of garlic, minced",
+      "2 cow steaks",
+      "Salt, pepper and oregon"
+    ],
     instructions: [
       "Cut the potatoes in sticks.",
       "Deep fry them or fry them using an airfrier.",

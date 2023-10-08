@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import RecipeDetailsIngredients from "./RecipeDetailsIngredients.js";
+import RecipeDetailsInstructions from "./RecipeDetailsInstructions.js";
 
 const RecipeDetails = ({ recipe, onClose }) => {
   return (
@@ -15,9 +17,12 @@ const RecipeDetails = ({ recipe, onClose }) => {
       </TouchableOpacity>
       <Text style={styles.title}>{recipe.title}</Text>
       <ScrollView>
-        {recipe.instructions.map((instruction, index) => 
-          <Text key={index}>{instruction}</Text>
-        )}
+        <RecipeDetailsIngredients
+          ingredients={recipe.ingredients}
+        ></RecipeDetailsIngredients>
+        <RecipeDetailsInstructions
+          instructions={recipe.instructions}
+        ></RecipeDetailsInstructions>
       </ScrollView>
     </View>
   );
