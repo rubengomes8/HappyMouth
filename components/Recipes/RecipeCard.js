@@ -8,9 +8,6 @@ const RecipeCard = ({ recipe, onPress, onToggleFavorite }) => {
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
         <Text style={styles.title}>{recipe.title}</Text>
-        <View style={styles.content}>
-          {<Text>{recipe.short_description}</Text>}
-        </View>
         <TouchableOpacity
           onPress={() => {
             onToggleFavorite(recipe)
