@@ -3,9 +3,14 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import TrashIcon from "../TrashIcon";
 import RemovableIngredient from "../Ingredients/RemovableIngredient";
 
-
-const Step2 = ({ onPrevious, onNext, onClose }) => {
-
+const Step2 = ({
+  onPrevious,
+  onNext,
+  onClose,
+  onAddExcludedIngredient,
+  onRemoveExcludedIngredient,
+  excludedIngredients,
+}) => {
   pressExcludeIngredientHandler = ({}) => {
     console.log("enter ingredient handler pressed " + Math.random());
   };
@@ -37,7 +42,14 @@ const Step2 = ({ onPrevious, onNext, onClose }) => {
       >
         <View style={styles.overlayItems}>
           <View style={styles.ingredientsContainer}>
-          <RemovableIngredient name="Tomato"></RemovableIngredient>
+            {excludedIngredients != undefined
+              ? excludedIngredients.map((ingredient) => (
+                  <RemovableIngredient
+                    key={ingredient.id}
+                    name={ingredient.name}
+                  />
+                ))
+              : null}
           </View>
         </View>
         <Text style={styles.centeredText}>+ Exclude ingredient</Text>

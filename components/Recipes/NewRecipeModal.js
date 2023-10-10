@@ -5,11 +5,38 @@ import Step1 from "../CreateRecipeSteps/Step1.js";
 import Step2 from "../CreateRecipeSteps/Step2.js";
 import Step3 from "../CreateRecipeSteps/Step3.js";
 
-const HOST = "http://192.168.1.92:8080"
+const HOST = "http://192.168.1.92:8080";
 
 const NewRecipeModal = ({ isVisible, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+
+  // EXCLUDED INGREDIENTS
+  const [excludedIngredients, setExcludedIngredients] = useState([]);
+
+  const onRemoveExcludedIngredient = (ingredientID) => {
+    setExcludedIngredients(
+      excludedIngredients.filter((ingredient) => ingredient.id !== ingredientID)
+    );
+  };
+
+  const onAddExcludedIngredient = (ingredient) => {
+    setExcludedIngredients(excludedIngredients.push(ingredient));
+  };
+
+  // INCLUDED INGREDIENTS
+  const [includedIngredients, setIncludedIngredients] = useState([{id: 1, name: "tomato"}, {id: 2, name: "mushroom"}]);
+
+
+  const onRemoveIncludedIngredient = (ingredientID) => {
+    setIncludedIngredients(
+      includedIngredients.filter((ingredient) => ingredient.id !== ingredientID)
+    );
+  };
+
+  const onAddIncludedIngredient = (ingredient) => {
+    setIncludedIngredients(includedIngredients.push(ingredient));
+  };
 
   React.useEffect(() => {
     if (isVisible) {
@@ -33,14 +60,13 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   handleCreateRecipe = async () => {
     setIsLoading(true);
     try {
-      
       const response = await axios.post(`${HOST}/api/recipes`, {
         include_ingredients: ["Tomato"],
-        exclude_ingredients: ["Onion"]
+        exclude_ingredients: ["Onion"],
       });
 
       if (response.status === 200) {
-        console.log(response)
+        console.log(response);
       } else {
         throw new Error("Something went wrong. " + response);
       }
@@ -54,7 +80,15 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   let stepComponent;
   switch (currentStep) {
     case 1:
-      stepComponent = <Step1 onNext={handleNext} onClose={onClose} />;
+      stepComponent = (
+        <Step1
+          onNext={handleNext}
+          onClose={onClose}
+          onAddIncludedIngredient={onAddIncludedIngredient}
+          onRemoveIncludedIngredient={onRemoveIncludedIngredient}
+          includedIngredients={includedIngredients}
+        />
+      );
       break;
     case 2:
       stepComponent = (
