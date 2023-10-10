@@ -4,8 +4,10 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 const RemovableIngredient = ({ name, onRemove }) => {
   removeHandler = () => {
-    console.log("press remove handler");
+    console.log("press remove handler 1");
+    onRemove();
   };
+
   return (
     <TouchableOpacity style={styles.container} activeOpacity={1}>
       <View style={styles.leftContent}>
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 15,
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: "black",
     margin: 5,
     zIndex: -1,
   },

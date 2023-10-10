@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import TrashIcon from "../TrashIcon";
 import RemovableIngredient from "../Ingredients/RemovableIngredient";
 
-const Step1 = ({
-  onNext,
-  onClose,
-  onAddIncludedIngredient,
-  onRemoveIncludedIngredient,
-  includedIngredients,
-}) => {
+const Step1 = ({ onNext, onClose }) => {
+  // INCLUDED INGREDIENTS
+  const [includedIngredients, setIncludedIngredients] = useState([
+    { id: 1, name: "tomato" },
+    { id: 2, name: "mushroom" },
+  ]);
+
+  const onRemoveIncludedIngredient = (ingredientID) => {
+    setIncludedIngredients(
+      includedIngredients.filter((ingredient) => ingredient.id !== ingredientID)
+    );
+  };
+
+  const onAddIncludedIngredient = (ingredient) => {
+    setIncludedIngredients(includedIngredients.push(ingredient));
+  };
+
   pressIncludeIngredientHandler = ({}) => {
     console.log("enter ingredient handler pressed " + Math.random());
   };
@@ -39,6 +49,7 @@ const Step1 = ({
                   <RemovableIngredient
                     key={ingredient.id}
                     name={ingredient.name}
+                    onRemove={() => onRemoveIncludedIngredient(ingredient.id)}
                   />
                 ))
               : null}

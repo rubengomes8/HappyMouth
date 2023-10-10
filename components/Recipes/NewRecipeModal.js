@@ -11,33 +11,6 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
-  // EXCLUDED INGREDIENTS
-  const [excludedIngredients, setExcludedIngredients] = useState([]);
-
-  const onRemoveExcludedIngredient = (ingredientID) => {
-    setExcludedIngredients(
-      excludedIngredients.filter((ingredient) => ingredient.id !== ingredientID)
-    );
-  };
-
-  const onAddExcludedIngredient = (ingredient) => {
-    setExcludedIngredients(excludedIngredients.push(ingredient));
-  };
-
-  // INCLUDED INGREDIENTS
-  const [includedIngredients, setIncludedIngredients] = useState([{id: 1, name: "tomato"}, {id: 2, name: "mushroom"}]);
-
-
-  const onRemoveIncludedIngredient = (ingredientID) => {
-    setIncludedIngredients(
-      includedIngredients.filter((ingredient) => ingredient.id !== ingredientID)
-    );
-  };
-
-  const onAddIncludedIngredient = (ingredient) => {
-    setIncludedIngredients(includedIngredients.push(ingredient));
-  };
-
   React.useEffect(() => {
     if (isVisible) {
       setCurrentStep(1);
@@ -80,15 +53,7 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   let stepComponent;
   switch (currentStep) {
     case 1:
-      stepComponent = (
-        <Step1
-          onNext={handleNext}
-          onClose={onClose}
-          onAddIncludedIngredient={onAddIncludedIngredient}
-          onRemoveIncludedIngredient={onRemoveIncludedIngredient}
-          includedIngredients={includedIngredients}
-        />
-      );
+      stepComponent = <Step1 onNext={handleNext} onClose={onClose} />;
       break;
     case 2:
       stepComponent = (
