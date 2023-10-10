@@ -79,7 +79,6 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
 
   return (
     <Modal
-      animationType="slide"
       transparent={true}
       visible={isVisible}
       onRequestClose={onClose}
