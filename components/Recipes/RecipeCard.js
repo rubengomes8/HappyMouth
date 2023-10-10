@@ -4,10 +4,12 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 const RecipeCard = ({ recipe, onPress, onToggleFavorite }) => {
 
+  const capitalizedTitle = recipe.title.charAt(0).toUpperCase() + recipe.title.slice(1);
+
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
-        <Text style={styles.title}>{recipe.title}</Text>
+        <Text style={styles.title}>{capitalizedTitle}</Text>
         <TouchableOpacity
           onPress={() => {
             onToggleFavorite(recipe)

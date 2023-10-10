@@ -6,7 +6,7 @@ const RecipeDetailsIngredients = ({ ingredients }) => {
     <Text style={styles.ingredientsTitle}>Ingredients</Text>
       {ingredients.map((ingredient, index) => (
         <View  style={styles.ingredientView}>
-          <Text key={index}>{`${index}:  ${ingredient}`}</Text>
+          <Text key={index}>{ingredient}</Text>
         </View>
       ))}
     </View>

@@ -10,12 +10,15 @@ import RecipeDetailsIngredients from "./RecipeDetailsIngredients.js";
 import RecipeDetailsInstructions from "./RecipeDetailsInstructions.js";
 
 const RecipeDetails = ({ recipe, onClose }) => {
+
+  const capitalizedTitle = recipe.title.charAt(0).toUpperCase() + recipe.title.slice(1);
+
   return (
     <View>
       <TouchableOpacity onPress={onClose}>
         <Text style={styles.onCloseText}>Close</Text>
       </TouchableOpacity>
-      <Text style={styles.title}>{recipe.title}</Text>
+      <Text style={styles.title}>{capitalizedTitle}</Text>
       <ScrollView>
         <RecipeDetailsIngredients
           ingredients={recipe.ingredients}
