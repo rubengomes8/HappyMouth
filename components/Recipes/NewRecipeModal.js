@@ -116,14 +116,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-  closeButton: {
-    marginTop: 10,
-    alignItems: "flex-end",
-  },
-  closeButtonText: {
-    color: "blue",
-    fontSize: 16,
-  },
   stepTitleText: {
     color: "black",
     fontSize: 18,

@@ -39,10 +39,6 @@ const Step3 = ({ onPrevious, onSubmit, onClose }) => {
     container: {
       flex: 1,
     },
-    closeButton: {
-      marginTop: 10,
-      alignItems: "flex-end",
-    },
     stepTitleText: {
       color: "black",
       fontSize: 18,
