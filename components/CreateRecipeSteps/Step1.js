@@ -2,8 +2,20 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import TrashIcon from "../TrashIcon";
 import RemovableIngredient from "../Ingredients/RemovableIngredient";
+import SelectIngredientsModal from "../Ingredients/SelectIngredientsModal";
 
 const Step1 = ({ onNext, onClose }) => {
+  const [isSelectIngredientsModalVisible, setIsSelectIngredientsModalVisible] =
+    useState(false);
+  // NEW RECIPE MODAL
+  const openSelectIngredientsModal = () => {
+    setIsSelectIngredientsModalVisible(true);
+  };
+
+  const closeSelectIngredientsModal = () => {
+    setIsSelectIngredientsModalVisible(false);
+  };
+
   // INCLUDED INGREDIENTS
   const [includedIngredients, setIncludedIngredients] = useState([
     { id: 1, name: "tomato" },
@@ -20,12 +32,18 @@ const Step1 = ({ onNext, onClose }) => {
     setIncludedIngredients(includedIngredients.push(ingredient));
   };
 
-  pressIncludeIngredientHandler = ({}) => {
-    console.log("enter ingredient handler pressed " + Math.random());
+  addIngredientHandler = () => {
+    openSelectIngredientsModal();
+    console.log("addIngredientHandler");
   };
 
   return (
     <View style={styles.container}>
+      <SelectIngredientsModal
+        isVisible={isSelectIngredientsModalVisible}
+        onClose={closeSelectIngredientsModal}
+      />
+
       <View
         style={{
           flexDirection: "row",
@@ -40,7 +58,7 @@ const Step1 = ({ onNext, onClose }) => {
       <Text style={styles.stepTitleText}>Step 1: Ingredients to include</Text>
       <TouchableOpacity
         style={styles.addIngredientContainer}
-        onPress={pressIncludeIngredientHandler}
+        onPress={addIngredientHandler}
       >
         <View style={styles.overlayItems}>
           <View style={styles.ingredientsContainer}>
