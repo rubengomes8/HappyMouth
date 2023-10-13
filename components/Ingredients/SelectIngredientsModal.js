@@ -17,19 +17,11 @@ const SelectIngredientsModal = ({
   onClose,
 }) => {
   const [searchValue, setSearchValue] = React.useState("");
-  const [filteredIngredients, setFilteredIngredients] =
-    React.useState(ingredients);
+  const [selectedIngredients, setSelectedIngredients] = React.useState([]);
 
   changeSearchValueHandler = (newValue) => {
+    console.log(newValue);
     setSearchValue(newValue);
-    let filteredIngs =
-      newValue == ("" || undefined)
-        ? ingredients
-        : ingredients.filter((item) =>
-            item.name.toLowerCase().includes(newValue.toLowerCase())
-          );
-    setFilteredIngredients(filteredIngs);
-    t;
   };
 
   const renderItem = ({ item }) => (
@@ -53,12 +45,10 @@ const SelectIngredientsModal = ({
           </TouchableOpacity>
           <HappySearchBar
             searchValue={searchValue}
-            onChangeText={(newValue) =>
-              changeSearchValueHandler(newValue.toLowerCase())
-            }
+            onChangeText={(newValue) => changeSearchValueHandler(newValue)}
           ></HappySearchBar>
           <FlatList
-            data={filteredIngredients}
+            data={ingredients}
             keyExtractor={(ingredient) => ingredient.id}
             renderItem={renderItem}
           />

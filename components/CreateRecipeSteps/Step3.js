@@ -34,9 +34,9 @@ const Step3 = ({
         <Text style={styles.ingredientsTitleText}>Included ingredients</Text>
         <View>
           {includedIngredients != undefined
-            ? includedIngredients.map((ingredient) => (
-                <Text>{ingredient.name}</Text>
-              ))
+            ? includedIngredients.map((ingredient) =>
+                ingredient.selected ? <Text>{ingredient.name}</Text> : null
+              )
             : null}
         </View>
       </View>
@@ -44,9 +44,9 @@ const Step3 = ({
         <Text style={styles.ingredientsTitleText}>Excluded ingredients</Text>
         <View>
           {excludedIngredients != undefined
-            ? excludedIngredients.map((ingredient) => (
-                <Text>{ingredient.name}</Text>
-              ))
+            ? excludedIngredients.map((ingredient) =>
+                ingredient.selected ? <Text>{ingredient.name}</Text> : null
+              )
             : null}
         </View>
       </View>
