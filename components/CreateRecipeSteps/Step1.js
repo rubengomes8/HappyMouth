@@ -4,7 +4,7 @@ import TrashIcon from "../TrashIcon";
 import RemovableIngredient from "../Ingredients/RemovableIngredient";
 import SelectIngredientsModal from "../Ingredients/SelectIngredientsModal";
 
-const Step1 = ({ onNext, onClose }) => {
+const Step1 = ({ ingredients, onToggleIngredientAdded, onNext, onClose }) => {
   const [isSelectIngredientsModalVisible, setIsSelectIngredientsModalVisible] =
     useState(false);
 
@@ -14,24 +14,6 @@ const Step1 = ({ onNext, onClose }) => {
 
   const closeSelectIngredientsModal = () => {
     setIsSelectIngredientsModalVisible(false);
-  };
-
-  // INGREDIENTS
-  const [ingredients, setIngredients] = useState([
-    { id: 1, name: "tomato", selected: true },
-    { id: 2, name: "mushroom", selected: false },
-    { id: 3, name: "potato", selected: true },
-  ]);
-
-  const onToggleIngredientAdded = (ingredientID) => {
-    updatedIngredients = ingredients != undefined
-    ? ingredients.map((item) => {
-      if (item.id === ingredientID) {
-        return { ...item, selected: !item.selected };
-      }
-      return item;
-    }) : [];
-    setIngredients(updatedIngredients);
   };
 
   includeIngredientsHandler = () => {
@@ -66,16 +48,16 @@ const Step1 = ({ onNext, onClose }) => {
       >
         <View style={styles.overlayItems}>
           <View style={styles.ingredientsContainer}>
-            {
-              ingredients != undefined
-              ? ingredients.map((ingredient) => (
-                  ingredient.selected ? 
-                  <RemovableIngredient
-                    key={ingredient.id}
-                    name={ingredient.name}
-                    onRemove={() => onToggleIngredientAdded(ingredient.id)}
-                  /> : null
-                ))
+            {ingredients != undefined
+              ? ingredients.map((ingredient) =>
+                  ingredient.selected ? (
+                    <RemovableIngredient
+                      key={ingredient.id}
+                      name={ingredient.name}
+                      onRemove={() => onToggleIngredientAdded(ingredient.id)}
+                    />
+                  ) : null
+                )
               : null}
           </View>
         </View>

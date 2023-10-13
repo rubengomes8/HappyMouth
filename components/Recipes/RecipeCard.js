@@ -33,9 +33,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
-    borderRadius: 15,
+    borderRadius: 10,
     padding: 15,
-    margin: 10,
+    marginVertical: 10,
+    marginHorizontal: 20,
   },
   title: {
     fontSize: 18,

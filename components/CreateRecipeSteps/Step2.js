@@ -4,7 +4,13 @@ import TrashIcon from "../TrashIcon";
 import RemovableIngredient from "../Ingredients/RemovableIngredient";
 import SelectIngredientsModal from "../Ingredients/SelectIngredientsModal";
 
-const Step2 = ({ onPrevious, onNext, onClose }) => {
+const Step2 = ({
+  ingredients,
+  onToggleIngredientAdded,
+  onPrevious,
+  onNext,
+  onClose,
+}) => {
   const [isSelectIngredientsModalVisible, setIsSelectIngredientsModalVisible] =
     useState(false);
 
@@ -14,25 +20,6 @@ const Step2 = ({ onPrevious, onNext, onClose }) => {
 
   const closeSelectIngredientsModal = () => {
     setIsSelectIngredientsModalVisible(false);
-  };
-
-  // INGREDIENTS
-  const [ingredients, setIngredients] = useState([
-    { id: 4, name: "onion", selected: true },
-    { id: 5, name: "garlic", selected: false },
-  ]);
-
-  const onToggleIngredientAdded = (ingredientID) => {
-    updatedIngredients =
-      ingredients != undefined
-        ? ingredients.map((item) => {
-            if (item.id === ingredientID) {
-              return { ...item, selected: !item.selected };
-            }
-            return item;
-          })
-        : [];
-    setIngredients(updatedIngredients);
   };
 
   excludeIngredientHandler = () => {

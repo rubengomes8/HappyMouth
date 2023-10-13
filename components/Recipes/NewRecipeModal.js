@@ -11,6 +11,45 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
+  /*************  Included ingredients *************/
+  const [includedIngredients, setIncludedIngredients] = useState([
+    { id: 1, name: "tomato", selected: true },
+    { id: 2, name: "mushroom", selected: false },
+    { id: 3, name: "potato", selected: true },
+  ]);
+
+  const onToggleIncludedIngredientAdded = (ingredientID) => {
+    let updatedIngredients =
+      includedIngredients != undefined
+        ? includedIngredients.map((item) => {
+            if (item.id === ingredientID) {
+              return { ...item, selected: !item.selected };
+            }
+            return item;
+          })
+        : [];
+    setIncludedIngredients(updatedIngredients);
+  };
+
+  /*************  Excluded ingredients *************/
+  const [excludedIngredients, setExcludedIngredients] = useState([
+    { id: 4, name: "onion", selected: true },
+    { id: 5, name: "garlic", selected: false },
+  ]);
+
+  const onToggleExcludedIngredientAdded = (ingredientID) => {
+    let updatedIngredients =
+      excludedIngredients != undefined
+        ? excludedIngredients.map((item) => {
+            if (item.id === ingredientID) {
+              return { ...item, selected: !item.selected };
+            }
+            return item;
+          })
+        : [];
+    setExcludedIngredients(updatedIngredients);
+  };
+
   React.useEffect(() => {
     if (isVisible) {
       setCurrentStep(1);
@@ -53,11 +92,20 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   let stepComponent;
   switch (currentStep) {
     case 1:
-      stepComponent = <Step1 onNext={handleNext} onClose={onClose} />;
+      stepComponent = (
+        <Step1
+          ingredients={includedIngredients}
+          onToggleIngredientAdded={onToggleIncludedIngredientAdded}
+          onNext={handleNext}
+          onClose={onClose}
+        />
+      );
       break;
     case 2:
       stepComponent = (
         <Step2
+          ingredients={excludedIngredients}
+          onToggleIngredientAdded={onToggleExcludedIngredientAdded}
           onPrevious={handlePrevious}
           onNext={handleNext}
           onClose={onClose}
@@ -67,6 +115,8 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
     case 3:
       stepComponent = (
         <Step3
+          includedIngredients={includedIngredients}
+          excludedIngredients={excludedIngredients}
           onPrevious={handlePrevious}
           onSubmit={handleSubmit}
           onClose={onClose}
@@ -78,11 +128,7 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   }
 
   return (
-    <Modal
-      transparent={true}
-      visible={isVisible}
-      onRequestClose={onClose}
-    >
+    <Modal transparent={true} visible={isVisible} onRequestClose={onClose}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>{stepComponent}</View>
       </View>
