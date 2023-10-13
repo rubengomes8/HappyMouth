@@ -17,19 +17,23 @@ const Step1 = ({ onNext, onClose }) => {
   };
 
   // INCLUDED INGREDIENTS
-  const [includedIngredients, setIncludedIngredients] = useState([
-    { id: 1, name: "tomato" },
-    { id: 2, name: "mushroom" },
+  const [ingredients, setIngredients] = useState([
+    { id: 1, name: "tomato", selected: true },
+    { id: 2, name: "mushroom", selected: false },
+    { id: 3, name: "potato", selected: true },
   ]);
 
-  const onRemoveIncludedIngredient = (ingredientID) => {
-    setIncludedIngredients(
-      includedIngredients.filter((ingredient) => ingredient.id !== ingredientID)
-    );
-  };
-
-  const onAddIncludedIngredient = (ingredient) => {
-    setIncludedIngredients(includedIngredients.push(ingredient));
+  const onToggleIngredientAdded = (ingredientID) => {
+    console.log("\n\n\n\n\n\nAAAAA:")
+    console.log(ingredients)
+    updatedIngredients = ingredients != undefined
+    ? ingredients.map((item) => {
+      if (item.id === ingredientID) {
+        return { ...item, selected: !item.selected };
+      }
+      return item;
+    }) : [];
+    setIngredients(updatedIngredients);
   };
 
   addIngredientHandler = () => {
@@ -40,7 +44,9 @@ const Step1 = ({ onNext, onClose }) => {
   return (
     <View style={styles.container}>
       <SelectIngredientsModal
+        ingredients={ingredients}
         isVisible={isSelectIngredientsModalVisible}
+        onAddIngredient={onToggleIngredientAdded}
         onClose={closeSelectIngredientsModal}
       />
 
@@ -62,13 +68,17 @@ const Step1 = ({ onNext, onClose }) => {
       >
         <View style={styles.overlayItems}>
           <View style={styles.ingredientsContainer}>
-            {includedIngredients != undefined
-              ? includedIngredients.map((ingredient) => (
+          {console.log("\n\n\n\n\ningredients")}
+            {console.log(ingredients)}
+            {
+              ingredients != undefined
+              ? ingredients.map((ingredient) => (
+                  ingredient.selected ? 
                   <RemovableIngredient
                     key={ingredient.id}
                     name={ingredient.name}
-                    onRemove={() => onRemoveIncludedIngredient(ingredient.id)}
-                  />
+                    onRemove={() => onToggleIngredientAdded(ingredient.id)}
+                  /> : null
                 ))
               : null}
           </View>

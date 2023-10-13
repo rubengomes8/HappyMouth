@@ -10,36 +10,25 @@ import {
 import HappySearchBar from "./HappySearchBar.js";
 import SelectableIngredient from "./SelectableIngredient.js";
 
-const SelectIngredientsModal = ({ isVisible, onClose }) => {
+const SelectIngredientsModal = ({
+  ingredients,
+  isVisible,
+  onAddIngredient,
+  onClose,
+}) => {
   const [searchValue, setSearchValue] = React.useState("");
   const [selectedIngredients, setSelectedIngredients] = React.useState([]);
-  const [allIngredients, setAllIngredients] = React.useState([
-    { id: 1, name: "tomato", selected: true },
-    { id: 2, name: "mushroom", selected: false },
-    { id: 3, name: "potato", selected: true },
-  ]);
 
   changeSearchValueHandler = (newValue) => {
     console.log(newValue);
     setSearchValue(newValue);
   };
 
-  onToggleItemSelect = (itemID) => {
-    console.log("toggleItemSelect");
-    console.log("itemID " + itemID)
-    console.log("before " + JSON.stringify(allIngredients));
-    updatedIngredients = allIngredients.map((item) => {
-      if (item.id === itemID) {
-        return { ...item, selected: !item.selected };
-      }
-      return item;
-    });
-    setAllIngredients(updatedIngredients);
-    console.log("after " + JSON.stringify(allIngredients));
-  };
-
   const renderItem = ({ item }) => (
-    <SelectableIngredient item={item} onToggleItemAdded={() => onToggleItemSelect(item.id)} />
+    <SelectableIngredient
+      item={item}
+      onToggleItemAdded={() => onAddIngredient(item.id)}
+    />
   );
 
   return (
@@ -59,7 +48,7 @@ const SelectIngredientsModal = ({ isVisible, onClose }) => {
             onChangeText={(newValue) => changeSearchValueHandler(newValue)}
           ></HappySearchBar>
           <FlatList
-            data={allIngredients}
+            data={ingredients}
             keyExtractor={(ingredient) => ingredient.id}
             renderItem={renderItem}
           />
