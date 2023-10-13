@@ -39,7 +39,7 @@ const SelectIngredientsModal = ({ isVisible, onClose }) => {
   };
 
   const renderItem = ({ item }) => (
-    <SelectableIngredient item={item} onToggleItemSelection={() => onToggleItemSelect(item.id)} />
+    <SelectableIngredient item={item} onToggleItemAdded={() => onToggleItemSelect(item.id)} />
   );
 
   return (

@@ -2,28 +2,23 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-const SelectableIngredient = ({ item, onToggleItemSelection }) => {
-
+const SelectableIngredient = ({ item, onToggleItemAdded }) => {
   toggleHandler = () => {
     console.log("press toggle handler 1");
-    onToggleItemSelection();
+    onToggleItemAdded();
   };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.addIconTouchable}
-        onPress={toggleHandler}
-      >
-        <Icon
-          name={item.selected ? "check" : "plus"}
-          size="18"
-          color="black"
-          style={styles.addIcon}
-        />
-      </TouchableOpacity>
+    <TouchableOpacity style={styles.container} onPress={toggleHandler}>
       <Text style={styles.ingredientText}>{item.name}</Text>
-    </View>
+      {
+        item.selected ?
+        <View style={styles.label}>
+          <Text style={styles.labelText}>Added</Text>
+        </View> :
+        null
+      }
+    </TouchableOpacity>
   );
 };
 
@@ -31,8 +26,14 @@ export default SelectableIngredient;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "lightgrey",
+    borderRadius: 5,
+    padding: 5,
   },
   ingredientText: {
     fontSize: 18,
@@ -42,5 +43,14 @@ const styles = StyleSheet.create({
   },
   addIconTouchable: {
     justifyContent: "center",
+  },
+  label: {
+    backgroundColor: "grey",
+    padding: 5,
+    borderRadius: 5,
+  },
+  labelText: {
+    color: "white",
+    fontWeight: "bold"
   },
 });

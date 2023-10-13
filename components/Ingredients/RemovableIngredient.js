@@ -14,7 +14,7 @@ const RemovableIngredient = ({ name, onRemove }) => {
         <Text style={styles.ingredientText}>{name}</Text>
       </View>
       <TouchableOpacity style={styles.rightContent} onPress={removeHandler}>
-        <Icon name="times" size={30} color="red" />
+        <Icon name="times" size={25} color="red" />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -27,13 +27,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 2,
-    height: 40,
+    paddingHorizontal: 5,
+    height: 30,
     backgroundColor: "white",
-    borderRadius: 15,
-    borderWidth: 2,
+    borderRadius: 5,
+    borderWidth: 1,
     borderColor: "black",
-    margin: 5,
+    margin: 1,
     zIndex: -1,
   },
   leftContent: {
