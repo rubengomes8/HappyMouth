@@ -7,7 +7,7 @@ import SelectIngredientsModal from "../Ingredients/SelectIngredientsModal";
 const Step1 = ({ onNext, onClose }) => {
   const [isSelectIngredientsModalVisible, setIsSelectIngredientsModalVisible] =
     useState(false);
-  // NEW RECIPE MODAL
+
   const openSelectIngredientsModal = () => {
     setIsSelectIngredientsModalVisible(true);
   };
@@ -16,7 +16,7 @@ const Step1 = ({ onNext, onClose }) => {
     setIsSelectIngredientsModalVisible(false);
   };
 
-  // INCLUDED INGREDIENTS
+  // INGREDIENTS
   const [ingredients, setIngredients] = useState([
     { id: 1, name: "tomato", selected: true },
     { id: 2, name: "mushroom", selected: false },
@@ -24,8 +24,6 @@ const Step1 = ({ onNext, onClose }) => {
   ]);
 
   const onToggleIngredientAdded = (ingredientID) => {
-    console.log("\n\n\n\n\n\nAAAAA:")
-    console.log(ingredients)
     updatedIngredients = ingredients != undefined
     ? ingredients.map((item) => {
       if (item.id === ingredientID) {
@@ -36,9 +34,9 @@ const Step1 = ({ onNext, onClose }) => {
     setIngredients(updatedIngredients);
   };
 
-  addIngredientHandler = () => {
+  includeIngredientsHandler = () => {
     openSelectIngredientsModal();
-    console.log("addIngredientHandler");
+    console.log("includeIngredientsHandler");
   };
 
   return (
@@ -64,12 +62,10 @@ const Step1 = ({ onNext, onClose }) => {
       <Text style={styles.stepTitleText}>Step 1: Ingredients to include</Text>
       <TouchableOpacity
         style={styles.addIngredientContainer}
-        onPress={addIngredientHandler}
+        onPress={includeIngredientsHandler}
       >
         <View style={styles.overlayItems}>
           <View style={styles.ingredientsContainer}>
-          {console.log("\n\n\n\n\ningredients")}
-            {console.log(ingredients)}
             {
               ingredients != undefined
               ? ingredients.map((ingredient) => (

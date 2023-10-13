@@ -2,22 +2,42 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import TrashIcon from "../TrashIcon";
 import RemovableIngredient from "../Ingredients/RemovableIngredient";
+import SelectIngredientsModal from "../Ingredients/SelectIngredientsModal";
 
 const Step2 = ({ onPrevious, onNext, onClose }) => {
-  // EXCLUDED INGREDIENTS
-  const [excludedIngredients, setExcludedIngredients] = useState([
-    { id: 1, name: "tomato" },
-    { id: 2, name: "mushroom" },
-  ]);
+  const [isSelectIngredientsModalVisible, setIsSelectIngredientsModalVisible] =
+    useState(false);
 
-  const onRemoveExcludedIngredient = (ingredientID) => {
-    setExcludedIngredients(
-      excludedIngredients.filter((ingredient) => ingredient.id !== ingredientID)
-    );
+  const openSelectIngredientsModal = () => {
+    setIsSelectIngredientsModalVisible(true);
   };
 
-  const onAddExcludedIngredient = (ingredient) => {
-    setExcludedIngredients(excludedIngredients.push(ingredient));
+  const closeSelectIngredientsModal = () => {
+    setIsSelectIngredientsModalVisible(false);
+  };
+
+  // INGREDIENTS
+  const [ingredients, setIngredients] = useState([
+    { id: 4, name: "onion", selected: true },
+    { id: 5, name: "garlic", selected: false },
+  ]);
+
+  const onToggleIngredientAdded = (ingredientID) => {
+    updatedIngredients =
+      ingredients != undefined
+        ? ingredients.map((item) => {
+            if (item.id === ingredientID) {
+              return { ...item, selected: !item.selected };
+            }
+            return item;
+          })
+        : [];
+    setIngredients(updatedIngredients);
+  };
+
+  excludeIngredientHandler = () => {
+    openSelectIngredientsModal();
+    console.log("addIngredientHandler");
   };
 
   pressExcludeIngredientHandler = ({}) => {
@@ -26,6 +46,12 @@ const Step2 = ({ onPrevious, onNext, onClose }) => {
 
   return (
     <View style={styles.container}>
+      <SelectIngredientsModal
+        ingredients={ingredients}
+        isVisible={isSelectIngredientsModalVisible}
+        onAddIngredient={onToggleIngredientAdded}
+        onClose={closeSelectIngredientsModal}
+      />
       <View
         style={{
           flexDirection: "row",
@@ -47,18 +73,20 @@ const Step2 = ({ onPrevious, onNext, onClose }) => {
       <Text style={styles.stepTitleText}>Step 2: Ingredients to exclude</Text>
       <TouchableOpacity
         style={styles.addIngredientContainer}
-        onPress={pressExcludeIngredientHandler}
+        onPress={excludeIngredientHandler}
       >
         <View style={styles.overlayItems}>
           <View style={styles.ingredientsContainer}>
-            {excludedIngredients != undefined
-              ? excludedIngredients.map((ingredient) => (
-                  <RemovableIngredient
-                    key={ingredient.id}
-                    name={ingredient.name}
-                    onRemove={() => onRemoveExcludedIngredient(ingredient.id)}
-                  />
-                ))
+            {ingredients != undefined
+              ? ingredients.map((ingredient) =>
+                  ingredient.selected ? (
+                    <RemovableIngredient
+                      key={ingredient.id}
+                      name={ingredient.name}
+                      onRemove={() => onToggleIngredientAdded(ingredient.id)}
+                    />
+                  ) : null
+                )
               : null}
           </View>
         </View>
