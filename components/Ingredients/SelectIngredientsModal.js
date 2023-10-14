@@ -17,19 +17,18 @@ const SelectIngredientsModal = ({
   onClose,
 }) => {
   const [searchValue, setSearchValue] = React.useState("");
-  const [selectedIngredients, setSelectedIngredients] = React.useState([]);
 
   changeSearchValueHandler = (newValue) => {
-    console.log(newValue);
     setSearchValue(newValue);
   };
 
-  const renderItem = ({ item }) => (
-    <SelectableIngredient
-      item={item}
-      onToggleItemAdded={() => onAddIngredient(item.id)}
-    />
-  );
+  const renderItem = ({ item }) =>
+    item.name.toLowerCase().includes(searchValue.toLowerCase()) ? (
+      <SelectableIngredient
+        item={item}
+        onToggleItemAdded={() => onAddIngredient(item.id)}
+      />
+    ) : null;
 
   return (
     <Modal
