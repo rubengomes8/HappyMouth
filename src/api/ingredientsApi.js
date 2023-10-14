@@ -2,6 +2,7 @@ import axios from "axios";
 
 const API_HOST = "http://192.168.1.227:8082"; // TODO should use .env
 
+// TODO use react query to have cache!
 export const getIngredientsSortedByName = async (sortByName) => {
   try {
     const response = await axios.get(
