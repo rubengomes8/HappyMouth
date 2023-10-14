@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Modal, StyleSheet } from "react-native";
 import axios from "axios";
 import Step1 from "../CreateRecipeSteps/Step1.js";
 import Step2 from "../CreateRecipeSteps/Step2.js";
 import Step3 from "../CreateRecipeSteps/Step3.js";
-
-const HOST = "http://192.168.1.92:8080";
+import { getIngredientsSortedByName } from "../../api/ingredientsApi.js";
 
 const NewRecipeModal = ({ isVisible, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    async function fetchDatabaseIngredients() {
+      const databaseIngredients = await getIngredientsSortedByName(
+        true /* sortByName */
+      );
+      setIncludedIngredients(databaseIngredients);
+      setExcludedIngredients(databaseIngredients);
+    }
+    fetchDatabaseIngredients();
+  }, []);
+
   /*************  Included ingredients *************/
-  const [includedIngredients, setIncludedIngredients] = useState([
-    { id: 1, name: "tomato", selected: false },
-    { id: 2, name: "mushroom", selected: false },
-    { id: 3, name: "potato", selected: false },
-  ]);
+  const [includedIngredients, setIncludedIngredients] = useState([]);
 
   const onToggleIncludedIngredientAdded = (ingredientID) => {
     let updatedIngredients =
@@ -32,10 +38,7 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   };
 
   /*************  Excluded ingredients *************/
-  const [excludedIngredients, setExcludedIngredients] = useState([
-    { id: 4, name: "onion", selected: false },
-    { id: 5, name: "garlic", selected: false },
-  ]);
+  const [excludedIngredients, setExcludedIngredients] = useState([]);
 
   const onToggleExcludedIngredientAdded = (ingredientID) => {
     let updatedIngredients =
@@ -69,23 +72,8 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
     handleCreateRecipe();
   };
 
-  handleCreateRecipe = async () => {
+  handleCreateRecipe = () => {
     setIsLoading(true);
-    try {
-      const response = await axios.post(`${HOST}/api/recipes`, {
-        include_ingredients: ["Tomato"],
-        exclude_ingredients: ["Onion"],
-      });
-
-      if (response.status === 200) {
-        console.log(response);
-      } else {
-        throw new Error("Something went wrong. " + response);
-      }
-    } catch (error) {
-      alert(error);
-    }
-
     setIsLoading(false);
   };
 
