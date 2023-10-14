@@ -13,9 +13,9 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
 
   /*************  Included ingredients *************/
   const [includedIngredients, setIncludedIngredients] = useState([
-    { id: 1, name: "tomato", selected: true },
+    { id: 1, name: "tomato", selected: false },
     { id: 2, name: "mushroom", selected: false },
-    { id: 3, name: "potato", selected: true },
+    { id: 3, name: "potato", selected: false },
   ]);
 
   const onToggleIncludedIngredientAdded = (ingredientID) => {
@@ -33,7 +33,7 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
 
   /*************  Excluded ingredients *************/
   const [excludedIngredients, setExcludedIngredients] = useState([
-    { id: 4, name: "onion", selected: true },
+    { id: 4, name: "onion", selected: false },
     { id: 5, name: "garlic", selected: false },
   ]);
 

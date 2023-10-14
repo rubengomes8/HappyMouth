@@ -6,9 +6,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "react-native-vector-icons";
 
 // Screens imports
-import RecipesScreen from "./screens/RecipesScreen.js";
-import ProfileScreen from "./screens/ProfileScreen.js";
-import SettingsScreen from "./screens/SettingsScreen.js";
+import RecipesScreen from "./src/screens/RecipesScreen.js";
+import ProfileScreen from "./src/screens/ProfileScreen.js";
+import SettingsScreen from "./src/screens/SettingsScreen.js";
 
 const Tab = createBottomTabNavigator();
 
