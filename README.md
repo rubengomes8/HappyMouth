@@ -1,9 +1,13 @@
 # HappyMouth
 
 ### TODOs
+- [FEATURE] when user submits recipe, go to recipes list screen with a card blurred untirl receive response
+- [FEATURE] add user
+
+
 - [ENGINEERING] use .env
 - [ENGINEERING] use react query to cache ingredients api result
-- [FEATURE] add user
+
 
 
 - [FEATURE] limit users on free requests
