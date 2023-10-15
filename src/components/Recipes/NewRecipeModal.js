@@ -86,6 +86,10 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   }, [isVisible]);
 
   const handleNext = () => {
+    if(includedIngredients.filter((i) => i.selected).length == 0) {
+      alert("You must include at least one ingredient.")
+      return;
+    }
     setCurrentStep(currentStep + 1);
   };
 

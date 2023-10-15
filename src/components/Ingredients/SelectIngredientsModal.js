@@ -39,7 +39,7 @@ const SelectIngredientsModal = ({
       onRequestClose={onClose}
     >
       <View style={styles.modalContainer}>
-        <ScrollView style={styles.modalContent}>
+        <View style={styles.modalContent}>
           <TouchableOpacity onPress={onClose}>
             <Text style={styles.onCloseText}>Close</Text>
           </TouchableOpacity>
@@ -52,21 +52,19 @@ const SelectIngredientsModal = ({
               data={ingredients}
               keyExtractor={(ingredient) => ingredient.id}
               renderItem={renderItem}
+              style={{ maxHeight: "90%" }}
             />
           </View>
-        </ScrollView>
+        </View>
       </View>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   modalContainer: {
     flex: 1,
-    justifyContent: "flex-end",
+    marginVertical: 20,
   },
   modalBackground: {
     flex: 1,
