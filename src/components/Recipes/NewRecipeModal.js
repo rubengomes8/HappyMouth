@@ -34,8 +34,8 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
               return item.selected ? count + 1 : count;
             }, 0);
             if (selectedCount >= 10) {
-              alert("maximum number of ingredients is 10.")
-              return includedIngredients;
+              alert("maximum number of ingredients is 10.");
+              return item;
             }
           }
 
@@ -46,7 +46,7 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
     } else {
       updatedIngredients = [];
     }
-    
+
     setIncludedIngredients(updatedIngredients);
   };
 

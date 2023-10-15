@@ -1,6 +1,7 @@
 import React from "react";
 import {
   View,
+  ScrollView,
   Text,
   StyleSheet,
   Modal,
@@ -38,7 +39,7 @@ const SelectIngredientsModal = ({
       onRequestClose={onClose}
     >
       <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
+        <ScrollView style={styles.modalContent}>
           <TouchableOpacity onPress={onClose}>
             <Text style={styles.onCloseText}>Close</Text>
           </TouchableOpacity>
@@ -46,12 +47,14 @@ const SelectIngredientsModal = ({
             searchValue={searchValue}
             onChangeText={(newValue) => changeSearchValueHandler(newValue)}
           ></HappySearchBar>
-          <FlatList
-            data={ingredients}
-            keyExtractor={(ingredient) => ingredient.id}
-            renderItem={renderItem}
-          />
-        </View>
+          <View>
+            <FlatList
+              data={ingredients}
+              keyExtractor={(ingredient) => ingredient.id}
+              renderItem={renderItem}
+            />
+          </View>
+        </ScrollView>
       </View>
     </Modal>
   );

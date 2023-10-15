@@ -61,8 +61,8 @@ const Step1 = ({ ingredients, onToggleIngredientAdded, onNext, onClose }) => {
               : null}
           </View>
         </View>
-        <View style={styles.centeredText}>
-          <Text>+ Include ingredient</Text>
+        <View style={styles.includeTextView}>
+          <Text style={styles.includeText}>+ Include ingredient</Text>
         </View>
       </TouchableOpacity>
 
@@ -90,9 +90,13 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
-  centeredText: {
+  includeTextView: {
     alignItems: "center",
     justifyContent: "center",
+    zIndex: -1,
+  },
+  includeText: {
+    fontWeight: "bold"
   },
   addIngredientContainer: {
     flex: 1,
