@@ -25,15 +25,28 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   const [includedIngredients, setIncludedIngredients] = useState([]);
 
   const onToggleIncludedIngredientAdded = (ingredientID) => {
-    let updatedIngredients =
-      includedIngredients != undefined
-        ? includedIngredients.map((item) => {
-            if (item.id === ingredientID) {
-              return { ...item, selected: !item.selected };
+    let updatedIngredients;
+    if (includedIngredients != undefined) {
+      updatedIngredients = includedIngredients.map((item) => {
+        if (item.id === ingredientID) {
+          if (!item.selected) {
+            const selectedCount = includedIngredients.reduce((count, item) => {
+              return item.selected ? count + 1 : count;
+            }, 0);
+            if (selectedCount >= 10) {
+              alert("maximum number of ingredients is 10.")
+              return includedIngredients;
             }
-            return item;
-          })
-        : [];
+          }
+
+          return { ...item, selected: !item.selected };
+        }
+        return item;
+      });
+    } else {
+      updatedIngredients = [];
+    }
+    
     setIncludedIngredients(updatedIngredients);
   };
 
