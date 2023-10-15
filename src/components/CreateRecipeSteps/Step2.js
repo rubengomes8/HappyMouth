@@ -77,7 +77,9 @@ const Step2 = ({
               : null}
           </View>
         </View>
-        <Text style={styles.centeredText}>+ Exclude ingredient</Text>
+        <View style={styles.excludeTextView}>
+          <Text style={styles.excludeText}>+ Exclude ingredient</Text>
+        </View>
       </TouchableOpacity>
       <View style={styles.trashIconContainer}>
         <TrashIcon onClose={onClose} />
@@ -113,10 +115,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
+    zIndex: -2,
   },
-  centeredText: {
+  excludeTextView: {
     alignItems: "center",
     justifyContent: "center",
+    zIndex: -1,
+  },
+  excludeText: {
+    fontWeight: "bold"
   },
   stepTitleText: {
     color: "black",

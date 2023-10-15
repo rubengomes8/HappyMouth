@@ -34,7 +34,7 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
               return item.selected ? count + 1 : count;
             }, 0);
             if (selectedCount >= 10) {
-              alert("maximum number of ingredients is 10.");
+              alert("Maximum number of ingredients is 10.");
               return item;
             }
           }
@@ -54,15 +54,28 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   const [excludedIngredients, setExcludedIngredients] = useState([]);
 
   const onToggleExcludedIngredientAdded = (ingredientID) => {
-    let updatedIngredients =
-      excludedIngredients != undefined
-        ? excludedIngredients.map((item) => {
-            if (item.id === ingredientID) {
-              return { ...item, selected: !item.selected };
+    let updatedIngredients;
+    if (excludedIngredients != undefined) {
+      updatedIngredients = excludedIngredients.map((item) => {
+        if (item.id === ingredientID) {
+          if (!item.selected) {
+            const selectedCount = excludedIngredients.reduce((count, item) => {
+              return item.selected ? count + 1 : count;
+            }, 0);
+            if (selectedCount >= 10) {
+              alert("Maximum number of ingredients is 10.");
+              return item;
             }
-            return item;
-          })
-        : [];
+          }
+
+          return { ...item, selected: !item.selected };
+        }
+        return item;
+      });
+    } else {
+      updatedIngredients = [];
+    }
+
     setExcludedIngredients(updatedIngredients);
   };
 
