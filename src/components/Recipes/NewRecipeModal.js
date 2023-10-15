@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    minHeight: "90%",
+    minHeight: "95%",
     padding: 20,
   },
   modalTitle: {

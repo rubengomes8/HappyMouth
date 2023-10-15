@@ -40,12 +40,13 @@ const SelectIngredientsModal = ({
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <TouchableOpacity onPress={onClose}>
+          <TouchableOpacity onPress={onClose} style={{marginVertical: 10}}>
             <Text style={styles.onCloseText}>Close</Text>
           </TouchableOpacity>
           <HappySearchBar
             searchValue={searchValue}
             onChangeText={(newValue) => changeSearchValueHandler(newValue)}
+            style={styles.positionSearchBar}
           ></HappySearchBar>
           <View>
             <FlatList
@@ -81,6 +82,9 @@ const styles = StyleSheet.create({
     color: "blue",
     fontSize: 16,
   },
+  positionSearchBar: {
+    marginTop: 10,
+  }
 });
 
 export default SelectIngredientsModal;
