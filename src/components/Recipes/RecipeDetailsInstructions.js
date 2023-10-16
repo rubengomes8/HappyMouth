@@ -5,8 +5,8 @@ const RecipeDetailsInstructions = ({ instructions }) => {
     <View style={{ marginTop: 10 }}>
       <Text style={styles.instructionsTitle}>Instructions</Text>
       {instructions.map((instruction, index) => (
-        <View style={styles.instructionView}>
-          <Text key={index}>{instruction}</Text>
+        <View key={index} style={styles.instructionView}>
+          <Text>{instruction}</Text>
         </View>
       ))}
     </View>

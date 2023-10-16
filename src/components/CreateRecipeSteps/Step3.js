@@ -35,7 +35,9 @@ const Step3 = ({
         <View>
           {includedIngredients != undefined
             ? includedIngredients.map((ingredient) =>
-                ingredient.selected ? <Text>{ingredient.name}</Text> : null
+                ingredient.selected ? (
+                  <Text key={ingredient.id}>{ingredient.name}</Text>
+                ) : null
               )
             : null}
         </View>
@@ -45,7 +47,9 @@ const Step3 = ({
         <View>
           {excludedIngredients != undefined
             ? excludedIngredients.map((ingredient) =>
-                ingredient.selected ? <Text>{ingredient.name}</Text> : null
+                ingredient.selected ? (
+                  <Text key={ingredient.id}>{ingredient.name}</Text>
+                ) : null
               )
             : null}
         </View>
