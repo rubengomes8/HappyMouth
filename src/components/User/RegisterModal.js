@@ -17,9 +17,12 @@ const RegisterModal = ({ isVisible, onClose }) => {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   async function handleRegister() {
-    // TODO validate two passwords
-    // TODO validate password strength
-    await registerUser(username, password, email);
+    try {
+      await registerUser(username, password, email);
+    } catch (error) {
+      alert("Registration failed")
+      console.error("Registration failed:", error);
+    }
   }
 
   return (
@@ -39,6 +42,7 @@ const RegisterModal = ({ isVisible, onClose }) => {
             <TextInput
               style={styles.input}
               placeholder="Username"
+              placeholderTextColor="gray"
               onChangeText={setUsername}
               autoCapitalize="none"
             />
@@ -46,6 +50,7 @@ const RegisterModal = ({ isVisible, onClose }) => {
             <TextInput
               style={styles.input}
               placeholder="Email"
+              placeholderTextColor="gray"
               onChangeText={setEmail}
               autoCapitalize="none"
             />
@@ -53,6 +58,7 @@ const RegisterModal = ({ isVisible, onClose }) => {
             <TextInput
               style={styles.input}
               placeholder="Password"
+              placeholderTextColor="gray"
               secureTextEntry={true}
               onChangeText={setPassword}
               autoCapitalize="none"
@@ -61,6 +67,7 @@ const RegisterModal = ({ isVisible, onClose }) => {
             <TextInput
               style={styles.input}
               placeholder="Confirm password"
+              placeholderTextColor="gray"
               secureTextEntry={true}
               onChangeText={setPasswordConfirmation}
               autoCapitalize="none"

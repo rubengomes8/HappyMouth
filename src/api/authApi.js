@@ -10,6 +10,18 @@ export const registerUser = async (username, password, email) => {
       email: email,
     });
   } catch (error) {
-    alert(error);
+    throw error;
+  }
+};
+
+export const loginUser = async (username, password) => {
+  try {
+    const response = await axios.post(`${API_HOST}/v1/auth/login`, {
+      username: username,
+      password: password,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
   }
 };
