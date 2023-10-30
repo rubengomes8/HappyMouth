@@ -1,7 +1,7 @@
 # HappyMouth
 
 ### TODOs
-- [FEATURE] when user submits recipe, go to recipes list screen with a card blurred untirl receive response
+- [FEATURE] when user submits recipe, go to recipes list screen with a card blurred until receive response / opens a modal with the recipe detail
 - [FEATURE] add user
 
 
