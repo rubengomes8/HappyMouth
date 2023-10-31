@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import { View, Text, Button, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, Button } from "react-native";
 import LoginModal from "../components/User/LoginModal.js";
 import RegisterModal from "../components/User/RegisterModal.js";
-import { useToken } from '../components/TokenContext.js';
-
+import { getToken, setToken, clearToken } from "../components/TokenService.js";
 
 const ProfileScreen = ({ navigation }) => {
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [isRegisterModalVisible, setRegisterModalVisible] = useState(false);
-  const { token, removeToken } = useToken();
-
+  const [pageToken, setPageToken] = useState('');
 
   // Simulated user profile data
   const userProfile = {
@@ -17,6 +15,22 @@ const ProfileScreen = ({ navigation }) => {
     email: "john@example.com",
     bio: "Software Developer",
   };
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      try {
+        const userToken = await getToken();
+        if (userToken) {
+          setToken(userToken);
+          setPageToken(userToken);
+          console.log("new user token " + userToken);
+        }
+      } catch (error) {
+        console.error("Error getting token:", error);
+      }
+    };
+    fetchToken();
+  }, []);
 
   // REGISTER MODAL
   const openRegisterModal = () => {
@@ -39,15 +53,23 @@ const ProfileScreen = ({ navigation }) => {
   };
 
   // LOGOUT
-  const Logout = () => {
-    removeToken();
+  const logoutHandler = async () => {
+    clearToken();
+    setPageToken('');
     console.log("Logout");
+    const userToken = await getToken();
+    console.log(userToken);
+    console.log(pageToken);
+
   };
 
   return (
     <View style={{ flex: 1 }}>
       <LoginModal isVisible={isLoginModalVisible} onClose={closeLoginModal} />
-      <RegisterModal isVisible={isRegisterModalVisible} onClose={closeRegisterModal} />
+      <RegisterModal
+        isVisible={isRegisterModalVisible}
+        onClose={closeRegisterModal}
+      />
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Button title="Register" onPress={openRegisterModal} />
       </View>
@@ -67,6 +89,13 @@ const ProfileScreen = ({ navigation }) => {
           onPress={() => navigation.navigate("Settings")}
         />
       </View>
+      {pageToken ? (
+        <View>
+          <Button title="Logout 2" onPress={logoutHandler} />
+        </View>
+      ) : (
+        <Text>Please log in to access this feature.</Text>
+      )}
     </View>
   );
 };

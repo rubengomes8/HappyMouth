@@ -9,6 +9,8 @@ import {
   Button,
 } from "react-native";
 import { loginUser } from "../../api/authApi.js";
+import { setToken } from '../TokenService.js';
+
 
 const LoginModal = ({ isVisible, onClose }) => {
   const [username, setUsername] = useState("");
@@ -17,11 +19,12 @@ const LoginModal = ({ isVisible, onClose }) => {
   async function handleLogin() {
     try {
       const loginResponse = await loginUser(username, password);
-      const token = loginResponse;
-      console.log(token);
+      console.log(loginResponse);
+      const newToken = loginResponse.token;
+      setToken(newToken);
     } catch (error) {
+      console.log(error)
       alert("Login failed")
-      console.error("Login failed:", error);
     }
   }
 
