@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { loginUser } from "./../api/authApi.js";
 
@@ -21,12 +21,13 @@ const LoginScreen = () => {
       const loginResponse = await loginUser(username, password);
       if (loginResponse.status == 200) {
         AsyncStorage.setItem("AccessToken", loginResponse.data.token);
+        navigation.navigate("MainTabsScreen");
       }
-      console.log(loginResponse.status);
-      console.log(loginResponse.data.token);
+      //   console.log(loginResponse.status);
+      //   console.log(loginResponse.data.token);
       navigation.navigate("MainTabsScreen");
     } catch (error) {
-      console.log(error);
+      //   console.log(error);
       alert("Login failed");
     }
   }

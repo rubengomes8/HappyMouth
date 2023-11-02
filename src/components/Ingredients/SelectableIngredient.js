@@ -1,10 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
 
 const SelectableIngredient = ({ item, onToggleItemAdded }) => {
   toggleHandler = () => {
-    console.log("press toggle handler 1");
     onToggleItemAdded();
   };
 

@@ -8,7 +8,7 @@ export const postGenerateRecipe = async (inc_ingredients, exc_ingredients) => {
       include_ingredients: inc_ingredients,
       exclude_ingredients: exc_ingredients,
     });
-    console.log(response.json());
+    // console.log(response.json());
   } catch (error) {
     alert(error);
   }

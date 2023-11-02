@@ -18,7 +18,6 @@ const Step1 = ({ ingredients, onToggleIngredientAdded, onNext, onClose }) => {
 
   includeIngredientsHandler = () => {
     openSelectIngredientsModal();
-    console.log("includeIngredientsHandler");
   };
 
   return (
