@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_HOST = "http://192.168.1.227:8080"; // TODO should use .env
+const API_HOST = "http://192.168.1.92:8080"; // TODO should use .env
 
 export const postGenerateRecipe = async (inc_ingredients, exc_ingredients) => {
   try {

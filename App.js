@@ -3,54 +3,31 @@ import { StatusBar } from "expo-status-bar";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome } from "react-native-vector-icons";
+import { createStackNavigator } from '@react-navigation/stack';
 
 // Screens imports
-import RecipesScreen from "./src/screens/RecipesScreen.js";
-import ProfileScreen from "./src/screens/ProfileScreen.js";
-import SettingsScreen from "./src/screens/SettingsScreen.js";
+import MainTabsScreen from "./src/screens/MainTabsScreen.js";
+import LoginScreen from "./src/screens/LoginScreen.js";
+import RegisterScreen from "./src/screens/RegisterScreen.js";
+
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
       <StatusBar style={styles.statusBar} />
-      <Tab.Navigator
-        initialRouteName="Recipes"
-        screenOptions={() => ({
-          tabBarActiveTintColor: "black",
-          tabBarInactiveTintColor: "lightgray",
-        })}
-      >
-        <Tab.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <FontAwesome name="user" size={size} color={color} />
-            ),
-          }}
+      <Stack.Navigator 
+        initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen
+          name="MainTabsScreen"
+          component={MainTabsScreen}
+          options={{ headerShown: false }}
         />
-        <Tab.Screen
-          name="Recipes"
-          component={RecipesScreen}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <FontAwesome name="book" size={size} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Settings"
-          component={SettingsScreen}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <FontAwesome name="gear" size={size} color={color} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
