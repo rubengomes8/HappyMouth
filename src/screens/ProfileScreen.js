@@ -18,7 +18,7 @@ const ProfileScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Button title="Logout" onPress={openLoginModal} />
+        <Button title="Logout"/>
       </View>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Text>Profile Screen</Text>

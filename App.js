@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Screens imports
-import MainTabs from "./src/screens/MainTabsScreen.js";
+import MainTabsScreen from "./src/screens/MainTabsScreen.js";
 import LoginScreen from "./src/screens/LoginScreen.js";
 import RegisterScreen from "./src/screens/RegisterScreen.js";
 
@@ -23,8 +23,8 @@ const App = () => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen
-          name="MainTabs"
-          component={MainTabs}
+          name="MainTabsScreen"
+          component={MainTabsScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
