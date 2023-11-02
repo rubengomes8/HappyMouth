@@ -24,11 +24,9 @@ const Step2 = ({
 
   excludeIngredientHandler = () => {
     openSelectIngredientsModal();
-    console.log("addIngredientHandler");
   };
 
   pressExcludeIngredientHandler = ({}) => {
-    console.log("enter ingredient handler pressed " + Math.random());
   };
 
   return (

@@ -4,7 +4,6 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 const RemovableIngredient = ({ name, onRemove }) => {
   removeHandler = () => {
-    console.log("press remove handler 1");
     onRemove();
   };
 
