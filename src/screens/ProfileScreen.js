@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ProfileScreen = ({ navigation }) => {
-
   // Simulated user profile data
   const userProfile = {
     name: "John Doe",
@@ -11,14 +11,19 @@ const ProfileScreen = ({ navigation }) => {
   };
 
   // LOGOUT
-  const logoutHandler = async () => {
-    console.log("TODO: Logout");
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.removeItem("AccessToken");
+      navigation.navigate("Login");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <View style={{ flex: 1 }}>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Button title="Logout"/>
+        <Button title="Logout" onPress={handleLogout} />
       </View>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Text>Profile Screen</Text>

@@ -15,7 +15,7 @@ export const getIngredientsSortedByName = async (sortByName) => {
       }
     );
     ingredients = addSelectedToIngredients(response.data, false);
-    console.log(ingredients);
+    // console.log(ingredients);
     return ingredients;
   } catch (error) {
     alert(error);

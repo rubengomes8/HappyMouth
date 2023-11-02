@@ -9,6 +9,7 @@ export const registerUser = async (username, password, email) => {
       password: password,
       email: email,
     });
+    return response;
   } catch (error) {
     throw error;
   }

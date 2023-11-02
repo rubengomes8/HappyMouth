@@ -24,11 +24,9 @@ const RecipesScreen = ({}) => {
 
   createRecipeHandler = ({}) => {
     openNewRecipeModal();
-    console.log("Create recipe handler");
   };
 
   pressCardHandler = ({}) => {
-    console.log("Press card handler");
   };
 
   // RECIPE DETAILS MODAL
@@ -44,7 +42,6 @@ const RecipesScreen = ({}) => {
 
   const recipeDetailsHandler = (recipe) => {
     openRecipeDetailsModal(recipe);
-    console.log("recipe details handler");
   };
 
   // FAVORITE RECIPE TOGGLE
