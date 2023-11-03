@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, Button } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import PasswordInput from "../components/PasswordInput.js";
 import { registerUser } from "../api/authApi.js";
 
@@ -24,9 +26,16 @@ const RegisterScreen = () => {
     setIsEmailValid(checkIsEmailValid(text));
   };
 
+
+  // NAVIGATION
+  const navigation = useNavigation();
+
   async function handleRegister() {
     try {
-      await registerUser(username, password, email);
+      registerResponse = await registerUser(username, password, email);
+      if (registerResponse.status == 200) {
+        navigation.navigate("Login");
+      }
     } catch (error) {
       alert("Registration failed");
       console.error("Registration failed:", error);

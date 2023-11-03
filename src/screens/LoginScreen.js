@@ -3,11 +3,13 @@ import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import PasswordInput from "../components/PasswordInput.js";
 import { loginUser } from "./../api/authApi.js";
 
 const LoginScreen = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordVisible, setPasswordVisible] = useState(false);
 
   // NAVIGATION
   const navigation = useNavigation();
@@ -42,14 +44,12 @@ const LoginScreen = () => {
         onChangeText={setUsername}
         autoCapitalize="none"
       />
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={styles.input}
+      <PasswordInput
         placeholder="Password"
-        placeholderTextColor="gray"
-        secureTextEntry={true}
-        onChangeText={setPassword}
-        autoCapitalize="none"
+        password={password}
+        setPassword={setPassword}
+        isPasswordVisible={isPasswordVisible}
+        setPasswordVisible={setPasswordVisible}
       />
       <Button title="Login" onPress={handleLogin} />
       <View style={{ justifyContent: "center", alignItems: "center" }}>

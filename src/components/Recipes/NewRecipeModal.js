@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { View, Modal, StyleSheet } from "react-native";
-import axios from "axios";
 import Step1 from "../CreateRecipeSteps/Step1.js";
 import Step2 from "../CreateRecipeSteps/Step2.js";
 import Step3 from "../CreateRecipeSteps/Step3.js";
 import { getIngredientsSortedByName } from "../../api/ingredientsApi.js";
+import { postGenerateRecipe } from "../../api/recipegeneratorApi.js";
 
-const NewRecipeModal = ({ isVisible, onClose }) => {
+const NewRecipeModal = ({ isVisible, onClose, onCloseAndFetchRecipes }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -86,8 +86,8 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
   }, [isVisible]);
 
   const handleNext = () => {
-    if(includedIngredients.filter((i) => i.selected).length == 0) {
-      alert("You must include at least one ingredient.")
+    if (includedIngredients.filter((i) => i.selected).length == 0) {
+      alert("You must include at least one ingredient.");
       return;
     }
     setCurrentStep(currentStep + 1);
@@ -97,15 +97,29 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleSubmit = () => {
-    onClose();
-    handleCreateRecipe();
-  };
-
-  handleCreateRecipe = () => {
+  async function handleCreateRecipe() {
+    console.log("handleCreateRecipe");
     setIsLoading(true);
+    try {
+      const includedIngredientNames = includedIngredients
+        .filter((item) => item.selected)
+        .map((item) => item.name);
+      const excludedIngredientNames = excludedIngredients
+        .filter((item) => item.selected)
+        .map((item) => item.name);
+      response = await postGenerateRecipe(
+        includedIngredientNames,
+        excludedIngredientNames
+      );
+      if (response.status == 200) {
+        onCloseAndFetchRecipes();
+      }
+    } catch (error) {
+      alert("Create new recipe failed");
+      console.error("Create new recipe failed:", error);
+    }
     setIsLoading(false);
-  };
+  }
 
   let stepComponent;
   switch (currentStep) {
@@ -136,7 +150,7 @@ const NewRecipeModal = ({ isVisible, onClose }) => {
           includedIngredients={includedIngredients}
           excludedIngredients={excludedIngredients}
           onPrevious={handlePrevious}
-          onSubmit={handleSubmit}
+          onSubmit={handleCreateRecipe}
           onClose={onClose}
         />
       );

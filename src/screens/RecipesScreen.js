@@ -22,6 +22,11 @@ const RecipesScreen = ({}) => {
     setNewRecipeModalVisible(false);
   };
 
+  const closeNewRecipeModalAndFetchRecipes = () => {
+    // TODO: fetch user recipes
+    setNewRecipeModalVisible(false);
+  }
+
   createRecipeHandler = ({}) => {
     openNewRecipeModal();
   };
@@ -72,7 +77,9 @@ const RecipesScreen = ({}) => {
       </View>
       <NewRecipeModal
         isVisible={isNewRecipeModalVisible}
+        setIsVisivle={setNewRecipeModalVisible}
         onClose={closeNewRecipeModal}
+        onCloseAndFetchRecipes={closeNewRecipeModalAndFetchRecipes}
       />
       <RecipeDetailsModal
         isVisible={isRecipeDetailsModalVisible}
