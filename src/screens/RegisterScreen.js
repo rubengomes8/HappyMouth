@@ -1,18 +1,15 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  Button,
-} from "react-native";
+import { View, Text, TextInput, StyleSheet, Button } from "react-native";
+import PasswordInput from "../components/PasswordInput.js";
 import { registerUser } from "../api/authApi.js";
 
 const RegisterScreen = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [isPasswordConfirmationVisible, setPasswordConfirmationVisible] = useState(false);
 
   async function handleRegister() {
     try {
@@ -42,22 +39,20 @@ const RegisterScreen = () => {
         autoCapitalize="none"
       />
       <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={styles.input}
+      <PasswordInput
         placeholder="Password"
-        placeholderTextColor="gray"
-        secureTextEntry={true}
-        onChangeText={setPassword}
-        autoCapitalize="none"
+        password={password}
+        setPassword={setPassword}
+        isPasswordVisible={isPasswordVisible}
+        setPasswordVisible={setPasswordVisible}
       />
       <Text style={styles.label}>Confirm password</Text>
-      <TextInput
-        style={styles.input}
+      <PasswordInput
         placeholder="Confirm password"
-        placeholderTextColor="gray"
-        secureTextEntry={true}
-        onChangeText={setPasswordConfirmation}
-        autoCapitalize="none"
+        password={passwordConfirmation}
+        setPassword={setPasswordConfirmation}
+        isPasswordVisible={isPasswordConfirmationVisible}
+        setPasswordVisible={setPasswordConfirmationVisible}
       />
       <Button title="Register" onPress={handleRegister} />
     </View>
