@@ -1,48 +1,72 @@
-import React, { useState } from "react";
-import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import React from "react";
+import {
+  View,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-const PasswordInput = ( { placeholder, password, setPassword, isPasswordVisible, setPasswordVisible }) => {
+const PasswordInput = ({
+  placeholder,
+  password,
+  setPassword,
+  isPasswordVisible,
+  setPasswordVisible,
+}) => {
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.input}
-        placeholder={placeholder}
-        placeholderTextColor="gray"
-        secureTextEntry={!isPasswordVisible}
-        onChangeText={setPassword}
-        autoCapitalize="none"
-        value={password}
-      />
-      <TouchableOpacity
-        onPress={() => {setPasswordVisible(!isPasswordVisible)}}
-        style={styles.eyeIcon}
-      >
-        <View
-          style={{
-            alignItems: "center",
+    <View style={styles.container}>
+      <Text style={styles.label}>{placeholder}</Text>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder={placeholder}
+          placeholderTextColor="gray"
+          secureTextEntry={!isPasswordVisible}
+          onChangeText={setPassword}
+          autoCapitalize="none"
+          value={password}
+        />
+        <TouchableOpacity
+          onPress={() => {
+            setPasswordVisible(!isPasswordVisible);
           }}
+          style={styles.eyeIcon}
         >
-          <Icon
-            name={isPasswordVisible ? "eye" : "eye-slash"}
-            size={24}
-            color="black"
-          />
-        </View>
-      </TouchableOpacity>
+          <View
+            style={{
+              alignItems: "center",
+            }}
+          >
+            <Icon
+              name={isPasswordVisible ? "eye" : "eye-slash"}
+              size={24}
+              color="black"
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 10,
+  },
+  label: {
+    fontSize: 18,
+    marginBottom: 5,
+    textAlign: "center"
+  },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
     borderColor: "gray",
-    margin: 10,
+    marginLeft: 30,
   },
   input: {
-    width: "70%",
+    width: "80%",
     height: 40,
     borderColor: "gray",
     borderWidth: 1,

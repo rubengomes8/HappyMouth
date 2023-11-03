@@ -3,13 +3,26 @@ import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 import PasswordInput from "../components/PasswordInput.js";
 import { registerUser } from "../api/authApi.js";
 
+const checkIsEmailValid = (email) => {
+  const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  return emailPattern.test(email);
+};
+
 const RegisterScreen = () => {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [isPasswordConfirmationVisible, setPasswordConfirmationVisible] = useState(false);
+  const [isPasswordConfirmationVisible, setPasswordConfirmationVisible] =
+    useState(false);
+
+  // EMAIL
+  const [email, setEmail] = useState("");
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const handleEmailChange = (text) => {
+    setEmail(text);
+    setIsEmailValid(checkIsEmailValid(text));
+  };
 
   async function handleRegister() {
     try {
@@ -35,10 +48,13 @@ const RegisterScreen = () => {
         style={styles.input}
         placeholder="Email"
         placeholderTextColor="gray"
-        onChangeText={setEmail}
+        onChangeText={handleEmailChange}
         autoCapitalize="none"
       />
-      <Text style={styles.label}>Password</Text>
+      {isEmailValid ? null : (
+        <Text style={styles.errorText}>Invalid email</Text>
+      )}
+
       <PasswordInput
         placeholder="Password"
         password={password}
@@ -46,7 +62,6 @@ const RegisterScreen = () => {
         isPasswordVisible={isPasswordVisible}
         setPasswordVisible={setPasswordVisible}
       />
-      <Text style={styles.label}>Confirm password</Text>
       <PasswordInput
         placeholder="Confirm password"
         password={passwordConfirmation}
@@ -54,7 +69,9 @@ const RegisterScreen = () => {
         isPasswordVisible={isPasswordConfirmationVisible}
         setPasswordVisible={setPasswordConfirmationVisible}
       />
-      <Button title="Register" onPress={handleRegister} />
+      <View style={styles.registerButtonView}>
+        <Button title="Register" onPress={handleRegister} />
+      </View>
     </View>
   );
 };
@@ -80,4 +97,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 5,
   },
+  errorText: {
+    color: "red",
+  },
+  registerButtonView: {
+    marginTop: 10,
+  }
 });
