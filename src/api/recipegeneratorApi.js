@@ -1,27 +1,25 @@
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const API_HOST = "http://192.168.1.112:8080"; // TODO should use .env
 
 export const postGenerateRecipe = async (inc_ingredients, exc_ingredients) => {
-  console.log(inc_ingredients);
-  console.log(exc_ingredients);
   try {
-    const response = await axios.post(`${API_HOST}/v1/recipes`, {
-      include_ingredients: inc_ingredients,
-      exclude_ingredients: exc_ingredients,
-    });
-    return response;
+    const token = await AsyncStorage.getItem("AccessToken");
+    if (token) {
+      const response = await axios.post(`${API_HOST}/v1/recipes`, {
+        include_ingredients: inc_ingredients,
+        exclude_ingredients: exc_ingredients,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+      return response;
+    } else {
+      throw new Error("AccessToken not found in AsyncStorage");
+    }
   } catch (error) {
-    alert(error);
+    throw error;
   }
-};
-
-const addSelectedToIngredients = (ingredients, selectedValue) => {
-  if (ingredients != undefined) {
-    return ingredients.map((item) => ({
-      ...item,
-      selected: selectedValue,
-    }));
-  }
-  return null;
 };
