@@ -23,9 +23,6 @@ const ProfileScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Button title="Logout" onPress={handleLogout} />
-      </View>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Text>Profile Screen</Text>
         <Text>Name: {userProfile.name}</Text>
         <Text>Email: {userProfile.email}</Text>
@@ -34,6 +31,9 @@ const ProfileScreen = ({ navigation }) => {
           title="Go to Settings"
           onPress={() => navigation.navigate("Settings")}
         />
+      </View>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <Button title="Logout" onPress={handleLogout} />
       </View>
     </View>
   );
