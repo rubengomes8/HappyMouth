@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     paddingLeft: 10,
+    marginBottom: 10
   },
   eyeIcon: {
     alignItems: "center",

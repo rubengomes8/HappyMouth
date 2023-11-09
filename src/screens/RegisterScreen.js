@@ -26,7 +26,6 @@ const RegisterScreen = () => {
     setIsEmailValid(checkIsEmailValid(text));
   };
 
-
   // NAVIGATION
   const navigation = useNavigation();
 
@@ -44,6 +43,18 @@ const RegisterScreen = () => {
       }
     }
   }
+
+  const passwordsMatch = () => {
+    return password == passwordConfirmation;
+  };
+
+  const isPasswordsLargeEnough = () => {
+    return password.length >= 8;
+  };
+
+  const isFormValid = () => {
+    return isEmailValid && passwordsMatch() && isPasswordsLargeEnough();
+  };
 
   return (
     <View style={styles.container}>
@@ -81,8 +92,15 @@ const RegisterScreen = () => {
         isPasswordVisible={isPasswordConfirmationVisible}
         setPasswordVisible={setPasswordConfirmationVisible}
       />
+      {passwordsMatch() ? null : (
+        <Text style={styles.errorText}>Passwords do not match</Text>
+      )}
       <View style={styles.registerButtonView}>
-        <Button title="Register" onPress={handleRegister} />
+        <Button
+          title="Register"
+          onPress={handleRegister}
+          disabled={!isFormValid()}
+        />
       </View>
     </View>
   );
@@ -114,5 +132,5 @@ const styles = StyleSheet.create({
   },
   registerButtonView: {
     marginTop: 10,
-  }
+  },
 });
