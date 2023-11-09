@@ -33,12 +33,15 @@ const RegisterScreen = () => {
   async function handleRegister() {
     try {
       registerResponse = await registerUser(username, password, email);
-      if (registerResponse.status == 200) {
+      if (registerResponse.status == 204) {
         navigation.navigate("Login");
       }
     } catch (error) {
-      alert("Registration failed");
-      console.error("Registration failed:", error);
+      if (error.data.error) {
+        alert("Username already exists.");
+      } else {
+        alert("Registration failed");
+      }
     }
   }
 
