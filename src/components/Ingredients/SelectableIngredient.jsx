@@ -10,11 +10,15 @@ const SelectableIngredient = ({ item, onToggleItemAdded }) => {
     <TouchableOpacity style={styles.container} onPress={toggleHandler}>
       <Text style={styles.ingredientText}>{item.name}</Text>
       {
-        item.selected ?
-        <View style={styles.label}>
-          <Text style={styles.labelText}>Added</Text>
-        </View> :
-        null
+        item.isIncluded ?
+          <View style={styles.includedLabel}>
+            <Text style={styles.includedLabelText}>Included</Text>
+          </View> :
+          item.isExcluded ?
+            <View style={styles.excludedLabel}>
+              <Text style={styles.excludedLabelText}>Excluded</Text>
+            </View> :
+            null
       }
     </TouchableOpacity>
   );
@@ -42,12 +46,21 @@ const styles = StyleSheet.create({
   addIconTouchable: {
     justifyContent: "center",
   },
-  label: {
-    backgroundColor: "grey",
+  includedLabel: {
+    backgroundColor: "lightgreen",
     padding: 5,
     borderRadius: 5,
   },
-  labelText: {
+  includedLabelText: {
+    color: "white",
+    fontWeight: "bold"
+  },
+  excludedLabel: {
+    backgroundColor: "lightblue",
+    padding: 5,
+    borderRadius: 5,
+  },
+  excludedLabelText: {
     color: "white",
     fontWeight: "bold"
   },

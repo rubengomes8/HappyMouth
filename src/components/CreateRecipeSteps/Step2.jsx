@@ -6,7 +6,7 @@ import SelectIngredientsModal from "../Ingredients/SelectIngredientsModal";
 
 const Step2 = ({
   ingredients,
-  onToggleIngredientAdded,
+  onToggleIngredientIsExcluded,
   onPrevious,
   onNext,
   onClose,
@@ -32,9 +32,9 @@ const Step2 = ({
   return (
     <View style={styles.container}>
       <SelectIngredientsModal
-        ingredients={ingredients}
+        ingredients={ingredients.filter((i) => !i.isIncluded)}
         isVisible={isSelectIngredientsModalVisible}
-        onAddIngredient={onToggleIngredientAdded}
+        onAddIngredient={onToggleIngredientIsExcluded}
         onClose={closeSelectIngredientsModal}
       />
       <View
@@ -64,11 +64,11 @@ const Step2 = ({
           <View style={styles.ingredientsContainer}>
             {ingredients != undefined
               ? ingredients.map((ingredient) =>
-                  ingredient.selected ? (
+                  ingredient.isExcluded ? (
                     <RemovableIngredient
                       key={ingredient.id}
                       name={ingredient.name}
-                      onRemove={() => onToggleIngredientAdded(ingredient.id)}
+                      onRemove={() => onToggleIngredientIsExcluded(ingredient.id)}
                     />
                   ) : null
                 )

@@ -3,8 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import TrashIcon from "../TrashIcon";
 
 const Step3 = ({
-  includedIngredients,
-  excludedIngredients,
+  ingredients,
   onPrevious,
   onSubmit,
   onClose,
@@ -33,10 +32,10 @@ const Step3 = ({
       <View>
         <Text style={styles.ingredientsTitleText}>Included ingredients</Text>
         <View>
-          {includedIngredients != undefined
-            ? includedIngredients.map((ingredient) =>
-                ingredient.selected ? (
-                  <Text key={ingredient.id}>{ingredient.name}</Text>
+          {ingredients != undefined
+            ? ingredients.map((i) =>
+                i.isIncluded ? (
+                  <Text key={i.id}>{i.name}</Text>
                 ) : null
               )
             : null}
@@ -45,10 +44,10 @@ const Step3 = ({
       <View>
         <Text style={styles.ingredientsTitleText}>Excluded ingredients</Text>
         <View>
-          {excludedIngredients != undefined
-            ? excludedIngredients.map((ingredient) =>
-                ingredient.selected ? (
-                  <Text key={ingredient.id}>{ingredient.name}</Text>
+          {ingredients != undefined
+            ? ingredients.map((i) =>
+                i.isExcluded ? (
+                  <Text key={i.id}>{i.name}</Text>
                 ) : null
               )
             : null}

@@ -4,7 +4,7 @@ import TrashIcon from "../TrashIcon";
 import RemovableIngredient from "../Ingredients/RemovableIngredient";
 import SelectIngredientsModal from "../Ingredients/SelectIngredientsModal";
 
-const Step1 = ({ ingredients, onToggleIngredientAdded, onNext, onClose }) => {
+const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) => {
   const [isSelectIngredientsModalVisible, setIsSelectIngredientsModalVisible] =
     useState(false);
 
@@ -23,9 +23,9 @@ const Step1 = ({ ingredients, onToggleIngredientAdded, onNext, onClose }) => {
   return (
     <View style={styles.container}>
       <SelectIngredientsModal
-        ingredients={ingredients}
+        ingredients={ingredients.filter(i => !i.isExcluded)}
         isVisible={isSelectIngredientsModalVisible}
-        onAddIngredient={onToggleIngredientAdded}
+        onAddIngredient={onToggleIngredientIsIncluded}
         onClose={closeSelectIngredientsModal}
       />
 
@@ -49,11 +49,11 @@ const Step1 = ({ ingredients, onToggleIngredientAdded, onNext, onClose }) => {
           <View style={styles.ingredientsContainer}>
             {ingredients != undefined
               ? ingredients.map((ingredient) =>
-                  ingredient.selected ? (
+                  ingredient.isIncluded ? (
                     <RemovableIngredient
                       key={ingredient.id}
                       name={ingredient.name}
-                      onRemove={() => onToggleIngredientAdded(ingredient.id)}
+                      onRemove={() => onToggleIngredientIsIncluded(ingredient.id)}
                     />
                   ) : null
                 )

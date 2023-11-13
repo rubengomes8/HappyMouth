@@ -9,74 +9,63 @@ import { postGenerateRecipe } from "../../api/recipegeneratorApi.js";
 const NewRecipeModal = ({ isVisible, onClose, onCloseAndFetchRecipes }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
     async function fetchDatabaseIngredients() {
       const databaseIngredients = await getIngredientsSortedByName(
         true /* sortByName */
       );
-      setIncludedIngredients(databaseIngredients);
-      setExcludedIngredients(databaseIngredients);
+      setIngredients(databaseIngredients.map((item) => ({ ...item, isIncluded: false, isExcluded: false })));
     }
     fetchDatabaseIngredients();
   }, []);
 
-  /*************  Included ingredients *************/
-  const [includedIngredients, setIncludedIngredients] = useState([]);
 
-  const onToggleIncludedIngredientAdded = (ingredientID) => {
+  const onToggleIngredientIsIncluded = (ingredientID) => {
     let updatedIngredients;
-    if (includedIngredients != undefined) {
-      updatedIngredients = includedIngredients.map((item) => {
+    if (ingredients != undefined) {
+      updatedIngredients = ingredients.map((item) => {
         if (item.id === ingredientID) {
-          if (!item.selected) {
-            const selectedCount = includedIngredients.reduce((count, item) => {
-              return item.selected ? count + 1 : count;
-            }, 0);
-            if (selectedCount >= 10) {
+          if (!item.isIncluded) {
+            const numSelectedIngredients = ingredients.filter(i => i.isIncluded).length;
+            if (numSelectedIngredients >= 10) {
               alert("Maximum number of ingredients is 10.");
               return item;
             }
-          }
-
-          return { ...item, selected: !item.selected };
+          } 
+          return { ...item, isIncluded: !item.isIncluded };
         }
         return item;
       });
     } else {
       updatedIngredients = [];
     }
-
-    setIncludedIngredients(updatedIngredients);
+    setIngredients(updatedIngredients);
   };
 
-  /*************  Excluded ingredients *************/
-  const [excludedIngredients, setExcludedIngredients] = useState([]);
 
-  const onToggleExcludedIngredientAdded = (ingredientID) => {
+  const onToggleIngredientIsExcluded = (ingredientID) => {
     let updatedIngredients;
-    if (excludedIngredients != undefined) {
-      updatedIngredients = excludedIngredients.map((item) => {
+    if (ingredients != undefined) {
+      updatedIngredients = ingredients.map((item) => {
         if (item.id === ingredientID) {
           if (!item.selected) {
-            const selectedCount = excludedIngredients.reduce((count, item) => {
-              return item.selected ? count + 1 : count;
-            }, 0);
-            if (selectedCount >= 10) {
+            const numSelectedIngredients = ingredients.filter(i => i.isExcluded).length;
+            if (numSelectedIngredients >= 10) {
               alert("Maximum number of ingredients is 10.");
               return item;
             }
           }
+          return { ...item, isExcluded: !item.isExcluded };
 
-          return { ...item, selected: !item.selected };
         }
         return item;
       });
     } else {
       updatedIngredients = [];
     }
-
-    setExcludedIngredients(updatedIngredients);
+    setIngredients(updatedIngredients);
   };
 
   React.useEffect(() => {
@@ -86,7 +75,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndFetchRecipes }) => {
   }, [isVisible]);
 
   const handleNext = () => {
-    if (includedIngredients.filter((i) => i.selected).length == 0) {
+    if (ingredients.filter((i) => i.isIncluded).length == 0) {
       alert("You must include at least one ingredient.");
       return;
     }
@@ -101,11 +90,11 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndFetchRecipes }) => {
     console.log("handleCreateRecipe");
     setIsLoading(true);
     try {
-      const includedIngredientNames = includedIngredients
-        .filter((item) => item.selected)
+      const includedIngredientNames = ingredients
+        .filter((item) => item.isIncluded)
         .map((item) => item.name);
-      const excludedIngredientNames = excludedIngredients
-        .filter((item) => item.selected)
+      const excludedIngredientNames = ingredients
+        .filter((item) => item.isExcluded)
         .map((item) => item.name);
       response = await postGenerateRecipe(
         includedIngredientNames,
@@ -126,8 +115,8 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndFetchRecipes }) => {
     case 1:
       stepComponent = (
         <Step1
-          ingredients={includedIngredients}
-          onToggleIngredientAdded={onToggleIncludedIngredientAdded}
+          ingredients={ingredients}
+          onToggleIngredientIsIncluded={onToggleIngredientIsIncluded}
           onNext={handleNext}
           onClose={onClose}
         />
@@ -136,8 +125,8 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndFetchRecipes }) => {
     case 2:
       stepComponent = (
         <Step2
-          ingredients={excludedIngredients}
-          onToggleIngredientAdded={onToggleExcludedIngredientAdded}
+          ingredients={ingredients}
+          onToggleIngredientIsExcluded={onToggleIngredientIsExcluded}
           onPrevious={handlePrevious}
           onNext={handleNext}
           onClose={onClose}
@@ -147,8 +136,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndFetchRecipes }) => {
     case 3:
       stepComponent = (
         <Step3
-          includedIngredients={includedIngredients}
-          excludedIngredients={excludedIngredients}
+          ingredients={ingredients}
           onPrevious={handlePrevious}
           onSubmit={handleCreateRecipe}
           onClose={onClose}
