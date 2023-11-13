@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Modal, StyleSheet } from "react-native";
-import RecipeDetails from "./RecipeDetails.js";
+import RecipeDetails from "./RecipeDetails.jsx";
 
 const RecipeDetailsModal = ({ recipe, isVisible, onClose }) => {
 

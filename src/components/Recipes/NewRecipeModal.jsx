@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, Modal, StyleSheet } from "react-native";
-import Step1 from "../CreateRecipeSteps/Step1.js";
-import Step2 from "../CreateRecipeSteps/Step2.js";
-import Step3 from "../CreateRecipeSteps/Step3.js";
+import Step1 from "../CreateRecipeSteps/Step1.jsx";
+import Step2 from "../CreateRecipeSteps/Step2.jsx";
+import Step3 from "../CreateRecipeSteps/Step3.jsx";
 import { getIngredientsSortedByName } from "../../api/ingredientsApi.js";
 import { postGenerateRecipe } from "../../api/recipegeneratorApi.js";
 

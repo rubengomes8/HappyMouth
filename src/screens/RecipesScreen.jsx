@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, ScrollView, RefreshControl } from "react-native";
-import CreateRecipeButton from "../components/Recipes/CreateRecipeButton.js";
-import RecipeCard from "../components/Recipes/RecipeCard.js";
-import NewRecipeModal from "../components/Recipes/NewRecipeModal.js";
-import RecipeDetailsModal from "../components/Recipes/RecipeDetailsModal.js";
+import CreateRecipeButton from "../components/Recipes/CreateRecipeButton.jsx";
+import RecipeCard from "../components/Recipes/RecipeCard.jsx";
+import NewRecipeModal from "../components/Recipes/NewRecipeModal.jsx";
+import RecipeDetailsModal from "../components/Recipes/RecipeDetailsModal.jsx";
 import { getUserRecipes } from "../api/recipegeneratorApi.js";
 
 const RecipesScreen = ({}) => {

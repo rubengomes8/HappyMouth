@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_HOST = "http://192.168.1.112:8080"; // TODO should use .env
+const API_HOST = "http://192.168.1.227:8080"; // TODO should use .env
 
 export const registerUser = async (username, password, email) => {
   try {
@@ -11,7 +11,11 @@ export const registerUser = async (username, password, email) => {
     });
     return response;
   } catch (error) {
-    throw error;
+    if (error.response) {
+      throw error.response;
+    } else {
+      throw error;
+    }
   }
 };
 

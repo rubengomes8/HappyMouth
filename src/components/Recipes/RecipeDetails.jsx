@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import RecipeDetailsIngredients from "./RecipeDetailsIngredients.js";
-import RecipeDetailsInstructions from "./RecipeDetailsInstructions.js";
+import RecipeDetailsIngredients from "./RecipeDetailsIngredients";
+import RecipeDetailsInstructions from "./RecipeDetailsInstructions";
 
 const RecipeDetails = ({ recipe, onClose }) => {
 

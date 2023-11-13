@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import HappySearchBar from "./HappySearchBar.js";
-import SelectableIngredient from "./SelectableIngredient.js";
+import HappySearchBar from "./HappySearchBar.jsx";
+import SelectableIngredient from "./SelectableIngredient.jsx";
 
 const SelectIngredientsModal = ({
   ingredients,

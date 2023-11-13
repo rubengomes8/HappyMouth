@@ -6,9 +6,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Screens imports
-import MainTabsScreen from "./src/screens/MainTabsScreen.js";
-import LoginScreen from "./src/screens/LoginScreen.js";
-import RegisterScreen from "./src/screens/RegisterScreen.js";
+import MainTabsScreen from "./src/screens/MainTabsScreen.jsx";
+import LoginScreen from "./src/screens/LoginScreen.jsx";
+import RegisterScreen from "./src/screens/RegisterScreen.jsx";
 
 
 const Tab = createBottomTabNavigator();

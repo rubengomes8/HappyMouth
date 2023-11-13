@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import PasswordInput from "../components/PasswordInput.js";
+import PasswordInput from "../components/PasswordInput.jsx";
 import { registerUser } from "../api/authApi.js";
 
 const checkIsEmailValid = (email) => {

@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import RecipesScreen from "./RecipesScreen.js";
-import ProfileScreen from "./ProfileScreen.js";
-import SettingsScreen from "./SettingsScreen.js";
+import RecipesScreen from "./RecipesScreen.jsx";
+import ProfileScreen from "./ProfileScreen.jsx";
+import SettingsScreen from "./SettingsScreen.jsx";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
