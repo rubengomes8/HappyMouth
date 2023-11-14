@@ -25,8 +25,8 @@ const LoginScreen = () => {
         AsyncStorage.setItem("AccessToken", loginResponse.data.token);
         navigation.navigate("MainTabsScreen");
       }
-      //   console.log(loginResponse.status);
-      //   console.log(loginResponse.data.token);
+      setUsername("");
+      setPassword("");
       navigation.navigate("MainTabsScreen");
     } catch (error) {
       //   console.log(error);

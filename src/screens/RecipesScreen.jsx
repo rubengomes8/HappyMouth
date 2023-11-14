@@ -44,8 +44,8 @@ const RecipesScreen = ({}) => {
     setNewRecipeModalVisible(false);
   };
 
-  const closeNewRecipeModalAndFetchRecipes = () => {
-    handleRefresh();
+  const closeNewRecipeModalAndUpdateRecipes = (newUserRecipe) => {
+    setUserRecipes( prevUserRecipes => [...(prevUserRecipes ?? []), newUserRecipe])
     setNewRecipeModalVisible(false);
   };
 
@@ -109,9 +109,8 @@ const RecipesScreen = ({}) => {
       </View>
       <NewRecipeModal
         isVisible={isNewRecipeModalVisible}
-        setIsVisivle={setNewRecipeModalVisible}
         onClose={closeNewRecipeModal}
-        onCloseAndFetchRecipes={closeNewRecipeModalAndFetchRecipes}
+        onCloseAndUpdateRecipes={closeNewRecipeModalAndUpdateRecipes}
       />
       <RecipeDetailsModal
         isVisible={isRecipeDetailsModalVisible}

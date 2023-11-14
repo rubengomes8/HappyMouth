@@ -6,7 +6,7 @@ import Step3 from "../CreateRecipeSteps/Step3.jsx";
 import { getIngredientsSortedByName } from "../../api/ingredientsApi.js";
 import { postGenerateRecipe } from "../../api/recipegeneratorApi.js";
 
-const NewRecipeModal = ({ isVisible, onClose, onCloseAndFetchRecipes }) => {
+const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [ingredients, setIngredients] = useState([]);
@@ -68,7 +68,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndFetchRecipes }) => {
     setIngredients(updatedIngredients);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isVisible) {
       setCurrentStep(1);
     }
@@ -86,28 +86,35 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndFetchRecipes }) => {
     setCurrentStep(currentStep - 1);
   };
 
-  async function handleCreateRecipe() {
+  async function handleCreateRecipe(onCloseAndUpdateRecipes) {
     console.log("handleCreateRecipe");
     setIsLoading(true);
     try {
+
       const includedIngredientNames = ingredients
         .filter((item) => item.isIncluded)
         .map((item) => item.name);
+
       const excludedIngredientNames = ingredients
         .filter((item) => item.isExcluded)
         .map((item) => item.name);
-      response = await postGenerateRecipe(
+
+      const response = await postGenerateRecipe(
         includedIngredientNames,
         excludedIngredientNames
       );
-      if (response.status == 200) {
-        onCloseAndFetchRecipes();
+
+      if (response.status === 200) {
+        onCloseAndUpdateRecipes(response.data);
       }
+
     } catch (error) {
       alert("Create new recipe failed");
       console.error("Create new recipe failed:", error);
+      console.error('Stack Trace:', error.stack);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }
 
   let stepComponent;
@@ -138,7 +145,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndFetchRecipes }) => {
         <Step3
           ingredients={ingredients}
           onPrevious={handlePrevious}
-          onSubmit={handleCreateRecipe}
+          onSubmit={() => handleCreateRecipe(onCloseAndUpdateRecipes)}
           onClose={onClose}
         />
       );

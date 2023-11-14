@@ -36,7 +36,7 @@ const RegisterScreen = () => {
         navigation.navigate("Login");
       }
     } catch (error) {
-      if (error.data.error) {
+      if (error.data.error === "auth.error.username_already_exists") {
         alert("Username already exists.");
       } else {
         alert("Registration failed");
