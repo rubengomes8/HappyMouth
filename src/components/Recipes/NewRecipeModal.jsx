@@ -92,7 +92,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
 
     setIsSubmitButtonDisabled(true);
     setIsLoading(true);
-    
+
     try {
 
       const includedIngredientNames = ingredients
@@ -119,6 +119,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
     } finally {
       setIsLoading(false);
       setIsSubmitButtonDisabled(false);
+      setIngredients(ingredients.map(item => ({ ...item, isIncluded: false, isExcluded: false })));
     }
   }
 
