@@ -10,6 +10,8 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [ingredients, setIngredients] = useState([]);
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(false);
+
 
   useEffect(() => {
     async function fetchDatabaseIngredients() {
@@ -33,7 +35,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
               alert("Maximum number of ingredients is 10.");
               return item;
             }
-          } 
+          }
           return { ...item, isIncluded: !item.isIncluded };
         }
         return item;
@@ -87,8 +89,10 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
   };
 
   async function handleCreateRecipe(onCloseAndUpdateRecipes) {
-    console.log("handleCreateRecipe");
+
+    setIsSubmitButtonDisabled(true);
     setIsLoading(true);
+    
     try {
 
       const includedIngredientNames = ingredients
@@ -114,6 +118,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
       console.error('Stack Trace:', error.stack);
     } finally {
       setIsLoading(false);
+      setIsSubmitButtonDisabled(false);
     }
   }
 
@@ -147,6 +152,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
           onPrevious={handlePrevious}
           onSubmit={() => handleCreateRecipe(onCloseAndUpdateRecipes)}
           onClose={onClose}
+          isSubmitButtonDisabled={isSubmitButtonDisabled}
         />
       );
       break;

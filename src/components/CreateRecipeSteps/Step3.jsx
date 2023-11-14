@@ -7,6 +7,7 @@ const Step3 = ({
   onPrevious,
   onSubmit,
   onClose,
+  isSubmitButtonDisabled,
 }) => {
   return (
     <View style={styles.container}>
@@ -23,7 +24,7 @@ const Step3 = ({
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={onSubmit}>
+          <TouchableOpacity style={isSubmitButtonDisabled ? styles.disabledButton : null} onPress={isSubmitButtonDisabled ? null : onSubmit} disabled={isSubmitButtonDisabled} >
             <Text style={styles.submitText}>Submit</Text>
           </TouchableOpacity>
         </View>
@@ -34,10 +35,10 @@ const Step3 = ({
         <View>
           {ingredients != undefined
             ? ingredients.map((i) =>
-                i.isIncluded ? (
-                  <Text key={i.id}>{i.name}</Text>
-                ) : null
-              )
+              i.isIncluded ? (
+                <Text key={i.id}>{i.name}</Text>
+              ) : null
+            )
             : null}
         </View>
       </View>
@@ -46,10 +47,10 @@ const Step3 = ({
         <View>
           {ingredients != undefined
             ? ingredients.map((i) =>
-                i.isExcluded ? (
-                  <Text key={i.id}>{i.name}</Text>
-                ) : null
-              )
+              i.isExcluded ? (
+                <Text key={i.id}>{i.name}</Text>
+              ) : null
+            )
             : null}
         </View>
       </View>
@@ -94,4 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     paddingBottom: 20,
   },
+  disabledButton: {
+    opacity: 0.5,
+  }
 });
