@@ -39,8 +39,8 @@ const SelectIngredientsModal = ({
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <TouchableOpacity onPress={onClose} style={{marginVertical: 10}}>
-            <Text style={styles.onCloseText}>Close</Text>
+          <TouchableOpacity onPress={onClose} style={styles.touchableDone}>
+            <Text style={styles.onCloseText}>Done</Text>
           </TouchableOpacity>
           <HappySearchBar
             searchValue={searchValue}
@@ -83,6 +83,11 @@ const styles = StyleSheet.create({
   },
   positionSearchBar: {
     marginTop: 10,
+  },
+  touchableDone: {
+    marginVertical: 10,
+    flexDirection: "row",
+    justifyContent: "flex-end",
   }
 });
 
