@@ -5,7 +5,6 @@ import { ThemeProvider, useTheme } from './src/contexts/ThemeContext';
 
 
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Screens imports
@@ -14,7 +13,6 @@ import LoginScreen from "./src/screens/LoginScreen.jsx";
 import RegisterScreen from "./src/screens/RegisterScreen.jsx";
 
 
-const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const AppWrapper = () => {
@@ -30,7 +28,7 @@ const App = () => {
 
   return (
       <NavigationContainer>
-        <StatusBar style={isDarkMode ? styles.statusBar : styles.darkStatusBar} />
+        <StatusBar/>
         <Stack.Navigator
           initialRouteName="Login">
           <Stack.Screen name="Login" component={LoginScreen} />
