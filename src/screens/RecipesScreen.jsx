@@ -126,7 +126,7 @@ export default RecipesScreen;
 const styles = StyleSheet.create({
   noRecipesView: {
     flex: 1,
-    marginTop: 300, // TODO
+    marginTop: 250, // TODO
     alignItems: "center",
     justifyContent: "center",
   },
