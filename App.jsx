@@ -1,5 +1,8 @@
+import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { ThemeProvider, useTheme } from './src/contexts/ThemeContext';
+
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -14,21 +17,31 @@ import RegisterScreen from "./src/screens/RegisterScreen.jsx";
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-const App = () => {
+const AppWrapper = () => {
   return (
-    <NavigationContainer>
-      <StatusBar style={styles.statusBar} />
-      <Stack.Navigator 
-        initialRouteName="Login">
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen
-          name="MainTabsScreen"
-          component={MainTabsScreen}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  );
+};
+
+const App = () => {
+  const { isDarkMode, toggleTheme } = useTheme();
+
+  return (
+      <NavigationContainer>
+        <StatusBar style={isDarkMode ? styles.statusBar : styles.darkStatusBar} />
+        <Stack.Navigator
+          initialRouteName="Login">
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen
+            name="MainTabsScreen"
+            component={MainTabsScreen}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 };
 
@@ -43,6 +56,9 @@ const styles = StyleSheet.create({
     backgroundColor: "blue",
     barStyle: "light-content",
   },
+  darkStatusBar: {
+    backgroundColor: "black",
+  },
 });
 
-export default App;
+export default AppWrapper;
