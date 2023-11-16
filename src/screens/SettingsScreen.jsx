@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet } from 'react-native';
 import { useTheme } from '../contexts/ThemeContext';
 
+// themes
+import darkStyles from '../styles/dark';
+import lightStyles from '../styles/light';
+import { darkThemeColors, lightThemeColors } from '../styles/colors';
+
+
 const SettingsScreen = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const { isDarkMode, toggleTheme } = useTheme();
@@ -17,17 +23,19 @@ const SettingsScreen = () => {
 
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', margin: 10 }}>
-        <Text>Enable notifications:</Text>
+    <View style={isDarkMode ? darkStyles.screenView : lightStyles.screenView}>
+      <View style={isDarkMode ? darkStyles.rowCenterAligned : lightStyles.rowCenterAligned}>
+        <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Enable notifications:</Text>
         <Switch
+          trackColor={{ false: darkThemeColors.onSurface, true: darkThemeColors.primary }}
           value={notificationsEnabled}
           onValueChange={toggleNotifications}
         />
       </View>
-      <View style={{ flexDirection: 'row', alignItems: 'center', margin: 10}}>
-        <Text style={isDarkMode ? styles.dark : styles.light}>Dark mode:</Text>
+      <View style={isDarkMode ? darkStyles.rowCenterAligned : lightStyles.rowCenterAligned}>
+        <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Dark mode:</Text>
         <Switch
+          trackColor={{ false: darkThemeColors.onSurface, true: darkThemeColors.primary }}
           value={isDarkMode}
           onValueChange={toggleDarkMode}
         />
@@ -35,14 +43,5 @@ const SettingsScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  light: {
-    color: "black",
-  },
-  dark: {
-    color: "blue",
-  },
-});
 
 export default SettingsScreen;

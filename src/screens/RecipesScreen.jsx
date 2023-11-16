@@ -5,8 +5,11 @@ import RecipeCard from "../components/Recipes/RecipeCard.jsx";
 import NewRecipeModal from "../components/Recipes/NewRecipeModal.jsx";
 import RecipeDetailsModal from "../components/Recipes/RecipeDetailsModal.jsx";
 import { getUserRecipes } from "../api/recipegeneratorApi.js";
+import { useTheme } from '../contexts/ThemeContext';
+
 
 const RecipesScreen = ({}) => {
+  const { isDarkMode, toggleTheme } = useTheme();
   const [isNewRecipeModalVisible, setNewRecipeModalVisible] = useState(false);
   const [isRecipeDetailsModalVisible, setRecipeDetailsModalVisible] =
     useState(false);
@@ -100,7 +103,7 @@ const RecipesScreen = ({}) => {
           ))
         ) : (
           <View style={styles.noRecipesView}>
-            <Text style={styles.noRecipesText}>Create your first recipe</Text>
+            <Text style={isDarkMode ? styles.noRecipesTextDark : styles.noRecipesTextLight}>Create your first recipe</Text>
           </View>
         )}
       </ScrollView>
@@ -130,7 +133,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  noRecipesText: {
+  noRecipesTextLight: {
+    fontWeight: "bold",
+  },
+  noRecipesTextDark: {
+    color: "lightgray",
     fontWeight: "bold",
   },
 });
