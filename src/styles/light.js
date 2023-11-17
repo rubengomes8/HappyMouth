@@ -18,11 +18,32 @@ const lightStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: lightThemeColors.background
   },
+  zIndexMinusOneCenter: {
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: -1,
+  },
 
   // text
   backgroundMediumText: {
     fontSize: 20,
     color: lightThemeColors.onBackground,
+  },
+  boldBackgroundMediumText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: lightThemeColors.onBackground,
+  },
+  boldSurfaceSmallText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: lightThemeColors.onSurface,
+  },
+  boldBackgroundCenteredSmallText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: lightThemeColors.onBackground,
+    textAlign: "center",
   },
 
   // rows
@@ -32,7 +53,7 @@ const lightStyles = StyleSheet.create({
     margin: 5,
   },
 
-  // buttons
+  // buttons / touchables
   roundButton: {
     backgroundColor: lightThemeColors.secondary,
     color: lightThemeColors.onSecondary,
@@ -41,6 +62,18 @@ const lightStyles = StyleSheet.create({
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  addIngredientTouchable: {
+    flex: 1,
+    marginTop: 20,
+    marginBottom: 20,
+    opacity: 0.5,
+    backgroundColor: lightThemeColors.surface,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+    zIndex: -2,
   },
 
   // cards
@@ -53,6 +86,15 @@ const lightStyles = StyleSheet.create({
     padding: 15,
     marginVertical: 10,
     marginHorizontal: 20,
+  },
+
+  // modals
+  newRecipeModalContent: {
+    backgroundColor: lightThemeColors.background,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    minHeight: "95%",
+    padding: 20,
   },
 });
 

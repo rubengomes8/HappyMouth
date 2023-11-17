@@ -6,11 +6,17 @@ import Step3 from "../CreateRecipeSteps/Step3.jsx";
 import { getIngredientsSortedByName } from "../../api/ingredientsApi.js";
 import { postGenerateRecipe } from "../../api/recipegeneratorApi.js";
 
+// themes
+import { useTheme } from '../../contexts/ThemeContext';
+import darkStyles from "../../styles/dark.js";
+import lightStyles from '../../styles/light';
+
 const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(false);
+  const { isDarkMode, toggleTheme } = useTheme();  
 
 
   useEffect(() => {
@@ -163,8 +169,8 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
 
   return (
     <Modal transparent={true} visible={isVisible} onRequestClose={onClose}>
-      <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>{stepComponent}</View>
+      <View style={ styles.modalContainer}>
+        <View style={ isDarkMode ? darkStyles.newRecipeModalContent : lightStyles.newRecipeModalContent }>{stepComponent}</View>
       </View>
     </Modal>
   );
@@ -179,47 +185,5 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     justifyContent: "flex-end",
-  },
-  modalBackground: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  modalContent: {
-    backgroundColor: "white",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    minHeight: "95%",
-    padding: 20,
-  },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  stepTitleText: {
-    color: "black",
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginTop: 10,
-  },
-  nextStepText: {
-    color: "blue",
-    fontSize: 16,
-  },
-  prevStepText: {
-    color: "blue",
-    fontSize: 16,
-  },
-  submitText: {
-    color: "blue",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-  trashIconContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-end",
-    paddingBottom: 20,
   },
 });

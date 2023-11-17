@@ -4,7 +4,15 @@ import TrashIcon from "../TrashIcon";
 import RemovableIngredient from "../Ingredients/RemovableIngredient";
 import SelectIngredientsModal from "../Ingredients/SelectIngredientsModal";
 
+// themes
+import { useTheme } from '../../contexts/ThemeContext';
+import darkStyles from '../../styles/dark';
+import lightStyles from '../../styles/light';
+
 const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) => {
+
+  const { isDarkMode, toggleTheme } = useTheme();
+
   const [isSelectIngredientsModalVisible, setIsSelectIngredientsModalVisible] =
     useState(false);
 
@@ -40,9 +48,9 @@ const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) =
           <Text style={styles.nextStepText}>Next</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.stepTitleText}>Step 1: Ingredients to include</Text>
+      <Text style={ isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Step 1: Ingredients to include</Text>
       <TouchableOpacity
-        style={styles.addIngredientContainer}
+        style={ isDarkMode ? darkStyles.addIngredientTouchable : lightStyles.addIngredientTouchable}
         onPress={includeIngredientsHandler}
       >
         <View style={styles.overlayItems}>
@@ -60,8 +68,8 @@ const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) =
               : null}
           </View>
         </View>
-        <View style={styles.includeTextView}>
-          <Text style={styles.includeText}>+ Include ingredient</Text>
+        <View style={ isDarkMode ? darkStyles.zIndexMinusOneCenter : lightStyles.zIndexMinusOneCenter}>
+          <Text style={ isDarkMode ? darkStyles.boldSurfaceSmallText : lightStyles.boldSurfaceSmallText}>+ Include ingredient</Text>
         </View>
       </TouchableOpacity>
 
@@ -88,33 +96,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-  },
-  includeTextView: {
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: -1,
-  },
-  includeText: {
-    fontWeight: "bold"
-  },
-  addIngredientContainer: {
-    flex: 1,
-    marginTop: 20,
-    marginBottom: 20,
-    opacity: 0.5,
-    backgroundColor: "lightgrey",
-    borderRadius: 20,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    zIndex: -2,
-  },
-  stepTitleText: {
-    color: "black",
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginTop: 10,
   },
   nextStepText: {
     color: "blue",
