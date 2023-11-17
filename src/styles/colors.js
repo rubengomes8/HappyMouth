@@ -2,7 +2,7 @@ export const lightThemeColors = {
     primary: '#3498db',
     surface: '#cdcdcd',
     secondary: '#00dac6',
-    background: '#cdcdcd',
+    background: '#e6e1e6',
     onPrimary: '#181414',
     onSurface: '#201c1c',
     onSecondary: '#cdcdcd',
