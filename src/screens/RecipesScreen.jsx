@@ -5,7 +5,12 @@ import RecipeCard from "../components/Recipes/RecipeCard.jsx";
 import NewRecipeModal from "../components/Recipes/NewRecipeModal.jsx";
 import RecipeDetailsModal from "../components/Recipes/RecipeDetailsModal.jsx";
 import { getUserRecipes } from "../api/recipegeneratorApi.js";
+
+// themes
 import { useTheme } from '../contexts/ThemeContext';
+import darkStyles from '../styles/dark';
+import lightStyles from '../styles/light';
+import { darkThemeColors, lightThemeColors } from '../styles/colors';
 
 
 const RecipesScreen = ({}) => {
@@ -85,9 +90,9 @@ const RecipesScreen = ({}) => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={ isDarkMode ? darkStyles.screenView : lightStyles.screenView}>
       <ScrollView
-        style={{ flex: 1 }}
+        style={ isDarkMode ? darkStyles.scrollView : lightStyles.scrollView}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
         }
@@ -103,7 +108,7 @@ const RecipesScreen = ({}) => {
           ))
         ) : (
           <View style={styles.noRecipesView}>
-            <Text style={isDarkMode ? styles.noRecipesTextDark : styles.noRecipesTextLight}>Create your first recipe</Text>
+            <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Create your first recipe</Text>
           </View>
         )}
       </ScrollView>
@@ -132,12 +137,5 @@ const styles = StyleSheet.create({
     marginTop: 250, // TODO
     alignItems: "center",
     justifyContent: "center",
-  },
-  noRecipesTextLight: {
-    fontWeight: "bold",
-  },
-  noRecipesTextDark: {
-    color: "lightgray",
-    fontWeight: "bold",
   },
 });

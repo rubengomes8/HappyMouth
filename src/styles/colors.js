@@ -1,21 +1,21 @@
 export const lightThemeColors = {
     primary: '#3498db',
-    surface: '#e4e4e4',
+    surface: '#cdcdcd',
     secondary: '#00dac6',
-    background: '#e4e4e4',
+    background: '#cdcdcd',
     onPrimary: '#181414',
     onSurface: '#201c1c',
-    onSecondary: '#e4e4e4',
+    onSecondary: '#cdcdcd',
     onBackground: '#201c1c'
   };
   
   export const darkThemeColors = {
     primary: '#2980b9',
-    surface: '#201c1c',
+    surface: '#302c2c',
     secondary: '#00dac6',
-    background: '#181414',
-    onPrimary: '#181414',
-    onSurface: '#e4e4e4',
-    onSecondary: '#181414',
-    onBackground: '#e4e4e4'
+    background: '#232020',
+    onPrimary: '#232020',
+    onSurface: '#cdcdcd',
+    onSecondary: '#232020',
+    onBackground: '#cdcdcd'
   };

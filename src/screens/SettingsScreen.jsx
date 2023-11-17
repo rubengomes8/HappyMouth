@@ -23,7 +23,7 @@ const SettingsScreen = () => {
 
 
   return (
-    <View style={isDarkMode ? darkStyles.screenView : lightStyles.screenView}>
+    <View style={isDarkMode ? darkStyles.screenViewCenter : lightStyles.screenViewCenter}>
       <View style={isDarkMode ? darkStyles.rowCenterAligned : lightStyles.rowCenterAligned}>
         <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Enable notifications:</Text>
         <Switch

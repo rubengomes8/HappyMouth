@@ -1,8 +1,15 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Button, Text, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTheme } from '../contexts/ThemeContext';
+
+// themes
+import darkStyles from '../styles/dark';
+import lightStyles from '../styles/light';
+import { darkThemeColors, lightThemeColors } from '../styles/colors';
 
 const ProfileScreen = ({ navigation }) => {
+  const { isDarkMode, toggleTheme } = useTheme();
   const userProfile = {
     name: "John Doe",
     email: "john@example.com",
@@ -20,20 +27,13 @@ const ProfileScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Text>Profile Screen</Text>
-        <Text>Name: {userProfile.name}</Text>
-        <Text>Email: {userProfile.email}</Text>
-        <Text>Bio: {userProfile.bio}</Text>
-        <Button
-          title="Go to Settings"
-          onPress={() => navigation.navigate("Settings")}
-        />
-      </View>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Button title="Logout" onPress={handleLogout} />
-      </View>
+    <View style={isDarkMode ? darkStyles.screenViewCenter : lightStyles.screenViewCenter}>
+      <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+        <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Go to settings</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleLogout}>
+      <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Logout</Text>
+      </TouchableOpacity>
     </View>
   );
 };
