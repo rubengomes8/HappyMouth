@@ -34,6 +34,10 @@ const lightStyles = StyleSheet.create({
     fontWeight: "bold",
     color: lightThemeColors.onBackground,
   },
+  backgroundSmallText: {
+    fontSize: 15,
+    color: lightThemeColors.onBackground,
+  },
   boldSurfaceSmallText: {
     fontSize: 15,
     fontWeight: "bold",

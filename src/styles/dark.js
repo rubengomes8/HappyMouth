@@ -42,6 +42,10 @@ const darkStyles = StyleSheet.create({
     fontWeight: "bold",
     color: darkThemeColors.onBackground,
   },
+  backgroundSmallText: {
+    fontSize: 15,
+    color: darkThemeColors.onBackground,
+  },
   boldSurfaceSmallText: {
     fontSize: 15,
     fontWeight: "bold",

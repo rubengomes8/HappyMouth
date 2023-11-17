@@ -2,6 +2,11 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import TrashIcon from "../TrashIcon";
 
+// themes
+import { useTheme } from '../../contexts/ThemeContext';
+import darkStyles from '../../styles/dark';
+import lightStyles from '../../styles/light';
+
 const Step3 = ({
   ingredients,
   onPrevious,
@@ -9,6 +14,9 @@ const Step3 = ({
   onClose,
   isSubmitButtonDisabled,
 }) => {
+
+  const { isDarkMode, toggleTheme } = useTheme();
+
   return (
     <View style={styles.container}>
       <View
@@ -29,26 +37,26 @@ const Step3 = ({
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={styles.stepTitleText}>Summary</Text>
+      <Text style={isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Summary</Text>
       <View>
-        <Text style={styles.ingredientsTitleText}>Included ingredients</Text>
+        <Text style={isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Included ingredients</Text>
         <View>
           {ingredients != undefined
             ? ingredients.map((i) =>
               i.isIncluded ? (
-                <Text key={i.id}>{i.name}</Text>
+                <Text key={i.id} style={isDarkMode ? darkStyles.backgroundSmallText : lightStyles.backgroundSmallText}>- {i.name}</Text>
               ) : null
             )
             : null}
         </View>
       </View>
       <View>
-        <Text style={styles.ingredientsTitleText}>Excluded ingredients</Text>
+        <Text style={isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Excluded ingredients</Text>
         <View>
           {ingredients != undefined
             ? ingredients.map((i) =>
               i.isExcluded ? (
-                <Text key={i.id}>{i.name}</Text>
+                <Text key={i.id} style={isDarkMode ? darkStyles.backgroundSmallText : lightStyles.backgroundSmallText}>- {i.name}</Text>
               ) : null
             )
             : null}
@@ -66,19 +74,6 @@ export default Step3;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  stepTitleText: {
-    color: "black",
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginTop: 10,
-  },
-  ingredientsTitleText: {
-    color: "black",
-    fontSize: 16,
-    fontWeight: "bold",
-    marginTop: 10,
   },
   prevStepText: {
     color: "blue",
