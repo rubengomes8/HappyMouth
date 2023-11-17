@@ -4,6 +4,11 @@ import TrashIcon from "../TrashIcon";
 import RemovableIngredient from "../Ingredients/RemovableIngredient";
 import SelectIngredientsModal from "../Ingredients/SelectIngredientsModal";
 
+// themes
+import { useTheme } from '../../contexts/ThemeContext';
+import darkStyles from '../../styles/dark';
+import lightStyles from '../../styles/light';
+
 const Step2 = ({
   ingredients,
   onToggleIngredientIsExcluded,
@@ -11,6 +16,9 @@ const Step2 = ({
   onNext,
   onClose,
 }) => {
+
+  const { isDarkMode, toggleTheme } = useTheme();
+
   const [isSelectIngredientsModalVisible, setIsSelectIngredientsModalVisible] =
     useState(false);
 
@@ -26,7 +34,7 @@ const Step2 = ({
     openSelectIngredientsModal();
   };
 
-  pressExcludeIngredientHandler = ({}) => {
+  pressExcludeIngredientHandler = ({ }) => {
   };
 
   return (
@@ -55,28 +63,28 @@ const Step2 = ({
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={styles.stepTitleText}>Step 2: Ingredients to exclude</Text>
+      <Text style={isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Step 2: Ingredients to exclude</Text>
       <TouchableOpacity
-        style={styles.addIngredientContainer}
+        style={isDarkMode ? darkStyles.addIngredientTouchable : lightStyles.addIngredientTouchable}
         onPress={excludeIngredientHandler}
       >
         <View style={styles.overlayItems}>
           <View style={styles.ingredientsContainer}>
             {ingredients != undefined
               ? ingredients.map((ingredient) =>
-                  ingredient.isExcluded ? (
-                    <RemovableIngredient
-                      key={ingredient.id}
-                      name={ingredient.name}
-                      onRemove={() => onToggleIngredientIsExcluded(ingredient.id)}
-                    />
-                  ) : null
-                )
+                ingredient.isExcluded ? (
+                  <RemovableIngredient
+                    key={ingredient.id}
+                    name={ingredient.name}
+                    onRemove={() => onToggleIngredientIsExcluded(ingredient.id)}
+                  />
+                ) : null
+              )
               : null}
           </View>
         </View>
-        <View style={styles.excludeTextView}>
-          <Text style={styles.excludeText}>+ Exclude ingredient</Text>
+        <View style={isDarkMode ? darkStyles.zIndexMinusOneCenter : lightStyles.zIndexMinusOneCenter}>
+          <Text style={isDarkMode ? darkStyles.boldSurfaceSmallText : lightStyles.boldSurfaceSmallText}>+ Exclude ingredient</Text>
         </View>
       </TouchableOpacity>
       <View style={styles.trashIconContainer}>
@@ -102,33 +110,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-  },
-  addIngredientContainer: {
-    flex: 1,
-    marginTop: 20,
-    marginBottom: 20,
-    opacity: 0.5,
-    backgroundColor: "lightgrey",
-    borderRadius: 20,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    zIndex: -2,
-  },
-  excludeTextView: {
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: -1,
-  },
-  excludeText: {
-    fontWeight: "bold"
-  },
-  stepTitleText: {
-    color: "black",
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginTop: 10,
   },
   nextStepText: {
     color: "blue",

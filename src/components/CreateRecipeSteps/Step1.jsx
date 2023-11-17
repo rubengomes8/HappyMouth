@@ -12,7 +12,6 @@ import lightStyles from '../../styles/light';
 const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) => {
 
   const { isDarkMode, toggleTheme } = useTheme();
-
   const [isSelectIngredientsModalVisible, setIsSelectIngredientsModalVisible] =
     useState(false);
 
@@ -48,28 +47,28 @@ const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) =
           <Text style={styles.nextStepText}>Next</Text>
         </TouchableOpacity>
       </View>
-      <Text style={ isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Step 1: Ingredients to include</Text>
+      <Text style={isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Step 1: Ingredients to include</Text>
       <TouchableOpacity
-        style={ isDarkMode ? darkStyles.addIngredientTouchable : lightStyles.addIngredientTouchable}
+        style={isDarkMode ? darkStyles.addIngredientTouchable : lightStyles.addIngredientTouchable}
         onPress={includeIngredientsHandler}
       >
         <View style={styles.overlayItems}>
           <View style={styles.ingredientsContainer}>
             {ingredients != undefined
               ? ingredients.map((ingredient) =>
-                  ingredient.isIncluded ? (
-                    <RemovableIngredient
-                      key={ingredient.id}
-                      name={ingredient.name}
-                      onRemove={() => onToggleIngredientIsIncluded(ingredient.id)}
-                    />
-                  ) : null
-                )
+                ingredient.isIncluded ? (
+                  <RemovableIngredient
+                    key={ingredient.id}
+                    name={ingredient.name}
+                    onRemove={() => onToggleIngredientIsIncluded(ingredient.id)}
+                  />
+                ) : null
+              )
               : null}
           </View>
         </View>
-        <View style={ isDarkMode ? darkStyles.zIndexMinusOneCenter : lightStyles.zIndexMinusOneCenter}>
-          <Text style={ isDarkMode ? darkStyles.boldSurfaceSmallText : lightStyles.boldSurfaceSmallText}>+ Include ingredient</Text>
+        <View style={isDarkMode ? darkStyles.zIndexMinusOneCenter : lightStyles.zIndexMinusOneCenter}>
+          <Text style={isDarkMode ? darkStyles.boldSurfaceSmallText : lightStyles.boldSurfaceSmallText}>+ Include ingredient</Text>
         </View>
       </TouchableOpacity>
 
