@@ -10,7 +10,6 @@ import { getUserRecipes } from "../api/recipegeneratorApi.js";
 import { useTheme } from '../contexts/ThemeContext';
 import darkStyles from '../styles/dark';
 import lightStyles from '../styles/light';
-import { darkThemeColors, lightThemeColors } from '../styles/colors';
 
 
 const RecipesScreen = ({}) => {

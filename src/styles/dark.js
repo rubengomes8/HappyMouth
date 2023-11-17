@@ -33,7 +33,6 @@ const darkStyles = StyleSheet.create({
   },
 
   // buttons
-
   roundButton: {
     backgroundColor: darkThemeColors.secondary,
     color: darkThemeColors.onSecondary,
@@ -42,6 +41,18 @@ const darkStyles = StyleSheet.create({
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  // cards
+  recipeCard: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: darkThemeColors.surface,
+    borderRadius: 10,
+    padding: 15,
+    marginVertical: 10,
+    marginHorizontal: 20,
   },
 });
 

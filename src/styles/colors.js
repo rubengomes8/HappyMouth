@@ -1,8 +1,8 @@
 export const lightThemeColors = {
-    primary: '#3498db',
-    surface: '#cdcdcd',
-    secondary: '#00dac6',
     background: '#e6e1e6',
+    surface: '#cdcdcd',
+    primary: '#3498db',
+    secondary: '#2ecc71',
     onPrimary: '#181414',
     onSurface: '#201c1c',
     onSecondary: '#cdcdcd',
@@ -10,12 +10,12 @@ export const lightThemeColors = {
   };
   
   export const darkThemeColors = {
-    primary: '#2980b9',
-    surface: '#302c2c',
-    secondary: '#00dac6',
-    background: '#232020',
-    onPrimary: '#232020',
+    background: '#121212',
+    surface: '#3E3E3E',
+    primary: '#3498db',
+    secondary: '#2ecc71',
+    onPrimary: '#cdcdcd',
     onSurface: '#cdcdcd',
-    onSecondary: '#232020',
+    onSecondary: '#cdcdcd',
     onBackground: '#cdcdcd'
   };

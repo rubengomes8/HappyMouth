@@ -42,6 +42,18 @@ const lightStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  // cards
+  recipeCard: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: lightThemeColors.surface,
+    borderRadius: 10,
+    padding: 15,
+    marginVertical: 10,
+    marginHorizontal: 20,
+  },
 });
 
 export default lightStyles;
