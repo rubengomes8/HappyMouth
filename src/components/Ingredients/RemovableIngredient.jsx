@@ -6,6 +6,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { useTheme } from '../../contexts/ThemeContext';
 import darkStyles from "../../styles/dark.js";
 import lightStyles from '../../styles/light';
+import { darkThemeColors } from "../../styles/colors.js";
 
 const RemovableIngredient = ({ name, onRemove }) => {
 
@@ -19,7 +20,7 @@ const RemovableIngredient = ({ name, onRemove }) => {
     <TouchableOpacity style={isDarkMode ? darkStyles.removableIngredient : lightStyles.removableIngredient} activeOpacity={1}>
       <Text style={ isDarkMode ? darkStyles.boldBackgroundMediumText : lightStyles.boldBackgroundMediumText}>{name}</Text>
       <TouchableOpacity onPress={removeHandler}>
-        <Icon name="times" size={25} color="red" />
+        <Icon name="times" size={25} color={ isDarkMode ? darkThemeColors.terciary : lightThemeColors.terciary} />
       </TouchableOpacity>
     </TouchableOpacity>
   );

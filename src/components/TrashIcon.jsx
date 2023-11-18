@@ -1,5 +1,6 @@
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { darkThemeColors } from "../styles/colors";
 
 const TrashIcon = ({onClose}) => {
   return (
@@ -19,7 +20,7 @@ export default TrashIcon;
 
 const styles = StyleSheet.create({
   trashIcon: {
-    color: "red",
+    color: darkThemeColors.terciary,
     size: 30,
   },
 });
