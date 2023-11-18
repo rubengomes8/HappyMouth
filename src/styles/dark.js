@@ -43,6 +43,12 @@ const darkStyles = StyleSheet.create({
     alignItems: "center",
     margin: 5,
   },
+  rowsSpaceBetweenWithBottomMargin: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
   removableIngredient: {
     flexDirection: "row",
     alignItems: "center",
@@ -58,29 +64,39 @@ const darkStyles = StyleSheet.create({
   },
 
   // small text
-  backgroundSmallText: {
+  onBackgroundSmallText: {
     fontSize: 15,
     color: darkThemeColors.onBackground,
   },
-  boldBackgroundCenteredSmallText: {
+  boldOnBackgroundCenteredSmallText: {
     fontSize: 15,
     fontWeight: "bold",
     color: darkThemeColors.onBackground,
     textAlign: "center",
   },
-  boldSurfaceSmallText: {
+  boldOnSurfaceSmallText: {
     fontSize: 15,
     fontWeight: "bold",
     color: darkThemeColors.onSurface,
   },
-  surfaceSmallText: {
+  onSurfaceSmallText: {
     fontSize: 15,
     color: darkThemeColors.onSurface,
   },
-  boldSurfaceMediumText: {
+  boldOnSurfaceSmallText: {
     fontSize: 15,
     fontWeight: "bold",
     color: darkThemeColors.onSurface,
+  },
+  boldPrimarySmallText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: darkThemeColors.primary,
+  },
+  boldSecondarySmallText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: darkThemeColors.secondary,
   },
 
 

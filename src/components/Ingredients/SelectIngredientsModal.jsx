@@ -54,12 +54,11 @@ const SelectIngredientsModal = ({
             onChangeText={(newValue) => changeSearchValueHandler(newValue)}
             style={styles.positionSearchBar}
           ></HappySearchBar>
-          <View>
+          <View style={{ flex: 1 }}>
             <FlatList
               data={ingredients}
               keyExtractor={(ingredient) => ingredient.id}
               renderItem={renderItem}
-              style={{ maxHeight: "90%" }}
             />
           </View>
         </View>

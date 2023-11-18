@@ -21,11 +21,11 @@ const SelectableIngredient = ({ item, onToggleItemAdded }) => {
       {
         item.isIncluded ?
           <View style={isDarkMode ? darkStyles.ingredientIncludedLabel : lightStyles.ingredientIncludedLabel}>
-            <Text style={isDarkMode ? darkStyles.boldSurfaceSmallText : lightStyles.boldSurfaceSmallText}>Included</Text>
+            <Text style={isDarkMode ? darkStyles.boldOnSurfaceSmallText : lightStyles.boldOnSurfaceSmallText}>Included</Text>
           </View> :
           item.isExcluded ?
             <View style={isDarkMode ? darkStyles.ingredientExcludedLabel : lightStyles.ingredientExcludedLabel}>
-              <Text style={isDarkMode ? darkStyles.boldSurfaceSmallText : lightStyles.boldSurfaceSmallText}>Excluded</Text>
+              <Text style={isDarkMode ? darkStyles.boldOnSurfaceSmallText : lightStyles.boldOnSurfaceSmallText}>Excluded</Text>
             </View> :
             null
       }

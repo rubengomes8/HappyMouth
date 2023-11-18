@@ -46,24 +46,20 @@ const Step2 = ({
         onClose={closeSelectIngredientsModal}
       />
       <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          paddingHorizontal: 10,
-        }}
+        style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
       >
         <View>
           <TouchableOpacity onPress={onPrevious}>
-            <Text style={styles.prevStepText}>Previous</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimarySmallText : lightStyles.boldPrimarySmallText}>Previous</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={onNext}>
-            <Text style={styles.nextStepText}>Next</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimarySmallText : lightStyles.boldPrimarySmallText}>Next</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Step 2: Ingredients to exclude</Text>
+      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredSmallText : lightStyles.boldOnBackgroundCenteredSmallText}>Step 2: Ingredients to exclude</Text>
       <TouchableOpacity
         style={isDarkMode ? darkStyles.addIngredientTouchable : lightStyles.addIngredientTouchable}
         onPress={excludeIngredientHandler}
@@ -84,7 +80,7 @@ const Step2 = ({
           </View>
         </View>
         <View style={isDarkMode ? darkStyles.zIndexMinusOneCenter : lightStyles.zIndexMinusOneCenter}>
-          <Text style={isDarkMode ? darkStyles.boldSurfaceSmallText : lightStyles.boldSurfaceSmallText}>+ Exclude ingredient</Text>
+          <Text style={isDarkMode ? darkStyles.boldOnSurfaceSmallText : lightStyles.boldOnSurfaceSmallText}>+ Exclude ingredient</Text>
         </View>
       </TouchableOpacity>
       <View style={styles.trashIconContainer}>
@@ -110,14 +106,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-  },
-  nextStepText: {
-    color: "blue",
-    fontSize: 16,
-  },
-  prevStepText: {
-    color: "blue",
-    fontSize: 16,
   },
   trashIconContainer: {
     height: 50,

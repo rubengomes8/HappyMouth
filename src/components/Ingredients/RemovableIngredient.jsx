@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { useTheme } from '../../contexts/ThemeContext';
 import darkStyles from "../../styles/dark.js";
 import lightStyles from '../../styles/light';
-import { darkThemeColors } from "../../styles/colors.js";
+import { darkThemeColors, lightThemeColors } from "../../styles/colors.js";
 
 const RemovableIngredient = ({ name, onRemove }) => {
 

@@ -31,29 +31,39 @@ const lightStyles = StyleSheet.create({
   },
 
   // small text
-  backgroundSmallText: {
+  onBackgroundSmallText: {
     fontSize: 15,
     color: lightThemeColors.onBackground,
   },
-  boldBackgroundCenteredSmallText: {
+  boldOnBackgroundCenteredSmallText: {
     fontSize: 15,
     fontWeight: "bold",
     color: lightThemeColors.onBackground,
     textAlign: "center",
   },
-  boldSurfaceSmallText: {
+  boldOnSurfaceSmallText: {
     fontSize: 15,
     fontWeight: "bold",
     color: lightThemeColors.onSurface,
   },
-  surfaceSmallText: {
+  onSurfaceSmallText: {
     fontSize: 15,
     color: lightThemeColors.onSurface,
   },
-  boldSurfaceSmallText: {
+  boldOnSurfaceSmallText: {
     fontSize: 15,
     fontWeight: "bold",
     color: lightThemeColors.onSurface,
+  },
+  boldPrimarySmallText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: lightThemeColors.primary,
+  },
+  boldSecondarySmallText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: lightThemeColors.secondary,
   },
 
   // medium text
@@ -83,6 +93,12 @@ const lightStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     margin: 5,
+  },
+  rowsSpaceBetweenWithBottomMargin: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    marginBottom: 10,
   },
   removableIngredient: {
     flexDirection: "row",

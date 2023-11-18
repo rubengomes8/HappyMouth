@@ -28,35 +28,35 @@ const Step3 = ({
       >
         <View>
           <TouchableOpacity onPress={onPrevious}>
-            <Text style={styles.prevStepText}>Previous</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimarySmallText : lightStyles.boldPrimarySmallText}>Previous</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity style={isSubmitButtonDisabled ? styles.disabledButton : null} onPress={isSubmitButtonDisabled ? null : onSubmit} disabled={isSubmitButtonDisabled} >
-            <Text style={styles.submitText}>Submit</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimarySmallText : lightStyles.boldPrimarySmallText}>Submit</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Summary</Text>
+      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredSmallText : lightStyles.boldOnBackgroundCenteredSmallText}>Summary</Text>
       <View>
-        <Text style={isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Included ingredients</Text>
+        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredSmallText : lightStyles.boldOnBackgroundCenteredSmallText}>Included ingredients</Text>
         <View>
           {ingredients != undefined
             ? ingredients.map((i) =>
               i.isIncluded ? (
-                <Text key={i.id} style={isDarkMode ? darkStyles.backgroundSmallText : lightStyles.backgroundSmallText}>- {i.name}</Text>
+                <Text key={i.id} style={isDarkMode ? darkStyles.onBackgroundSmallText : lightStyles.onBackgroundSmallText}>- {i.name}</Text>
               ) : null
             )
             : null}
         </View>
       </View>
       <View>
-        <Text style={isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Excluded ingredients</Text>
+        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredSmallText : lightStyles.boldOnBackgroundCenteredSmallText}>Excluded ingredients</Text>
         <View>
           {ingredients != undefined
             ? ingredients.map((i) =>
               i.isExcluded ? (
-                <Text key={i.id} style={isDarkMode ? darkStyles.backgroundSmallText : lightStyles.backgroundSmallText}>- {i.name}</Text>
+                <Text key={i.id} style={isDarkMode ? darkStyles.onBackgroundSmallText : lightStyles.onBackgroundSmallText}>- {i.name}</Text>
               ) : null
             )
             : null}
@@ -74,15 +74,6 @@ export default Step3;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  prevStepText: {
-    color: "blue",
-    fontSize: 16,
-  },
-  submitText: {
-    color: "blue",
-    fontWeight: "bold",
-    fontSize: 16,
   },
   trashIconContainer: {
     flex: 1,

@@ -44,10 +44,10 @@ const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) =
         }}
       >
         <TouchableOpacity onPress={onNext}>
-          <Text style={styles.nextStepText}>Next</Text>
+          <Text style={isDarkMode ? darkStyles.boldPrimarySmallText : lightStyles.boldPrimarySmallText}>Next</Text>
         </TouchableOpacity>
       </View>
-      <Text style={isDarkMode ? darkStyles.boldBackgroundCenteredSmallText : lightStyles.boldBackgroundCenteredSmallText}>Step 1: Ingredients to include</Text>
+      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredSmallText : lightStyles.boldOnBackgroundCenteredSmallText}>Step 1: Ingredients to include</Text>
       <TouchableOpacity
         style={isDarkMode ? darkStyles.addIngredientTouchable : lightStyles.addIngredientTouchable}
         onPress={includeIngredientsHandler}
@@ -68,7 +68,7 @@ const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) =
           </View>
         </View>
         <View style={isDarkMode ? darkStyles.zIndexMinusOneCenter : lightStyles.zIndexMinusOneCenter}>
-          <Text style={isDarkMode ? darkStyles.boldSurfaceSmallText : lightStyles.boldSurfaceSmallText}>+ Include ingredient</Text>
+          <Text style={isDarkMode ? darkStyles.boldOnSurfaceSmallText : lightStyles.boldOnSurfaceSmallText}>+ Include ingredient</Text>
         </View>
       </TouchableOpacity>
 
@@ -95,10 +95,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-  },
-  nextStepText: {
-    color: "blue",
-    fontSize: 16,
   },
   trashIconContainer: {
     height: 50,

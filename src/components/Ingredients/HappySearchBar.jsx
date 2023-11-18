@@ -20,11 +20,12 @@ const HappySearchBar = ({ searchValue, onChangeText }) => {
       inputStyle={isDarkMode ? darkStyles.onSurface : lightStyles.onSurface}
       inputContainerStyle={{ 
         backgroundColor: isDarkMode ? darkThemeColors.surface : lightThemeColors.surface,
-        borderBottomColor: isDarkMode ? darkThemeColors.surface : lightThemeColors.surface
-       }}
+        borderBottomColor: isDarkMode ? darkThemeColors.surface : lightThemeColors.surface     
+      }}
       containerStyle={{
         backgroundColor: isDarkMode ? darkThemeColors.background : lightThemeColors.background,
-        borderBottomColor: isDarkMode ? darkThemeColors.background : lightThemeColors .background
+        borderBottomWidth: 0,
+        borderTopWidth: 0,
       }}
       round
       clearIcon
