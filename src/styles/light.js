@@ -24,24 +24,10 @@ const lightStyles = StyleSheet.create({
     zIndex: -1,
   },
 
-  // text
-  backgroundMediumText: {
-    fontSize: 20,
-    color: lightThemeColors.onBackground,
-  },
-  boldBackgroundMediumText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: lightThemeColors.onBackground,
-  },
+  // small text
   backgroundSmallText: {
     fontSize: 15,
     color: lightThemeColors.onBackground,
-  },
-  boldSurfaceSmallText: {
-    fontSize: 15,
-    fontWeight: "bold",
-    color: lightThemeColors.onSurface,
   },
   boldBackgroundCenteredSmallText: {
     fontSize: 15,
@@ -49,6 +35,42 @@ const lightStyles = StyleSheet.create({
     color: lightThemeColors.onBackground,
     textAlign: "center",
   },
+  boldSurfaceSmallText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: lightThemeColors.onSurface,
+  },
+  surfaceSmallText: {
+    fontSize: 15,
+    color: lightThemeColors.onSurface,
+  },
+  boldSurfaceSmallText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: lightThemeColors.onSurface,
+  },
+
+  // medium text
+  backgroundMediumText: {
+    fontSize: 17,
+    color: lightThemeColors.onBackground,
+  },
+  boldBackgroundMediumText: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: lightThemeColors.onBackground,
+  },
+  surfaceMediumText: {
+    fontSize: 17,
+    color: lightThemeColors.onSurface,
+  },
+  boldSurfaceMediumText: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: lightThemeColors.onSurface,
+  },
+
+  // big text
 
   // rows
   rowCenterAligned: {
@@ -79,6 +101,17 @@ const lightStyles = StyleSheet.create({
     alignItems: "center",
     zIndex: -2,
   },
+  selectableIngredient: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 10,
+    backgroundColor: lightThemeColors.surface,
+    borderWidth: 1,
+    borderColor: lightThemeColors.background,
+    borderRadius: 5,
+    padding: 5,
+  },
 
   // cards
   recipeCard: {
@@ -99,6 +132,26 @@ const lightStyles = StyleSheet.create({
     borderTopRightRadius: 10,
     minHeight: "95%",
     padding: 20,
+  },
+  selectIngredientsModalContent: {
+    backgroundColor: lightThemeColors.background,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    minHeight: "95%",
+    padding: 20,
+  },
+
+
+  // labels
+  ingredientIncludedLabel: {
+    backgroundColor: lightThemeColors.secondary,
+    padding: 5,
+    borderRadius: 5,
+  },
+  ingredientExcludedLabel: {
+    backgroundColor: lightThemeColors.terciary,
+    padding: 5,
+    borderRadius: 5,
   },
 });
 

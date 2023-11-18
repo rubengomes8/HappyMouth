@@ -10,12 +10,19 @@ import {
 import HappySearchBar from "./HappySearchBar.jsx";
 import SelectableIngredient from "./SelectableIngredient.jsx";
 
+// themes
+import { useTheme } from '../../contexts/ThemeContext';
+import darkStyles from "../../styles/dark.js";
+import lightStyles from '../../styles/light';
+
 const SelectIngredientsModal = ({
   ingredients,
   isVisible,
   onAddIngredient,
   onClose,
 }) => {
+  const { isDarkMode, toggleTheme } = useTheme();  
+
   const [searchValue, setSearchValue] = React.useState("");
 
   changeSearchValueHandler = (newValue) => {
@@ -38,7 +45,7 @@ const SelectIngredientsModal = ({
       onRequestClose={onClose}
     >
       <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
+        <View style={ isDarkMode ? darkStyles.selectIngredientsModalContent : lightStyles.selectIngredientsModalContent }>
           <TouchableOpacity onPress={onClose} style={styles.touchableDone}>
             <Text style={styles.onCloseText}>Done</Text>
           </TouchableOpacity>
@@ -64,18 +71,7 @@ const SelectIngredientsModal = ({
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    marginVertical: 20,
-  },
-  modalBackground: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  modalContent: {
-    backgroundColor: "white",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    minHeight: "90%",
-    padding: 20,
+    marginVertical: "10%",
   },
   onCloseText: {
     color: "blue",

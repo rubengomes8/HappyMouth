@@ -32,24 +32,10 @@ const darkStyles = StyleSheet.create({
     margin: 5,
   },
 
-  // text
-  backgroundMediumText: {
-    fontSize: 20,
-    color: darkThemeColors.onBackground,
-  },
-  boldBackgroundMediumText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: darkThemeColors.onBackground,
-  },
+  // small text
   backgroundSmallText: {
     fontSize: 15,
     color: darkThemeColors.onBackground,
-  },
-  boldSurfaceSmallText: {
-    fontSize: 15,
-    fontWeight: "bold",
-    color: darkThemeColors.onSurface,
   },
   boldBackgroundCenteredSmallText: {
     fontSize: 15,
@@ -57,6 +43,44 @@ const darkStyles = StyleSheet.create({
     color: darkThemeColors.onBackground,
     textAlign: "center",
   },
+  boldSurfaceSmallText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: darkThemeColors.onSurface,
+  },
+  surfaceSmallText: {
+    fontSize: 15,
+    color: darkThemeColors.onSurface,
+  },
+  boldSurfaceMediumText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: darkThemeColors.onSurface,
+  },
+
+
+  // medium text
+  backgroundMediumText: {
+    fontSize: 17,
+    color: darkThemeColors.onBackground,
+  },
+  boldBackgroundMediumText: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: darkThemeColors.onBackground,
+  },
+  surfaceMediumText: {
+    fontSize: 17,
+    color: darkThemeColors.onSurface,
+  },
+  boldSurfaceMediumText: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: darkThemeColors.onSurface,
+  },
+
+  // big text
+  
 
   // buttons / touchables
   roundButton: {
@@ -80,6 +104,17 @@ const darkStyles = StyleSheet.create({
     alignItems: "center",
     zIndex: -2,
   },
+  selectableIngredient: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 10,
+    backgroundColor: darkThemeColors.surface,
+    borderWidth: 1,
+    borderColor: darkThemeColors.background,
+    borderRadius: 5,
+    padding: 5,
+  },
 
   // cards
   recipeCard: {
@@ -100,6 +135,25 @@ const darkStyles = StyleSheet.create({
     borderTopRightRadius: 10,
     minHeight: "95%",
     padding: 20,
+  },
+  selectIngredientsModalContent: {
+    backgroundColor: darkThemeColors.background,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    minHeight: "95%",
+    padding: 20,
+  },
+
+  // labels
+  ingredientIncludedLabel: {
+    backgroundColor: darkThemeColors.secondary,
+    padding: 5,
+    borderRadius: 5,
+  },
+  ingredientExcludedLabel: {
+    backgroundColor: darkThemeColors.terciary,
+    padding: 5,
+    borderRadius: 5,
   },
 });
 
