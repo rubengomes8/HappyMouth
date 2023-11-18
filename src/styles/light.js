@@ -78,6 +78,19 @@ const lightStyles = StyleSheet.create({
     alignItems: "center",
     margin: 5,
   },
+  removableIngredient: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 15,
+    height: 30,
+    borderRadius: 5,
+    borderWidth: 1,
+    backgroundColor: lightThemeColors.background,
+    borderColor: "black",
+    margin: 1,
+    zIndex: -1,
+  },
 
   // buttons / touchables
   roundButton: {
