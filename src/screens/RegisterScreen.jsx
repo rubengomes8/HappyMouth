@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import PasswordInput from "../components/PasswordInput.jsx";
 import { registerUser } from "../api/authApi.js";
+
+// themes
+import { useTheme } from '../contexts/ThemeContext';
+import darkStyles from '../styles/dark';
+import lightStyles from '../styles/light';
+import { darkThemeColors, lightThemeColors } from "../styles/colors.js";
 
 const checkIsEmailValid = (email) => {
   const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -11,6 +17,8 @@ const checkIsEmailValid = (email) => {
 };
 
 const RegisterScreen = () => {
+  const { isDarkMode, toggleTheme } = useTheme();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -28,6 +36,13 @@ const RegisterScreen = () => {
 
   // NAVIGATION
   const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerStyle: { backgroundColor: isDarkMode ? darkThemeColors.surface : lightThemeColors.surface },
+      headerTintColor: isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface,
+    });
+  }, [isDarkMode]);
 
   async function handleRegister() {
     try {
@@ -57,20 +72,20 @@ const RegisterScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Username</Text>
+    <View style={ isDarkMode ? darkStyles.registerScreenView : lightStyles.registerScreenView}>
+      <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Username</Text>
       <TextInput
-        style={styles.input}
+        style={isDarkMode ? darkStyles.input : lightStyles.input}
         placeholder="Username"
-        placeholderTextColor="gray"
+        placeholderTextColor= {isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
         onChangeText={setUsername}
         autoCapitalize="none"
       />
-      <Text style={styles.label}>Email</Text>
+      <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Email</Text>
       <TextInput
-        style={styles.input}
+        style={isDarkMode ? darkStyles.input : lightStyles.input}
         placeholder="Email"
-        placeholderTextColor="gray"
+        placeholderTextColor= {isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
         onChangeText={handleEmailChange}
         autoCapitalize="none"
       />
@@ -111,17 +126,9 @@ export default RegisterScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: darkThemeColors.background,
     alignItems: "center",
     marginTop: 20,
-  },
-  input: {
-    width: "80%",
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    borderRadius: 10,
-    marginBottom: 10,
-    paddingLeft: 10,
   },
   label: {
     fontSize: 18,

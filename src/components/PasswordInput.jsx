@@ -8,6 +8,12 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+// themes
+import { useTheme } from '../contexts/ThemeContext';
+import darkStyles from '../styles/dark';
+import lightStyles from '../styles/light';
+import { darkThemeColors, lightThemeColors } from "../styles/colors.js";
+
 const PasswordInput = ({
   placeholder,
   password,
@@ -15,14 +21,17 @@ const PasswordInput = ({
   isPasswordVisible,
   setPasswordVisible,
 }) => {
+  const { isDarkMode, toggleTheme } = useTheme();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{placeholder}</Text>
+      <Text style={isDarkMode ? {...darkStyles.backgroundMediumText, textAlign: "center"} : {...lightStyles.backgroundMediumText, textAlign: "center"}}>{placeholder}</Text>
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
+          style={isDarkMode ? darkStyles.input : lightStyles.input}
           placeholder={placeholder}
-          placeholderTextColor="gray"
+          placeholderTextColor={isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
+          color={isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
           secureTextEntry={!isPasswordVisible}
           onChangeText={setPassword}
           autoCapitalize="none"
@@ -42,7 +51,7 @@ const PasswordInput = ({
             <Icon
               name={isPasswordVisible ? "eye" : "eye-slash"}
               size={24}
-              color="black"
+              color={isDarkMode ? darkThemeColors.onBackground : lightThemeColors.onBackground}
             />
           </View>
         </TouchableOpacity>

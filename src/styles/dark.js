@@ -24,6 +24,18 @@ const darkStyles = StyleSheet.create({
     justifyContent: "center",
     zIndex: -1,
   },
+  registerScreenView: {
+    paddingTop: 20,
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: darkThemeColors.background,
+  },
+  loginScreenView: {
+    paddingTop: 20,
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: darkThemeColors.background,
+  },
 
   // rows
   rowCenterAligned: {
@@ -167,6 +179,17 @@ const darkStyles = StyleSheet.create({
     backgroundColor: darkThemeColors.terciary,
     padding: 5,
     borderRadius: 5,
+  },
+
+   // inputs
+   input: {
+    width: "80%",
+    height: 40,
+    borderColor: darkThemeColors.surface,
+    borderWidth: 1,
+    borderRadius: 10,
+    marginBottom: 10,
+    paddingLeft: 10,
   },
 });
 

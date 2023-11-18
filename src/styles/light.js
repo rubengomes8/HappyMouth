@@ -23,6 +23,12 @@ const lightStyles = StyleSheet.create({
     justifyContent: "center",
     zIndex: -1,
   },
+  registerScreenView: {
+    paddingTop: 20,
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: lightThemeColors.background,
+  },
 
   // small text
   backgroundSmallText: {
@@ -165,6 +171,17 @@ const lightStyles = StyleSheet.create({
     backgroundColor: lightThemeColors.terciary,
     padding: 5,
     borderRadius: 5,
+  },
+
+  // inputs
+  input: {
+    width: "80%",
+    height: 40,
+    borderColor: lightThemeColors.surface,
+    borderWidth: 1,
+    borderRadius: 10,
+    marginBottom: 10,
+    paddingLeft: 10,
   },
 });
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -6,13 +6,28 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import PasswordInput from "../components/PasswordInput.jsx";
 import { loginUser } from "../api/authApi.js";
 
+// themes
+import { useTheme } from '../contexts/ThemeContext';
+import darkStyles from '../styles/dark';
+import lightStyles from '../styles/light';
+import { darkThemeColors, lightThemeColors } from "../styles/colors.js";
+
 const LoginScreen = () => {
+  const { isDarkMode, toggleTheme } = useTheme();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setPasswordVisible] = useState(false);
 
   // NAVIGATION
   const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerStyle: { backgroundColor: isDarkMode ? darkThemeColors.surface : lightThemeColors.surface },
+      headerTintColor: isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface,
+    });
+  }, [isDarkMode]);
 
   const handleSignUpPress = () => {
     navigation.navigate("Register");
@@ -29,18 +44,18 @@ const LoginScreen = () => {
       setPassword("");
       navigation.navigate("MainTabsScreen");
     } catch (error) {
-      //   console.log(error);
       alert("Login failed");
     }
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Username</Text>
+    <View style={ isDarkMode ? darkStyles.registerScreenView : lightStyles.registerScreenView}>
+      <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Username</Text>
       <TextInput
-        style={styles.input}
+        style={isDarkMode ? darkStyles.input : lightStyles.input}
         placeholder="Username"
-        placeholderTextColor="gray"
+        placeholderTextColor={isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
+        color={isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
         onChangeText={setUsername}
         autoCapitalize="none"
       />
