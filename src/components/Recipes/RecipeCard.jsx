@@ -36,27 +36,6 @@ const RecipeCard = ({ recipe, onPress, onToggleFavorite }) => {
 };
 
 const styles = StyleSheet.create({
-  card: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 10,
-    padding: 15,
-    marginTop: 10,
-    marginHorizontal: 20,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 8,
-  },
-  content: {},
-  iconContainer: {
-    position: "absolute",
-    top: 16,
-    right: 16,
-  },
   favoriteButton: {
     padding: 8,
   },
