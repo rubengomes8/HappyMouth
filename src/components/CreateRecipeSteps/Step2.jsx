@@ -50,16 +50,16 @@ const Step2 = ({
       >
         <View>
           <TouchableOpacity onPress={onPrevious}>
-            <Text style={isDarkMode ? darkStyles.boldPrimarySmallText : lightStyles.boldPrimarySmallText}>Previous</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Previous</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={onNext}>
-            <Text style={isDarkMode ? darkStyles.boldPrimarySmallText : lightStyles.boldPrimarySmallText}>Next</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Next</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredSmallText : lightStyles.boldOnBackgroundCenteredSmallText}>Step 2: Ingredients to exclude</Text>
+      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Step 2: Ingredients to exclude</Text>
       <TouchableOpacity
         style={isDarkMode ? darkStyles.addIngredientTouchable : lightStyles.addIngredientTouchable}
         onPress={excludeIngredientHandler}

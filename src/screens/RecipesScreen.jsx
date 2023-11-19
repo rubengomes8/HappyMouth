@@ -4,7 +4,8 @@ import CreateRecipeButton from "../components/Recipes/CreateRecipeButton.jsx";
 import RecipeCard from "../components/Recipes/RecipeCard.jsx";
 import NewRecipeModal from "../components/Recipes/NewRecipeModal.jsx";
 import RecipeDetailsModal from "../components/Recipes/RecipeDetailsModal.jsx";
-import { getUserRecipes } from "../api/recipegeneratorApi.js";
+import { getUserRecipes, updateUserRecipeFavoriteState } from "../api/recipesApi.js";
+
 
 // themes
 import { useTheme } from '../contexts/ThemeContext';
@@ -12,7 +13,7 @@ import darkStyles from '../styles/dark';
 import lightStyles from '../styles/light';
 
 
-const RecipesScreen = ({}) => {
+const RecipesScreen = ({ }) => {
   const { isDarkMode, toggleTheme } = useTheme();
   const [isNewRecipeModalVisible, setNewRecipeModalVisible] = useState(false);
   const [isRecipeDetailsModalVisible, setRecipeDetailsModalVisible] =
@@ -52,15 +53,15 @@ const RecipesScreen = ({}) => {
   };
 
   const closeNewRecipeModalAndUpdateRecipes = (newUserRecipe) => {
-    setUserRecipes( prevUserRecipes => [...(prevUserRecipes ?? []), newUserRecipe])
+    setUserRecipes(prevUserRecipes => [...(prevUserRecipes ?? []), newUserRecipe])
     setNewRecipeModalVisible(false);
   };
 
-  createRecipeHandler = ({}) => {
+  createRecipeHandler = ({ }) => {
     openNewRecipeModal();
   };
 
-  pressCardHandler = ({}) => {};
+  pressCardHandler = ({ }) => { };
 
   // RECIPE DETAILS MODAL
   const openRecipeDetailsModal = (recipe) => {
@@ -78,26 +79,39 @@ const RecipesScreen = ({}) => {
   };
 
   // FAVORITE RECIPE TOGGLE
-  const onToggleFavorite = (recipeToUpdate) => {
-    setUserRecipes((userRecipes) =>
-      userRecipes.map((recipe) =>
-        recipe.id === recipeToUpdate.id
-          ? { ...recipe, is_favorite: !recipe.is_favorite }
-          : recipe
-      )
-    );
+  const onToggleFavorite = async (recipeToUpdate) => {
+    try {
+      const response = await updateUserRecipeFavoriteState(recipeToUpdate.id, !recipeToUpdate.is_favorite);
+      
+      if (response.status === 204) {
+        setUserRecipes((userRecipes) =>
+          userRecipes.map((recipe) =>
+            recipe.id === recipeToUpdate.id
+              ? { ...recipe, is_favorite: !recipe.is_favorite }
+              : recipe
+          )
+        );
+      } else {
+        alert("Failed to set recipe as favorite.")
+      }
+    } catch (error) {
+      alert("Failed to set recipe as favorite.");
+      console.error('Stack Trace:', error.stack);
+    }
   };
 
   return (
-    <View style={ isDarkMode ? darkStyles.screenView : lightStyles.screenView}>
+    <View style={isDarkMode ? darkStyles.screenView : lightStyles.screenView}>
       <ScrollView
-        style={ isDarkMode ? darkStyles.scrollView : lightStyles.scrollView}
+        style={isDarkMode ? darkStyles.scrollView : lightStyles.scrollView}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
         }
       >
         {userRecipes ? (
-          userRecipes.map((recipe) => (
+          userRecipes
+          // .sort((a, b) => (b.is_favorite ? 1 : -1)) sort by is favorite
+          .map((recipe) => (
             <RecipeCard
               key={recipe.id}
               recipe={recipe}

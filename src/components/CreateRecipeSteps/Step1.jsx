@@ -44,10 +44,10 @@ const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) =
         }}
       >
         <TouchableOpacity onPress={onNext}>
-          <Text style={isDarkMode ? darkStyles.boldPrimarySmallText : lightStyles.boldPrimarySmallText}>Next</Text>
+          <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Next</Text>
         </TouchableOpacity>
       </View>
-      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredSmallText : lightStyles.boldOnBackgroundCenteredSmallText}>Step 1: Ingredients to include</Text>
+      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Step 1: Ingredients to include</Text>
       <TouchableOpacity
         style={isDarkMode ? darkStyles.addIngredientTouchable : lightStyles.addIngredientTouchable}
         onPress={includeIngredientsHandler}

@@ -98,6 +98,15 @@ const darkStyles = StyleSheet.create({
     fontWeight: "bold",
     color: darkThemeColors.secondary,
   },
+  onLightSecondarySmallText: {
+    fontSize: 15,
+    color: darkThemeColors.onLightSecondary,
+  },
+  boldOnLightSecondarySmallText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: darkThemeColors.onLightSecondary,
+  },
 
 
   // medium text
@@ -110,6 +119,12 @@ const darkStyles = StyleSheet.create({
     fontWeight: "bold",
     color: darkThemeColors.onBackground,
   },
+  boldOnBackgroundCenteredMediumText: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: darkThemeColors.onBackground,
+    textAlign: "center",
+  },
   surfaceMediumText: {
     fontSize: 17,
     color: darkThemeColors.onSurface,
@@ -119,8 +134,18 @@ const darkStyles = StyleSheet.create({
     fontWeight: "bold",
     color: darkThemeColors.onSurface,
   },
+  boldPrimaryMediumText: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: darkThemeColors.primary,
+  },
 
   // big text
+  onBackgroundBigText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: darkThemeColors.onBackground,
+  },
   
 
   // buttons / touchables
@@ -165,7 +190,7 @@ const darkStyles = StyleSheet.create({
     backgroundColor: darkThemeColors.surface,
     borderRadius: 10,
     padding: 15,
-    marginVertical: 10,
+    marginTop: 10,
     marginHorizontal: 20,
   },
 

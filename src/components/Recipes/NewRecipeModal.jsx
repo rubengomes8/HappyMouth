@@ -4,7 +4,7 @@ import Step1 from "../CreateRecipeSteps/Step1.jsx";
 import Step2 from "../CreateRecipeSteps/Step2.jsx";
 import Step3 from "../CreateRecipeSteps/Step3.jsx";
 import { getIngredientsSortedByName } from "../../api/ingredientsApi.js";
-import { postGenerateRecipe } from "../../api/recipegeneratorApi.js";
+import { postGenerateRecipe } from "../../api/recipesApi.js";
 
 // themes
 import { useTheme } from '../../contexts/ThemeContext';

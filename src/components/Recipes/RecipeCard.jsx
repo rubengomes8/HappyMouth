@@ -17,7 +17,7 @@ const RecipeCard = ({ recipe, onPress, onToggleFavorite }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={isDarkMode ? darkStyles.recipeCard : lightStyles.recipeCard}>
-        <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>{capitalizedTitle}</Text>
+        <Text style={isDarkMode ? darkStyles.boldBackgroundMediumText : lightStyles.boldBackgroundMediumText}>{capitalizedTitle}</Text>
         <TouchableOpacity
           onPress={() => {onToggleFavorite(recipe)}}
           style={styles.favoriteButton}
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     padding: 15,
-    marginVertical: 10,
+    marginTop: 10,
     marginHorizontal: 20,
   },
   title: {

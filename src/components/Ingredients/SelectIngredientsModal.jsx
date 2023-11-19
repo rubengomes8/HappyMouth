@@ -47,7 +47,7 @@ const SelectIngredientsModal = ({
       <View style={styles.modalContainer}>
         <View style={ isDarkMode ? darkStyles.selectIngredientsModalContent : lightStyles.selectIngredientsModalContent }>
           <TouchableOpacity onPress={onClose} style={styles.touchableDone}>
-            <Text style={styles.onCloseText}>Done</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Done</Text>
           </TouchableOpacity>
           <HappySearchBar
             searchValue={searchValue}

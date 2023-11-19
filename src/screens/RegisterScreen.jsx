@@ -72,12 +72,12 @@ const RegisterScreen = () => {
   };
 
   return (
-    <View style={ isDarkMode ? darkStyles.registerScreenView : lightStyles.registerScreenView}>
+    <View style={isDarkMode ? darkStyles.registerScreenView : lightStyles.registerScreenView}>
       <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Username</Text>
       <TextInput
         style={isDarkMode ? darkStyles.input : lightStyles.input}
         placeholder="Username"
-        placeholderTextColor= {isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
+        placeholderTextColor={isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
         onChangeText={setUsername}
         autoCapitalize="none"
       />
@@ -85,7 +85,7 @@ const RegisterScreen = () => {
       <TextInput
         style={isDarkMode ? darkStyles.input : lightStyles.input}
         placeholder="Email"
-        placeholderTextColor= {isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
+        placeholderTextColor={isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
         onChangeText={handleEmailChange}
         autoCapitalize="none"
       />
@@ -107,9 +107,9 @@ const RegisterScreen = () => {
         isPasswordVisible={isPasswordConfirmationVisible}
         setPasswordVisible={setPasswordConfirmationVisible}
       />
-      {passwordsMatch() ? null : (
-        <Text style={styles.errorText}>Passwords do not match</Text>
-      )}
+      {passwordConfirmation != "" & !passwordsMatch() ?
+        (<Text style={styles.errorText}>Passwords do not match</Text>) :
+        null}
       <View style={styles.registerButtonView}>
         <Button
           title="Register"

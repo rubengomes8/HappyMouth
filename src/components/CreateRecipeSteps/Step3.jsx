@@ -6,6 +6,7 @@ import TrashIcon from "../TrashIcon";
 import { useTheme } from '../../contexts/ThemeContext';
 import darkStyles from '../../styles/dark';
 import lightStyles from '../../styles/light';
+import RecipeIngredientsSummary from "./RecipeIngredientsSummary";
 
 const Step3 = ({
   ingredients,
@@ -28,39 +29,23 @@ const Step3 = ({
       >
         <View>
           <TouchableOpacity onPress={onPrevious}>
-            <Text style={isDarkMode ? darkStyles.boldPrimarySmallText : lightStyles.boldPrimarySmallText}>Previous</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Previous</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity style={isSubmitButtonDisabled ? styles.disabledButton : null} onPress={isSubmitButtonDisabled ? null : onSubmit} disabled={isSubmitButtonDisabled} >
-            <Text style={isDarkMode ? darkStyles.boldPrimarySmallText : lightStyles.boldPrimarySmallText}>Submit</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Submit</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredSmallText : lightStyles.boldOnBackgroundCenteredSmallText}>Summary</Text>
-      <View>
-        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredSmallText : lightStyles.boldOnBackgroundCenteredSmallText}>Included ingredients</Text>
-        <View>
-          {ingredients != undefined
-            ? ingredients.map((i) =>
-              i.isIncluded ? (
-                <Text key={i.id} style={isDarkMode ? darkStyles.onBackgroundSmallText : lightStyles.onBackgroundSmallText}>- {i.name}</Text>
-              ) : null
-            )
-            : null}
-        </View>
+      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Summary</Text>
+      <View style={{ marginTop: 10 }}>
+        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Included Ingredients</Text>
+        <RecipeIngredientsSummary ingredients={ingredients.filter((i) => i.isIncluded)} type="included"></RecipeIngredientsSummary>
       </View>
-      <View>
-        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredSmallText : lightStyles.boldOnBackgroundCenteredSmallText}>Excluded ingredients</Text>
-        <View>
-          {ingredients != undefined
-            ? ingredients.map((i) =>
-              i.isExcluded ? (
-                <Text key={i.id} style={isDarkMode ? darkStyles.onBackgroundSmallText : lightStyles.onBackgroundSmallText}>- {i.name}</Text>
-              ) : null
-            )
-            : null}
-        </View>
+      <View style={{ marginTop: 10 }}>
+        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Excluded Ingredients</Text>
+        <RecipeIngredientsSummary ingredients={ingredients.filter((i) => i.isExcluded)} type="excluded"></RecipeIngredientsSummary>
       </View>
       <View style={styles.trashIconContainer}>
         <TrashIcon onClose={onClose} />

@@ -29,6 +29,18 @@ const lightStyles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: lightThemeColors.background,
   },
+  ingredientsSummaryView: {
+    flex: 1,
+    marginHorizontal: 5,
+    backgroundColor: lightThemeColors.lightSecondary,
+    borderColor:  lightThemeColors.secondary,
+    borderRadius: 10,
+    borderWidth: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+
+  },
 
   // small text
   onBackgroundSmallText: {
@@ -65,6 +77,15 @@ const lightStyles = StyleSheet.create({
     fontWeight: "bold",
     color: lightThemeColors.secondary,
   },
+  onSecondarySmallText: {
+    fontSize: 15,
+    color: lightThemeColors.onSecondary,
+  },
+  boldOnLightSecondarySmallText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: lightThemeColors.onLightSecondary,
+  },
 
   // medium text
   backgroundMediumText: {
@@ -76,6 +97,12 @@ const lightStyles = StyleSheet.create({
     fontWeight: "bold",
     color: lightThemeColors.onBackground,
   },
+  boldOnBackgroundCenteredMediumText: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: lightThemeColors.onBackground,
+    textAlign: "center",
+  },
   surfaceMediumText: {
     fontSize: 17,
     color: lightThemeColors.onSurface,
@@ -85,8 +112,17 @@ const lightStyles = StyleSheet.create({
     fontWeight: "bold",
     color: lightThemeColors.onSurface,
   },
+  boldPrimaryMediumText: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: lightThemeColors.primary,
+  },
 
   // big text
+  onBackgroundBigText: {
+    fontSize: 20,
+    color: lightThemeColors.onBackground,
+  },
 
   // rows
   rowCenterAligned: {
@@ -156,7 +192,7 @@ const lightStyles = StyleSheet.create({
     backgroundColor: lightThemeColors.surface,
     borderRadius: 10,
     padding: 15,
-    marginVertical: 10,
+    marginTop: 10,
     marginHorizontal: 20,
   },
 

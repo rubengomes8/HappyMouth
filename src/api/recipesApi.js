@@ -41,3 +41,25 @@ export const getUserRecipes = async () => {
     throw error;
   }
 };
+
+export const updateUserRecipeFavoriteState = async (recipeID, isFavorite) => {
+  try {
+    const token = await AsyncStorage.getItem("AccessToken");
+    if (token) {
+      const response = await axios.patch(`${API_HOST}/v1/recipes/${recipeID}/favorite`, 
+      {
+        is_favorite: isFavorite
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response;
+    } else {
+      throw new Error("AccessToken not found in AsyncStorage");
+    }
+  } catch (error) {
+    throw error;
+  }
+};

@@ -28,11 +28,8 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <View style={isDarkMode ? darkStyles.screenViewCenter : lightStyles.screenViewCenter}>
-      <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
-        <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Go to settings</Text>
-      </TouchableOpacity>
       <TouchableOpacity onPress={handleLogout}>
-      <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Logout</Text>
+      <Text style={isDarkMode ? darkStyles.onBackgroundBigText : lightStyles.onBackgroundBigText}>Logout</Text>
       </TouchableOpacity>
     </View>
   );
