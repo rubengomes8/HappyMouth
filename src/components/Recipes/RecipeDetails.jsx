@@ -4,21 +4,26 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
-  StyleSheet,
 } from "react-native";
 import RecipeDetailsIngredients from "./RecipeDetailsIngredients";
 import RecipeDetailsInstructions from "./RecipeDetailsInstructions";
 
+// themes
+import { useTheme } from '../../contexts/ThemeContext';
+import darkStyles from '../../styles/dark';
+import lightStyles from '../../styles/light';
+
 const RecipeDetails = ({ recipe, onClose }) => {
 
+  const { isDarkMode, toggleTheme } = useTheme();
   const capitalizedTitle = recipe.title.charAt(0).toUpperCase() + recipe.title.slice(1);
 
   return (
-    <View>
+    <View style={isDarkMode ? darkStyles.newRecipeModalContent : lightStyles.newRecipeModalContent}>
       <TouchableOpacity onPress={onClose}>
-        <Text style={styles.onCloseText}>Close</Text>
+        <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Close</Text>
       </TouchableOpacity>
-      <Text style={styles.title}>{capitalizedTitle}</Text>
+      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>{capitalizedTitle}</Text>
       <ScrollView>
         <RecipeDetailsIngredients
           ingredients={recipe.ingredients}
@@ -32,15 +37,3 @@ const RecipeDetails = ({ recipe, onClose }) => {
 };
 
 export default RecipeDetails;
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 8,
-  },
-  onCloseText: {
-    color: "blue",
-    fontSize: 16,
-  },
-});

@@ -2,7 +2,14 @@ import React from "react";
 import { View, Modal, StyleSheet } from "react-native";
 import RecipeDetails from "./RecipeDetails.jsx";
 
+// themes
+import { useTheme } from '../../contexts/ThemeContext';
+import darkStyles from '../../styles/dark';
+import lightStyles from '../../styles/light';
+
 const RecipeDetailsModal = ({ recipe, isVisible, onClose }) => {
+
+  const { isDarkMode, toggleTheme } = useTheme();
 
   return (
     <Modal
@@ -12,7 +19,7 @@ const RecipeDetailsModal = ({ recipe, isVisible, onClose }) => {
       onRequestClose={onClose}
     >
       <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
+        <View style={isDarkMode ? darkStyles.newRecipeModalContent : lightStyles.newRecipeModalContent}>
           <RecipeDetails recipe={recipe} onClose={onClose}></RecipeDetails>
         </View>
       </View>
@@ -23,27 +30,8 @@ const RecipeDetailsModal = ({ recipe, isVisible, onClose }) => {
 export default RecipeDetailsModal;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   modalContainer: {
     flex: 1,
     justifyContent: "flex-end",
-  },
-  modalBackground: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  modalContent: {
-    backgroundColor: "white",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    minHeight: "90%",
-    padding: 20,
-  },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
   },
 });

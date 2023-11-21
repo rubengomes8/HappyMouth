@@ -2,6 +2,10 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { lightThemeColors } from "./colors";
 
+const SMALL_TEXT_FONT_SIZE = 15;
+const MEDIUM_TEXT_FONT_SIZE = 17;
+const BIG_TEXT_FONT_SIZE = 20;
+
 const lightStyles = StyleSheet.create({
   // views
   screenView: {
@@ -16,7 +20,7 @@ const lightStyles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    backgroundColor: lightThemeColors.background
+    backgroundColor: lightThemeColors.background,
   },
   zIndexMinusOneCenter: {
     alignItems: "center",
@@ -33,94 +37,93 @@ const lightStyles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 5,
     backgroundColor: lightThemeColors.lightSecondary,
-    borderColor:  lightThemeColors.secondary,
+    borderColor: lightThemeColors.secondary,
     borderRadius: 10,
     borderWidth: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 10,
-
   },
 
   // small text
   onBackgroundSmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     color: lightThemeColors.onBackground,
   },
   boldOnBackgroundCenteredSmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: lightThemeColors.onBackground,
     textAlign: "center",
   },
   boldOnSurfaceSmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: lightThemeColors.onSurface,
   },
   onSurfaceSmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     color: lightThemeColors.onSurface,
   },
   boldOnSurfaceSmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: lightThemeColors.onSurface,
   },
   boldPrimarySmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: lightThemeColors.primary,
   },
   boldSecondarySmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: lightThemeColors.secondary,
   },
   onSecondarySmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     color: lightThemeColors.onSecondary,
   },
   boldOnLightSecondarySmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: lightThemeColors.onLightSecondary,
   },
 
   // medium text
   backgroundMediumText: {
-    fontSize: 17,
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     color: lightThemeColors.onBackground,
   },
-  boldBackgroundMediumText: {
-    fontSize: 17,
+  boldOnBackgroundMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: lightThemeColors.onBackground,
   },
   boldOnBackgroundCenteredMediumText: {
-    fontSize: 17,
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: lightThemeColors.onBackground,
     textAlign: "center",
   },
-  surfaceMediumText: {
-    fontSize: 17,
+  onSurfaceMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     color: lightThemeColors.onSurface,
   },
-  boldSurfaceMediumText: {
-    fontSize: 17,
+  boldOnSurfaceMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: lightThemeColors.onSurface,
   },
   boldPrimaryMediumText: {
-    fontSize: 17,
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: lightThemeColors.primary,
   },
 
   // big text
   onBackgroundBigText: {
-    fontSize: 20,
+    fontSize: BIG_TEXT_FONT_SIZE,
     color: lightThemeColors.onBackground,
   },
 
@@ -157,8 +160,8 @@ const lightStyles = StyleSheet.create({
     borderRadius: 40,
     width: 60,
     height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   addIngredientTouchable: {
     flex: 1,
@@ -211,7 +214,6 @@ const lightStyles = StyleSheet.create({
     minHeight: "95%",
     padding: 20,
   },
-
 
   // labels
   ingredientIncludedLabel: {

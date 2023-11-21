@@ -18,7 +18,7 @@ const RemovableIngredient = ({ name, onRemove }) => {
 
   return (
     <TouchableOpacity style={isDarkMode ? darkStyles.removableIngredient : lightStyles.removableIngredient} activeOpacity={1}>
-      <Text style={ isDarkMode ? darkStyles.boldBackgroundMediumText : lightStyles.boldBackgroundMediumText}>{name}</Text>
+      <Text style={ isDarkMode ? darkStyles.boldOnBackgroundMediumText : lightStyles.boldOnBackgroundMediumText}>{name}</Text>
       <TouchableOpacity onPress={removeHandler}>
         <Icon name="times" size={25} color={ isDarkMode ? darkThemeColors.terciary : lightThemeColors.terciary} />
       </TouchableOpacity>

@@ -17,7 +17,7 @@ const RecipeCard = ({ recipe, onPress, onToggleFavorite }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={isDarkMode ? darkStyles.recipeCard : lightStyles.recipeCard}>
-        <Text style={isDarkMode ? darkStyles.boldBackgroundMediumText : lightStyles.boldBackgroundMediumText}>{capitalizedTitle}</Text>
+        <Text style={isDarkMode ? darkStyles.boldOnBackgroundMediumText : lightStyles.boldOnBackgroundMediumText}>{capitalizedTitle}</Text>
         <TouchableOpacity
           onPress={() => {onToggleFavorite(recipe)}}
           style={styles.favoriteButton}

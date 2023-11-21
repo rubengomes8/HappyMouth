@@ -2,8 +2,11 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { darkThemeColors } from "./colors";
 
-const darkStyles = StyleSheet.create({
+const SMALL_TEXT_FONT_SIZE = 15;
+const MEDIUM_TEXT_FONT_SIZE = 17;
+const BIG_TEXT_FONT_SIZE = 20;
 
+const darkStyles = StyleSheet.create({
   // views
   screenView: {
     flex: 1,
@@ -17,7 +20,7 @@ const darkStyles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    backgroundColor: darkThemeColors.background
+    backgroundColor: darkThemeColors.background,
   },
   zIndexMinusOneCenter: {
     alignItems: "center",
@@ -64,89 +67,88 @@ const darkStyles = StyleSheet.create({
   },
 
   // small text
+
   onBackgroundSmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     color: darkThemeColors.onBackground,
   },
   boldOnBackgroundCenteredSmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.onBackground,
     textAlign: "center",
   },
   boldOnSurfaceSmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.onSurface,
   },
   onSurfaceSmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     color: darkThemeColors.onSurface,
   },
   boldOnSurfaceSmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.onSurface,
   },
   boldPrimarySmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.primary,
   },
   boldSecondarySmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.secondary,
   },
   onLightSecondarySmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     color: darkThemeColors.onLightSecondary,
   },
   boldOnLightSecondarySmallText: {
-    fontSize: 15,
+    fontSize: SMALL_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.onLightSecondary,
   },
 
-
   // medium text
   backgroundMediumText: {
-    fontSize: 17,
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     color: darkThemeColors.onBackground,
   },
-  boldBackgroundMediumText: {
-    fontSize: 17,
+  boldOnBackgroundMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.onBackground,
   },
   boldOnBackgroundCenteredMediumText: {
-    fontSize: 17,
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.onBackground,
     textAlign: "center",
   },
-  surfaceMediumText: {
-    fontSize: 17,
+  onSurfaceMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     color: darkThemeColors.onSurface,
   },
-  boldSurfaceMediumText: {
-    fontSize: 17,
+  boldOnSurfaceMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.onSurface,
   },
   boldPrimaryMediumText: {
-    fontSize: 17,
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.primary,
   },
 
   // big text
   onBackgroundBigText: {
-    fontSize: 20,
+    fontSize: BIG_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.onBackground,
   },
-  
 
   // buttons / touchables
   roundButton: {
@@ -155,8 +157,8 @@ const darkStyles = StyleSheet.create({
     borderRadius: 40,
     width: 60,
     height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   addIngredientTouchable: {
     flex: 1,
@@ -222,8 +224,8 @@ const darkStyles = StyleSheet.create({
     borderRadius: 5,
   },
 
-   // inputs
-   input: {
+  // inputs
+  input: {
     width: "80%",
     height: 40,
     borderColor: darkThemeColors.surface,

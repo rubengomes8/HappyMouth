@@ -17,7 +17,7 @@ const SelectableIngredient = ({ item, onToggleItemAdded }) => {
     <TouchableOpacity
       style={isDarkMode ? darkStyles.selectableIngredient : lightStyles.selectableIngredient}
       onPress={toggleHandler}>
-      <Text style={isDarkMode ? darkStyles.surfaceMediumText : lightStyles.boldSurfaceMediumText}>{item.name}</Text>
+      <Text style={isDarkMode ? darkStyles.onSurfaceMediumText : lightStyles.boldOnSurfaceMediumText}>{item.name}</Text>
       {
         item.isIncluded ?
           <View style={isDarkMode ? darkStyles.ingredientIncludedLabel : lightStyles.ingredientIncludedLabel}>
