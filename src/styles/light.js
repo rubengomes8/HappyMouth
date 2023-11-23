@@ -91,7 +91,7 @@ const lightStyles = StyleSheet.create({
   },
 
   // medium text
-  backgroundMediumText: {
+  onBackgroundMediumText: {
     fontSize: MEDIUM_TEXT_FONT_SIZE,
     color: lightThemeColors.onBackground,
   },

@@ -121,7 +121,7 @@ const RecipesScreen = ({ }) => {
           ))
         ) : (
           <View style={styles.noRecipesView}>
-            <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Create your first recipe</Text>
+            <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>Create your first recipe</Text>
           </View>
         )}
       </ScrollView>

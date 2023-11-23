@@ -50,7 +50,7 @@ const LoginScreen = () => {
 
   return (
     <View style={ isDarkMode ? darkStyles.registerScreenView : lightStyles.registerScreenView}>
-      <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Username</Text>
+      <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>Username</Text>
       <TextInput
         style={isDarkMode ? darkStyles.input : lightStyles.input}
         placeholder="Username"

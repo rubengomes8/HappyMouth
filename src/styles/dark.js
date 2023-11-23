@@ -67,7 +67,6 @@ const darkStyles = StyleSheet.create({
   },
 
   // small text
-
   onBackgroundSmallText: {
     fontSize: SMALL_TEXT_FONT_SIZE,
     color: darkThemeColors.onBackground,
@@ -113,7 +112,7 @@ const darkStyles = StyleSheet.create({
   },
 
   // medium text
-  backgroundMediumText: {
+  onBackgroundMediumText: {
     fontSize: MEDIUM_TEXT_FONT_SIZE,
     color: darkThemeColors.onBackground,
   },

@@ -14,7 +14,7 @@ const RecipeDetailsInstructions = ({ instructions }) => {
       <Text style={isDarkMode ? darkStyles.boldOnBackgroundMediumText : lightStyles.boldOnBackgroundMediumText}>Instructions</Text>
       {instructions.map((instruction, index) => (
         <View key={index} style={styles.instructionView}>
-          <Text style={isDarkMode ? darkStyles.onBackgroundSmallText : lightStyles.onBackgroundSmallText}>{instruction}</Text>
+          <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>{instruction}</Text>
         </View>
       ))}
     </View>

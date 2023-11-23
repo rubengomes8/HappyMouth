@@ -25,7 +25,7 @@ const SettingsScreen = () => {
   return (
     <View style={isDarkMode ? darkStyles.screenViewCenter : lightStyles.screenViewCenter}>
       <View style={isDarkMode ? darkStyles.rowCenterAligned : lightStyles.rowCenterAligned}>
-        <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Enable notifications:</Text>
+        <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>Enable notifications:</Text>
         <Switch
           trackColor={{ false: darkThemeColors.onSurface, true: darkThemeColors.primary }}
           value={notificationsEnabled}
@@ -33,7 +33,7 @@ const SettingsScreen = () => {
         />
       </View>
       <View style={isDarkMode ? darkStyles.rowCenterAligned : lightStyles.rowCenterAligned}>
-        <Text style={isDarkMode ? darkStyles.backgroundMediumText : lightStyles.backgroundMediumText}>Dark mode:</Text>
+        <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>Dark mode:</Text>
         <Switch
           trackColor={{ false: darkThemeColors.onSurface, true: darkThemeColors.primary }}
           value={isDarkMode}

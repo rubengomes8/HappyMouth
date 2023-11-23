@@ -25,7 +25,7 @@ const PasswordInput = ({
 
   return (
     <View style={styles.container}>
-      <Text style={isDarkMode ? {...darkStyles.backgroundMediumText, textAlign: "center"} : {...lightStyles.backgroundMediumText, textAlign: "center"}}>{placeholder}</Text>
+      <Text style={isDarkMode ? {...darkStyles.onBackgroundMediumText, textAlign: "center"} : {...lightStyles.onBackgroundMediumText, textAlign: "center"}}>{placeholder}</Text>
       <View style={styles.inputContainer}>
         <TextInput
           style={isDarkMode ? darkStyles.input : lightStyles.input}
