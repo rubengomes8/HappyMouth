@@ -148,6 +148,17 @@ const darkStyles = StyleSheet.create({
     fontWeight: "bold",
     color: darkThemeColors.onBackground,
   },
+  onBackgroundBoldBigText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    color: darkThemeColors.onBackground,
+    fontWeight: "bold",
+  },
+  onBackgroundBigCenteredText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: darkThemeColors.onBackground,
+    textAlign: "center",
+  },
 
   // buttons / touchables
   roundButton: {
@@ -192,6 +203,18 @@ const darkStyles = StyleSheet.create({
     borderRadius: 10,
     padding: 15,
     marginTop: 10,
+    marginHorizontal: 20,
+  },
+  userCard: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    backgroundColor: darkThemeColors.surface,
+    borderRadius: 10,
+    padding: 15,
+    marginTop: 2,
     marginHorizontal: 20,
   },
 

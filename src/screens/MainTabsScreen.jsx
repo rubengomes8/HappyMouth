@@ -1,3 +1,4 @@
+import { useRoute } from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RecipesScreen from "./RecipesScreen.jsx";
 import ProfileScreen from "./ProfileScreen.jsx";
@@ -12,6 +13,9 @@ const Tab = createBottomTabNavigator();
 
 const MainTabsScreen = () => {
   const { isDarkMode, toggleTheme } = useTheme();
+  const route = useRoute();
+  const username = route.params?.username || "defaultUsername"; // TODO
+
 
   return (
     <Tab.Navigator
@@ -28,7 +32,7 @@ const MainTabsScreen = () => {
     >
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={() => <ProfileScreen username={username} />}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="user" size={size} color={color} />
@@ -40,7 +44,7 @@ const MainTabsScreen = () => {
         component={RecipesScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="book" size={size} color={color}/>
+            <FontAwesome name="book" size={size} color={color} />
           ),
         }}
       />

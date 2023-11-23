@@ -1,20 +1,19 @@
 import React from "react";
-import { View, Button, Text, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+
+import { View, Text, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTheme } from '../contexts/ThemeContext';
+import User from '../components/Profile/User'
 
 // themes
 import darkStyles from '../styles/dark';
 import lightStyles from '../styles/light';
 import { darkThemeColors, lightThemeColors } from '../styles/colors';
 
-const ProfileScreen = ({ navigation }) => {
+const ProfileScreen = ({ username }) => {
+  const navigation = useNavigation();
   const { isDarkMode, toggleTheme } = useTheme();
-  const userProfile = {
-    name: "John Doe",
-    email: "john@example.com",
-    bio: "Software Developer",
-  };
 
   // LOGOUT
   const handleLogout = async () => {
@@ -27,9 +26,10 @@ const ProfileScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={isDarkMode ? darkStyles.screenViewCenter : lightStyles.screenViewCenter}>
+    <View style={isDarkMode ? darkStyles.screenView : lightStyles.screenView}>
+      <User username={username}></User>
       <TouchableOpacity onPress={handleLogout}>
-      <Text style={isDarkMode ? darkStyles.onBackgroundBigText : lightStyles.onBackgroundBigText}>Logout</Text>
+      <Text style={isDarkMode ? darkStyles.onBackgroundBigCenteredText : lightStyles.onBackgroundBigCenteredText}>Logout</Text>
       </TouchableOpacity>
     </View>
   );

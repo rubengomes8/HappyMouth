@@ -126,6 +126,16 @@ const lightStyles = StyleSheet.create({
     fontSize: BIG_TEXT_FONT_SIZE,
     color: lightThemeColors.onBackground,
   },
+  onBackgroundBoldBigText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    color: lightThemeColors.onBackground,
+    fontWeight: "bold",
+  },
+  onBackgroundBigCenteredText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    color: lightThemeColors.onBackground,
+    textAlign: "center",
+  },
 
   // rows
   rowCenterAligned: {
@@ -197,6 +207,13 @@ const lightStyles = StyleSheet.create({
     padding: 15,
     marginTop: 10,
     marginHorizontal: 20,
+  },
+  userCard: {
+    flexDirection: "column",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    backgroundColor: lightThemeColors.surface,
+    padding: 15,
   },
 
   // modals

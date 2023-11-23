@@ -38,12 +38,12 @@ const LoginScreen = () => {
       const loginResponse = await loginUser(username, password);
       if (loginResponse.status == 200) {
         AsyncStorage.setItem("AccessToken", loginResponse.data.token);
-        navigation.navigate("MainTabsScreen");
+        navigation.navigate("MainTabsScreen", {username: username});
       }
       setUsername("");
       setPassword("");
-      navigation.navigate("MainTabsScreen");
     } catch (error) {
+      console.log(error);
       alert("Login failed");
     }
   }
