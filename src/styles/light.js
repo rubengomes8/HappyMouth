@@ -213,7 +213,8 @@ const lightStyles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "flex-start",
     backgroundColor: lightThemeColors.surface,
-    padding: 15,
+    padding: 10,
+    marginBottom: 10,
   },
 
   // modals

@@ -1,12 +1,10 @@
 import React from "react";
 import {
+    Image,
     View,
-    TextInput,
     Text,
-    TouchableOpacity,
     StyleSheet,
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
 
 // themes
 import { useTheme } from '../../contexts/ThemeContext';
@@ -21,14 +19,38 @@ const User = ({
 
     return (
         <View style={isDarkMode ? darkStyles.userCard : lightStyles.userCard}>
-            <Text style={isDarkMode ? darkStyles.onBackgroundBoldBigText : lightStyles.onBackgroundBoldBigText}>@{username}</Text>
+            <View style={styles.container}>
+                <View style={styles.imageContainer}>
+                    <Image
+                        style={styles.roundImage}
+                        source={require('../../../assets/images/potato_emoji.png')}
+                    />
+                </View>
+                <View style={styles.usernameContainer}>
+                    <Text style={isDarkMode ? darkStyles.onBackgroundBoldBigText : lightStyles.onBackgroundBoldBigText}>@{username}</Text>
+                </View>
+            </View>
         </View>
     );
 };
+
+export default User;
+
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+    },
+    imageContainer: {
+        marginRight: 20,
+    },
+    roundImage: {
+        width: 40,
+        height: 40,
+        borderRadius: 10,
+    },
+    usernameContainer: {
         flex: 1,
     },
 });
-
-export default User;

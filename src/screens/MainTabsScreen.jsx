@@ -32,7 +32,7 @@ const MainTabsScreen = () => {
     >
       <Tab.Screen
         name="Profile"
-        component={() => <ProfileScreen username={username} />}
+        component={(props) => <ProfileScreen {...props} username={username} />}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="user" size={size} color={color} />

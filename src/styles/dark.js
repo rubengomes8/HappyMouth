@@ -206,16 +206,12 @@ const darkStyles = StyleSheet.create({
     marginHorizontal: 20,
   },
   userCard: {
-    flex: 1,
-    display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
     justifyContent: "flex-start",
     backgroundColor: darkThemeColors.surface,
-    borderRadius: 10,
-    padding: 15,
-    marginTop: 2,
-    marginHorizontal: 20,
+    padding: 10,
+    marginBottom: 10,
   },
 
   // modals
@@ -250,7 +246,7 @@ const darkStyles = StyleSheet.create({
   input: {
     width: "80%",
     height: 40,
-    borderColor: darkThemeColors.surface,
+    borderColor: darkThemeColors.onBackground,
     borderWidth: 1,
     borderRadius: 10,
     marginBottom: 10,

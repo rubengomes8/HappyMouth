@@ -25,10 +25,6 @@ const RecipeDetailsIngredients = ({ ingredients }) => {
 export default RecipeDetailsIngredients;
 
 const styles = StyleSheet.create({
-  ingredientsTitle: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
   ingredientView: {
     margin: 5,
     fontSize: 16,

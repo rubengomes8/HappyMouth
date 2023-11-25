@@ -77,7 +77,8 @@ const RegisterScreen = () => {
       <TextInput
         style={isDarkMode ? darkStyles.input : lightStyles.input}
         placeholder="Username"
-        placeholderTextColor={isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
+        placeholderTextColor={isDarkMode ? darkThemeColors.onBackground : lightThemeColors.onBackground}
+        color={isDarkMode ? darkThemeColors.onBackground : lightThemeColors.onBackground}
         onChangeText={setUsername}
         autoCapitalize="none"
       />
@@ -85,7 +86,8 @@ const RegisterScreen = () => {
       <TextInput
         style={isDarkMode ? darkStyles.input : lightStyles.input}
         placeholder="Email"
-        placeholderTextColor={isDarkMode ? darkThemeColors.onSurface : lightThemeColors.onSurface}
+        placeholderTextColor={isDarkMode ? darkThemeColors.onBackground : lightThemeColors.onBackground}
+        color={isDarkMode ? darkThemeColors.onBackground : lightThemeColors.onBackground}
         onChangeText={handleEmailChange}
         autoCapitalize="none"
       />

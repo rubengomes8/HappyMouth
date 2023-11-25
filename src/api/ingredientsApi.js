@@ -1,7 +1,7 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_HOST = "http://192.168.1.227:8080"; // TODO should use .env
+const API_HOST = "http://192.168.1.213:8080"; // TODO should use .env
 
 // TODO use react query to have cache!
 export const getIngredientsSortedByName = async (sortByName) => {
