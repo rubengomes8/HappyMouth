@@ -82,7 +82,7 @@ const RecipesScreen = ({ }) => {
   const onToggleFavorite = async (recipeToUpdate) => {
     try {
       const response = await updateUserRecipeFavoriteState(recipeToUpdate.id, !recipeToUpdate.is_favorite);
-      
+
       if (response.status === 204) {
         setUserRecipes((userRecipes) =>
           userRecipes.map((recipe) =>
@@ -110,15 +110,15 @@ const RecipesScreen = ({ }) => {
       >
         {userRecipes ? (
           userRecipes
-          // .sort((a, b) => (b.is_favorite ? 1 : -1)) sort by is favorite
-          .map((recipe) => (
-            <RecipeCard
-              key={recipe.id}
-              recipe={recipe}
-              onPress={() => recipeDetailsHandler(recipe)}
-              onToggleFavorite={() => onToggleFavorite(recipe)}
-            ></RecipeCard>
-          ))
+            // .sort((a, b) => (b.is_favorite ? 1 : -1)) sort by is favorite
+            .map((recipe) => (
+              <RecipeCard
+                key={recipe.id}
+                recipe={recipe}
+                onPress={() => recipeDetailsHandler(recipe)}
+                onToggleFavorite={() => onToggleFavorite(recipe)}
+              ></RecipeCard>
+            ))
         ) : (
           <View style={styles.noRecipesView}>
             <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>Create your first recipe</Text>
@@ -132,6 +132,7 @@ const RecipesScreen = ({ }) => {
         isVisible={isNewRecipeModalVisible}
         onClose={closeNewRecipeModal}
         onCloseAndUpdateRecipes={closeNewRecipeModalAndUpdateRecipes}
+        userRecipes={userRecipes}
       />
       <RecipeDetailsModal
         isVisible={isRecipeDetailsModalVisible}

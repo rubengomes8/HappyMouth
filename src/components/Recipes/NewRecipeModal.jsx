@@ -5,18 +5,19 @@ import Step2 from "../CreateRecipeSteps/Step2.jsx";
 import Step3 from "../CreateRecipeSteps/Step3.jsx";
 import { getIngredientsSortedByName } from "../../api/ingredientsApi.js";
 import { postGenerateRecipe } from "../../api/recipesApi.js";
+import { getRecipeKey } from "../../domain/recipes.js";
 
 // themes
 import { useTheme } from '../../contexts/ThemeContext';
 import darkStyles from "../../styles/dark.js";
 import lightStyles from '../../styles/light';
 
-const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
+const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes, userRecipes }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(false);
-  const { isDarkMode, toggleTheme } = useTheme();  
+  const { isDarkMode, toggleTheme } = useTheme();
 
 
   useEffect(() => {
@@ -99,6 +100,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
     setIsSubmitButtonDisabled(true);
     setIsLoading(true);
 
+    let recipeAlreadyExists;
     try {
 
       const includedIngredientNames = ingredients
@@ -109,13 +111,19 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
         .filter((item) => item.isExcluded)
         .map((item) => item.name);
 
-      const response = await postGenerateRecipe(
-        includedIngredientNames,
-        excludedIngredientNames
-      );
+      const newRecipeKey = getRecipeKey(includedIngredientNames, excludedIngredientNames);
+      recipeAlreadyExists = userRecipes.some((item) => item.id === newRecipeKey);
+      if (recipeAlreadyExists) {
+        alert("You already have this recipe.")
+      } else {
+        const response = await postGenerateRecipe(
+          includedIngredientNames,
+          excludedIngredientNames
+        );
 
-      if (response.status === 200) {
-        onCloseAndUpdateRecipes(response.data);
+        if (response.status === 200) {
+          onCloseAndUpdateRecipes(response.data);
+        }
       }
 
     } catch (error) {
@@ -123,9 +131,12 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
       console.error("Create new recipe failed:", error);
       console.error('Stack Trace:', error.stack);
     } finally {
+      console.log("finally")
       setIsLoading(false);
       setIsSubmitButtonDisabled(false);
-      setIngredients(ingredients.map(item => ({ ...item, isIncluded: false, isExcluded: false })));
+      if (!recipeAlreadyExists) {
+        setIngredients(ingredients.map(item => ({ ...item, isIncluded: false, isExcluded: false })));
+      }
     }
   }
 
@@ -169,8 +180,8 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes }) => {
 
   return (
     <Modal transparent={true} visible={isVisible} onRequestClose={onClose}>
-      <View style={ styles.modalContainer}>
-        <View style={ isDarkMode ? darkStyles.newRecipeModalContent : lightStyles.newRecipeModalContent }>{stepComponent}</View>
+      <View style={styles.modalContainer}>
+        <View style={isDarkMode ? darkStyles.newRecipeModalContent : lightStyles.newRecipeModalContent}>{stepComponent}</View>
       </View>
     </Modal>
   );
