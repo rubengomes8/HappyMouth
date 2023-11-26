@@ -7,7 +7,7 @@ import darkStyles from '../../styles/dark';
 import lightStyles from '../../styles/light';
 import commonStyles from '../../styles/common';
 
-const IngredientLabel = ({ key, type, ingredientName }) => {
+const IngredientLabel = ({ type, ingredientName }) => {
     const { isDarkMode, toggleTheme } = useTheme();
 
     return (
