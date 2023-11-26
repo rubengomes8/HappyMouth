@@ -9,6 +9,7 @@ const RecipeIngredientsSummary = ({ ingredients, type }) => {
         return (
             ingredients.map((ingredient) => (
                 <IngredientLabel
+                    key={ingredient.name}
                     style={styles.ingredientLabelsContainer}
                     type={type}
                     ingredientName={ingredient.name.toUpperCase()}>

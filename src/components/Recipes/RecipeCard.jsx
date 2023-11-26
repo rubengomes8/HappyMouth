@@ -27,6 +27,7 @@ const RecipeCard = ({ recipe, onPress, onToggleFavorite }) => {
               .slice(0, 3)
               .map((ingredientName) => (
                 <IngredientLabel
+                  key={ingredientName}
                   style={styles.ingredientLabel}
                   type="included"
                   ingredientName={ingredientName}>
@@ -36,6 +37,7 @@ const RecipeCard = ({ recipe, onPress, onToggleFavorite }) => {
           {recipe.definitions.include_ingredients &&
             recipe.definitions.include_ingredients.length > 3 && (
               <IngredientLabel
+                key={"..."}
                 type="included"
                 ingredientName={"..."}>
               </IngredientLabel>
@@ -48,6 +50,7 @@ const RecipeCard = ({ recipe, onPress, onToggleFavorite }) => {
               .slice(0, 3)
               .map((ingredientName) => (
                 <IngredientLabel
+                  key={ingredientName}
                   style={styles.ingredientLabel}
                   type="excluded"
                   ingredientName={ingredientName}>
@@ -57,6 +60,7 @@ const RecipeCard = ({ recipe, onPress, onToggleFavorite }) => {
           {recipe.definitions.exclude_ingredients &&
             recipe.definitions.exclude_ingredients.length > 3 && (
               <IngredientLabel
+                key={"..."}
                 type="excluded"
                 ingredientName={"..."}>
               </IngredientLabel>
