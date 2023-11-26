@@ -1,27 +1,19 @@
 import React from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
 
-// themes
-import { useTheme } from '../../contexts/ThemeContext';
-import darkStyles from '../../styles/dark';
-import lightStyles from '../../styles/light';
-import commonStyles from '../../styles/common';
+import IngredientLabel from "../Ingredients/IngredientLabel";
+
 
 const RecipeIngredientsSummary = ({ ingredients, type }) => {
-    const { isDarkMode, toggleTheme } = useTheme();
-
-
-    const renderIngredientRow = () => {
+    const renderIngredientLabel = () => {
         return (
-            <View style={
-                type == "included" ? commonStyles.includedIngredientsSummaryView
-                    : (type == "excluded" ? commonStyles.excludedIngredientsSummaryView : null)}>
-                {ingredients.map((ingredient) => (
-                    <View key={ingredient.id} style={styles.rowContainer}>
-                        <Text style={isDarkMode ? darkStyles.boldOnLightSecondarySmallText : lightStyles.boldOnLightSecondarySmallText}>- {ingredient.name.toUpperCase()}</Text>
-                    </View>
-                ))}
-            </View>
+            ingredients.map((ingredient) => (
+                <IngredientLabel
+                    style={styles.ingredientLabelsContainer}
+                    type={type}
+                    ingredientName={ingredient.name.toUpperCase()}>
+                </IngredientLabel>
+            ))
         )
     }
 
@@ -30,22 +22,18 @@ const RecipeIngredientsSummary = ({ ingredients, type }) => {
             <FlatList
                 data={[ingredients]}
                 keyExtractor={(ingredient) => ingredient.id}
-                renderItem={renderIngredientRow}
+                renderItem={renderIngredientLabel}
             /> : null
     );
 
 }
 
-export default RecipeIngredientsSummary;
-
-
 const styles = StyleSheet.create({
-    rowContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    text: {
-        color: 'black',
-        fontWeight: 'bold',
-    },
+    ingredientLabelsContainer: {
+        flexDirection: "column",
+        justifyContent: "center",
+      },
+
 });
+
+export default RecipeIngredientsSummary;
