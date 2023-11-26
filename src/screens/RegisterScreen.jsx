@@ -28,7 +28,7 @@ const RegisterScreen = () => {
 
   // EMAIL
   const [email, setEmail] = useState("");
-  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isEmailValid, setIsEmailValid] = useState(false);
   const handleEmailChange = (text) => {
     setEmail(text);
     setIsEmailValid(checkIsEmailValid(text));
