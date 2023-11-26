@@ -29,7 +29,7 @@ const ProfileScreen = ({ username }) => {
     <View style={isDarkMode ? darkStyles.screenView : lightStyles.screenView}>
       <User username={username}></User>
       <TouchableOpacity onPress={handleLogout}>
-      <Text style={isDarkMode ? darkStyles.onBackgroundBigCenteredText : lightStyles.onBackgroundBigCenteredText}>Logout</Text>
+      <Text style={isDarkMode ? darkStyles.onBackgroundCenteredMediumText : lightStyles.onBackgroundCenteredMediumText}>Logout</Text>
       </TouchableOpacity>
     </View>
   );

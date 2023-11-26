@@ -116,6 +116,11 @@ const darkStyles = StyleSheet.create({
     fontSize: MEDIUM_TEXT_FONT_SIZE,
     color: darkThemeColors.onBackground,
   },
+  onBackgroundCenteredMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
+    color: darkThemeColors.onBackground,
+    textAlign: "center",
+  },
   boldOnBackgroundMediumText: {
     fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",

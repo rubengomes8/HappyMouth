@@ -95,6 +95,11 @@ const lightStyles = StyleSheet.create({
     fontSize: MEDIUM_TEXT_FONT_SIZE,
     color: lightThemeColors.onBackground,
   },
+  onBackgroundCenteredMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
+    color: lightThemeColors.onBackground,
+    textAlign: "center",
+  },
   boldOnBackgroundMediumText: {
     fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",
