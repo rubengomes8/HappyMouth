@@ -91,7 +91,7 @@ const RegisterScreen = () => {
         onChangeText={handleEmailChange}
         autoCapitalize="none"
       />
-      {isEmailValid ? null : (
+      {isEmailValid || email == "" ? null : (
         <Text style={styles.errorText}>Invalid email</Text>
       )}
 
