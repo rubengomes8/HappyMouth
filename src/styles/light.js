@@ -33,6 +33,12 @@ const lightStyles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: lightThemeColors.background,
   },
+  changePasswordScreenView: {
+    paddingTop: 20,
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: lightThemeColors.background,
+  },
   ingredientsSummaryView: {
     flex: 1,
     marginHorizontal: 5,

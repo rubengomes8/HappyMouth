@@ -33,6 +33,12 @@ const darkStyles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: darkThemeColors.background,
   },
+  changePasswordScreenView: {
+    paddingTop: 20,
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: darkThemeColors.background,
+  },
   loginScreenView: {
     paddingTop: 20,
     flex: 1,

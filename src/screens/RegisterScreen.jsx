@@ -73,6 +73,9 @@ const RegisterScreen = () => {
 
   return (
     <View style={isDarkMode ? darkStyles.registerScreenView : lightStyles.registerScreenView}>
+      <View style={{ margin: 20, marginHorizontal: 35 }}>
+        <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>For security purposes the passwords need to have at least 8 characters.</Text>
+      </View>
       <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>Username</Text>
       <TextInput
         style={isDarkMode ? darkStyles.input : lightStyles.input}
@@ -126,16 +129,6 @@ const RegisterScreen = () => {
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: darkThemeColors.background,
-    alignItems: "center",
-    marginTop: 20,
-  },
-  label: {
-    fontSize: 18,
-    marginBottom: 5,
-  },
   errorText: {
     color: "red",
   },

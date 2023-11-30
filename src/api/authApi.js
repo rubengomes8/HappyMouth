@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_HOST = "http://192.168.1.227:8080"; // TODO should use .env
+const API_HOST = "http://192.168.1.228:8080"; // TODO should use .env
 
 export const registerUser = async (username, password, email) => {
   try {
@@ -8,6 +8,27 @@ export const registerUser = async (username, password, email) => {
       username: username,
       password: password,
       email: email,
+    });
+    return response;
+  } catch (error) {
+    if (error.response) {
+      throw error.response;
+    } else {
+      throw error;
+    }
+  }
+};
+
+export const changePassword = async (username, oldPassword, newPassword) => {
+  try {
+    console.log(username);
+    console.log(oldPassword);
+    console.log(newPassword);
+
+    const response = await axios.put(`${API_HOST}/v1/auth/users/password`, {
+      username: username,
+      old_password: oldPassword,
+      new_password: newPassword,
     });
     return response;
   } catch (error) {

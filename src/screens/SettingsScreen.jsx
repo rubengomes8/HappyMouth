@@ -9,7 +9,6 @@ import { darkThemeColors, lightThemeColors } from '../styles/colors';
 
 
 const SettingsScreen = () => {
-  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const { isDarkMode, toggleTheme } = useTheme();
 
 
@@ -24,14 +23,6 @@ const SettingsScreen = () => {
 
   return (
     <View style={isDarkMode ? darkStyles.screenViewCenter : lightStyles.screenViewCenter}>
-      <View style={isDarkMode ? darkStyles.rowCenterAligned : lightStyles.rowCenterAligned}>
-        <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>Enable notifications:</Text>
-        <Switch
-          trackColor={{ false: darkThemeColors.onSurface, true: darkThemeColors.primary }}
-          value={notificationsEnabled}
-          onValueChange={toggleNotifications}
-        />
-      </View>
       <View style={isDarkMode ? darkStyles.rowCenterAligned : lightStyles.rowCenterAligned}>
         <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>Dark mode:</Text>
         <Switch
