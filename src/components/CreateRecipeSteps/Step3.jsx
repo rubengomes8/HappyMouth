@@ -1,31 +1,30 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, RadioButton, StyleSheet } from "react-native";
 import TrashIcon from "../TrashIcon";
 
 // themes
 import { useTheme } from '../../contexts/ThemeContext';
 import darkStyles from '../../styles/dark';
 import lightStyles from '../../styles/light';
-import RecipeIngredientsSummary from "./RecipeIngredientsSummary";
 
 const Step3 = ({
-  ingredients,
+  recipeTypes,
+  onChooseRecipeType,
   onPrevious,
-  onSubmit,
+  onNext,
   onClose,
-  isSubmitButtonDisabled,
 }) => {
 
   const { isDarkMode, toggleTheme } = useTheme();
 
+  const handleSelect = (recipeType) => {
+    onChooseRecipeType(recipeType.id);
+  };
+
   return (
     <View style={styles.container}>
       <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          paddingHorizontal: 10,
-        }}
+        style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
       >
         <View>
           <TouchableOpacity onPress={onPrevious}>
@@ -33,20 +32,22 @@ const Step3 = ({
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={isSubmitButtonDisabled ? styles.disabledButton : null} onPress={isSubmitButtonDisabled ? null : onSubmit} disabled={isSubmitButtonDisabled} >
-            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Submit</Text>
+          <TouchableOpacity onPress={onNext}>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Next</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Summary</Text>
-      <View style={{ marginTop: 10 }}>
-        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Included Ingredients</Text>
-        <RecipeIngredientsSummary ingredients={ingredients.filter((i) => i.isIncluded)} type="included"></RecipeIngredientsSummary>
-      </View>
-      <View style={{ marginTop: 10 }}>
-        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Excluded Ingredients</Text>
-        <RecipeIngredientsSummary ingredients={ingredients.filter((i) => i.isExcluded)} type="excluded"></RecipeIngredientsSummary>
-      </View>
+      <Text>Step 3 content</Text>
+      {recipeTypes.map((recipeType) => (
+        <View key={recipeType.id}>
+          <RadioButton
+            value={recipeType.type}
+            status={recipeType.chosen ? 'checked' : 'unchecked'}
+            onPress={() => handleSelect(recipeType)}
+          />
+          <Text>{recipeType.type}</Text>
+        </View>
+      ))}
       <View style={styles.trashIconContainer}>
         <TrashIcon onClose={onClose} />
       </View>
@@ -61,12 +62,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   trashIconContainer: {
-    flex: 1,
+    height: 50,
     alignItems: "center",
     justifyContent: "flex-end",
     paddingBottom: 20,
   },
-  disabledButton: {
-    opacity: 0.5,
-  }
 });

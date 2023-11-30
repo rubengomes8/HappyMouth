@@ -3,6 +3,7 @@ import { View, Modal, StyleSheet } from "react-native";
 import Step1 from "../CreateRecipeSteps/Step1.jsx";
 import Step2 from "../CreateRecipeSteps/Step2.jsx";
 import Step3 from "../CreateRecipeSteps/Step3.jsx";
+import Step4 from "../CreateRecipeSteps/Step4.jsx";
 import { getIngredientsSortedByName } from "../../api/ingredientsApi.js";
 import { postGenerateRecipe } from "../../api/recipesApi.js";
 import { getRecipeKey } from "../../domain/recipes.js";
@@ -16,6 +17,48 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes, userRecip
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [ingredients, setIngredients] = useState([]);
+  const [recipeTypes, setRecipeTypes] = useState([
+    {
+      id: 1,
+      type: "any",
+      chosen: true,
+    }, 
+    {
+      id: 2,
+      type: "soup",
+      chosen: false,
+    }, 
+    {
+      id: 3,
+      type: "pasta",
+      chosen: false,
+    },
+    {
+      id: 4,
+      type: "pizza",
+      chosen: false,
+    },
+    {
+      id: 5,
+      type: "curry",
+      chosen: false,
+    },
+    {
+      id: 6,
+      type: "one pot",
+      chosen: false,
+    },
+    {
+      id: 7,
+      type: "burger",
+      chosen: false,
+    },
+    {
+      id: 8,
+      type: "oven roast",
+      chosen: false,
+    },
+  ]);
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(false);
   const { isDarkMode, toggleTheme } = useTheme();
 
@@ -75,6 +118,21 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes, userRecip
       updatedIngredients = [];
     }
     setIngredients(updatedIngredients);
+  };
+
+  const onChooseRecipeType = (recipeTypeID) => {
+    let updatedRecipeTypes;
+    if (recipeTypes != undefined) {
+      updatedRecipeTypes = recipeTypes.map((type) => {
+        if (type.id === recipeTypeID) {
+          return { ...type, chosen: true };
+        }
+        return { ...type, chosen: false };
+      });
+    } else {
+      updatedRecipeTypes = [];
+    }
+    setRecipeTypes(updatedRecipeTypes);
   };
 
   useEffect(() => {
@@ -166,6 +224,17 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes, userRecip
     case 3:
       stepComponent = (
         <Step3
+          recipeTypes={recipeTypes}
+          onChooseRecipeType={onChooseRecipeType}
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          onClose={onClose}
+        />
+      );
+      break;
+    case 4:
+      stepComponent = (
+        <Step4
           ingredients={ingredients}
           onPrevious={handlePrevious}
           onSubmit={() => handleCreateRecipe(onCloseAndUpdateRecipes)}
