@@ -12,6 +12,7 @@ import MainTabsScreen from "./src/screens/MainTabsScreen.jsx";
 import LoginScreen from "./src/screens/LoginScreen.jsx";
 import RegisterScreen from "./src/screens/RegisterScreen.jsx";
 import { darkThemeColors, lightThemeColors } from "./src/styles/colors.js";
+import ChangePasswordScreen from "./src/screens/ChangePasswordScreen.jsx";
 
 
 const Stack = createStackNavigator();
@@ -34,6 +35,7 @@ const App = () => {
         initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
         <Stack.Screen
           name="MainTabsScreen"
           component={MainTabsScreen}
