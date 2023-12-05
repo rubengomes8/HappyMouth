@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_HOST = "http://192.168.1.228:8080"; // TODO should use .env
+const API_HOST = "http://192.168.1.92:8080"; // TODO should use .env
 
 export const registerUser = async (username, password, email) => {
   try {

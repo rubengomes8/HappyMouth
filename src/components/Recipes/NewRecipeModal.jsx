@@ -236,6 +236,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes, userRecip
       stepComponent = (
         <Step4
           ingredients={ingredients}
+          recipeTypes={recipeTypes}
           onPrevious={handlePrevious}
           onSubmit={() => handleCreateRecipe(onCloseAndUpdateRecipes)}
           onClose={onClose}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, RadioButton, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import TrashIcon from "../TrashIcon";
+import RecipeTypeSquareGrid from "./RecipeTypeSquareGrid";
 
 // themes
 import { useTheme } from '../../contexts/ThemeContext';
@@ -17,8 +18,8 @@ const Step3 = ({
 
   const { isDarkMode, toggleTheme } = useTheme();
 
-  const handleSelect = (recipeType) => {
-    onChooseRecipeType(recipeType.id);
+  const handleSelect = (recipeTypeID) => {
+    onChooseRecipeType(recipeTypeID);
   };
 
   return (
@@ -37,17 +38,7 @@ const Step3 = ({
           </TouchableOpacity>
         </View>
       </View>
-      <Text>Step 3 content</Text>
-      {recipeTypes.map((recipeType) => (
-        <View key={recipeType.id}>
-          <RadioButton
-            value={recipeType.type}
-            status={recipeType.chosen ? 'checked' : 'unchecked'}
-            onPress={() => handleSelect(recipeType)}
-          />
-          <Text>{recipeType.type}</Text>
-        </View>
-      ))}
+      <RecipeTypeSquareGrid data={recipeTypes} onSelectSquare={handleSelect}></RecipeTypeSquareGrid>
       <View style={styles.trashIconContainer}>
         <TrashIcon onClose={onClose} />
       </View>
@@ -60,6 +51,10 @@ export default Step3;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  radioBoxContainer: {
+    flex: 1,
+    flexDirection: "row",
   },
   trashIconContainer: {
     height: 50,

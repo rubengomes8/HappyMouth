@@ -10,6 +10,7 @@ import RecipeIngredientsSummary from "./RecipeIngredientsSummary";
 
 const Step4 = ({
   ingredients,
+  recipeTypes,
   onPrevious,
   onSubmit,
   onClose,
@@ -39,6 +40,9 @@ const Step4 = ({
         </View>
       </View>
       <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Summary</Text>
+      <View style={{ marginTop: 10 }}>
+        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>{recipeTypes.filter(t => t.chosen)[0].type}</Text>
+      </View>
       <View style={{ marginTop: 10 }}>
         <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Included Ingredients</Text>
         <RecipeIngredientsSummary ingredients={ingredients.filter((i) => i.isIncluded)} type="included"></RecipeIngredientsSummary>

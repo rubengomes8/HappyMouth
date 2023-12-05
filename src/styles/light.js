@@ -207,6 +207,15 @@ const lightStyles = StyleSheet.create({
     borderRadius: 5,
     padding: 5,
   },
+  recipeTypeTouchableSquare: {
+    width: 130,
+    height: 100,
+    color: lightThemeColors.surface,
+    borderRadius: 10,
+    margin: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
   // cards
   recipeCard: {
