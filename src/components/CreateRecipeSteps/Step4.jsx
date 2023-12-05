@@ -40,15 +40,16 @@ const Step4 = ({
         </View>
       </View>
       <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Summary</Text>
-      <View style={{ marginTop: 10 }}>
-        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>{recipeTypes.filter(t => t.chosen)[0].type}</Text>
+      <View style={{ marginTop: 10, flexDirection: "row" }}>
+        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>{"Recipe Type: "}</Text>
+        <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>{recipeTypes.filter(t => t.chosen)[0].type.toUpperCase()}</Text>
       </View>
       <View style={{ marginTop: 10 }}>
-        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Included Ingredients</Text>
+        <Text style={isDarkMode ? darkStyles.boldOnBackgroundLeftMediumText : lightStyles.boldOnBackgroundLeftMediumText}>Included Ingredients</Text>
         <RecipeIngredientsSummary ingredients={ingredients.filter((i) => i.isIncluded)} type="included"></RecipeIngredientsSummary>
       </View>
       <View style={{ marginTop: 10 }}>
-        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Excluded Ingredients</Text>
+        <Text style={isDarkMode ? darkStyles.boldOnBackgroundLeftMediumText : lightStyles.boldOnBackgroundLeftMediumText}>Excluded Ingredients</Text>
         <RecipeIngredientsSummary ingredients={ingredients.filter((i) => i.isExcluded)} type="excluded"></RecipeIngredientsSummary>
       </View>
       <View style={styles.trashIconContainer}>

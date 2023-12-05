@@ -117,6 +117,12 @@ const lightStyles = StyleSheet.create({
     color: lightThemeColors.onBackground,
     textAlign: "center",
   },
+  boldOnBackgroundLeftMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: lightThemeColors.onBackground,
+    textAlign: "left",
+  },
   onSurfaceMediumText: {
     fontSize: MEDIUM_TEXT_FONT_SIZE,
     color: lightThemeColors.onSurface,
@@ -130,6 +136,11 @@ const lightStyles = StyleSheet.create({
     fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: lightThemeColors.primary,
+  },
+  boldSecondaryMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: lightThemeColors.secondary,
   },
 
   // big text

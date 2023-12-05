@@ -138,6 +138,12 @@ const darkStyles = StyleSheet.create({
     color: darkThemeColors.onBackground,
     textAlign: "center",
   },
+  boldOnBackgroundLeftMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: darkThemeColors.onBackground,
+    textAlign: "left",
+  },
   onSurfaceMediumText: {
     fontSize: MEDIUM_TEXT_FONT_SIZE,
     color: darkThemeColors.onSurface,
@@ -151,6 +157,11 @@ const darkStyles = StyleSheet.create({
     fontSize: MEDIUM_TEXT_FONT_SIZE,
     fontWeight: "bold",
     color: darkThemeColors.primary,
+  },
+  boldSecondaryMediumText: {
+    fontSize: MEDIUM_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: darkThemeColors.secondary,
   },
 
   // big text

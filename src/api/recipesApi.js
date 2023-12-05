@@ -3,13 +3,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const API_HOST = "http://192.168.1.92:8080"; // TODO should use .env
 
-export const postGenerateRecipe = async (inc_ingredients, exc_ingredients) => {
+export const postGenerateRecipe = async (incIngredients, excIngredients, recipeType) => {
   try {
     const token = await AsyncStorage.getItem("AccessToken");
     if (token) {
       const response = await axios.post(`${API_HOST}/v1/recipes`, {
-        include_ingredients: inc_ingredients,
-        exclude_ingredients: exc_ingredients,
+        include_ingredients: incIngredients,
+        exclude_ingredients: excIngredients,
+        recipe_type: recipeType,
       }, {
         headers: {
           Authorization: `Bearer ${token}`,

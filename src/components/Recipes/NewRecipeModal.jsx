@@ -169,14 +169,23 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes, userRecip
         .filter((item) => item.isExcluded)
         .map((item) => item.name);
 
+      const chosenRecipeTypes = recipeTypes
+        .filter(t => t.chosen )
+
       const newRecipeKey = getRecipeKey(includedIngredientNames, excludedIngredientNames);
       recipeAlreadyExists = userRecipes.some((item) => item.id === newRecipeKey);
       if (recipeAlreadyExists) {
         alert("You already have this recipe.")
+      } else if (chosenRecipeTypes.length != 1) {
+          alert("Invalid recipe type.")
       } else {
+
+        const recipeType = chosenRecipeTypes[0].map(({ id, type }) => ({ id, type }))
+
         const response = await postGenerateRecipe(
           includedIngredientNames,
-          excludedIngredientNames
+          excludedIngredientNames,
+          recipeType
         );
 
         if (response.status === 200) {
