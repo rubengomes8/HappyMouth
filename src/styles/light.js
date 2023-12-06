@@ -252,6 +252,8 @@ const lightStyles = StyleSheet.create({
     width: 130,
     height: 100,
     color: lightThemeColors.surface,
+    borderColor: lightThemeColors.terciary,
+    borderWidth: 4,
     borderRadius: 10,
     margin: 10,
     justifyContent: 'center',

@@ -249,6 +249,8 @@ const darkStyles = StyleSheet.create({
     width: 130,
     height: 100,
     color: darkThemeColors.surface,
+    borderColor: darkThemeColors.terciary,
+    borderWidth: 4,
     borderRadius: 10,
     margin: 10,
     justifyContent: "center",
