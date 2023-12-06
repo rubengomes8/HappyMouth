@@ -19,7 +19,7 @@ const RecipeCard = ({ recipe, onPress, onToggleFavorite }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={isDarkMode ? darkStyles.recipeCard : lightStyles.recipeCard}>
-        <Text style={isDarkMode ? darkStyles.boldOnBackgroundMediumText : lightStyles.boldOnBackgroundMediumText}>{capitalizedTitle}</Text>
+        <Text style={isDarkMode ? darkStyles.boldOnBackgroundBigText : lightStyles.boldOnBackgroundBigText}>{capitalizedTitle}</Text>
 
         <View style={styles.ingredientLabelsContainer}>
           {recipe.definitions.include_ingredients ? (

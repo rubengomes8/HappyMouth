@@ -5,6 +5,8 @@ import { lightThemeColors } from "./colors";
 const SMALL_TEXT_FONT_SIZE = 15;
 const MEDIUM_TEXT_FONT_SIZE = 17;
 const BIG_TEXT_FONT_SIZE = 20;
+const EXTRA_BIG_TEXT_FONT_SIZE = 35;
+
 
 const lightStyles = StyleSheet.create({
   // views
@@ -157,6 +159,34 @@ const lightStyles = StyleSheet.create({
     fontSize: BIG_TEXT_FONT_SIZE,
     color: lightThemeColors.onBackground,
     textAlign: "center",
+  },
+  boldPrimaryBigText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: lightThemeColors.primary,
+  },
+  boldOnBackgroundCenteredBigText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: lightThemeColors.onBackground,
+    textAlign: "center",
+  },
+  boldOnSurfaceBigText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: lightThemeColors.onSurface,
+  },
+  boldOnBackgroundBigText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: lightThemeColors.onBackground,
+  },
+
+  // extra big text
+  boldPrimaryExtraBigText: {
+    fontSize: EXTRA_BIG_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: lightThemeColors.primary,
   },
 
   // rows

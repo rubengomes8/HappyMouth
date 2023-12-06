@@ -5,6 +5,7 @@ import { darkThemeColors } from "./colors";
 const SMALL_TEXT_FONT_SIZE = 15;
 const MEDIUM_TEXT_FONT_SIZE = 17;
 const BIG_TEXT_FONT_SIZE = 20;
+const EXTRA_BIG_TEXT_FONT_SIZE = 35;
 
 const darkStyles = StyleSheet.create({
   // views
@@ -181,6 +182,35 @@ const darkStyles = StyleSheet.create({
     color: darkThemeColors.onBackground,
     textAlign: "center",
   },
+  boldPrimaryBigText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: darkThemeColors.primary,
+  },
+  boldOnBackgroundCenteredBigText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: darkThemeColors.onBackground,
+    textAlign: "center",
+  },
+  boldOnSurfaceBigText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: darkThemeColors.onSurface,
+  },
+  boldOnBackgroundBigText: {
+    fontSize: BIG_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: darkThemeColors.onBackground,
+  },
+
+
+  // extra big text
+  boldPrimaryExtraBigText: {
+    fontSize: EXTRA_BIG_TEXT_FONT_SIZE,
+    fontWeight: "bold",
+    color: darkThemeColors.primary,
+  },
 
   // buttons / touchables
   roundButton: {
@@ -221,8 +251,8 @@ const darkStyles = StyleSheet.create({
     color: darkThemeColors.surface,
     borderRadius: 10,
     margin: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   // cards

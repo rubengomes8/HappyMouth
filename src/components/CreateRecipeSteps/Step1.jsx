@@ -35,19 +35,9 @@ const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) =
         onAddIngredient={onToggleIngredientIsIncluded}
         onClose={closeSelectIngredientsModal}
       />
-
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "flex-end",
-          paddingHorizontal: 10,
-        }}
-      >
-        <TouchableOpacity onPress={onNext}>
-          <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Next</Text>
-        </TouchableOpacity>
+      <View style={{ marginVertical: 10 }}>
+        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredBigText : lightStyles.boldOnBackgroundCenteredBigText}>Step 1: Ingredients to include</Text>
       </View>
-      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Step 1: Ingredients to include</Text>
       <TouchableOpacity
         style={isDarkMode ? darkStyles.addIngredientTouchable : lightStyles.addIngredientTouchable}
         onPress={includeIngredientsHandler}
@@ -68,12 +58,26 @@ const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) =
           </View>
         </View>
         <View style={isDarkMode ? darkStyles.zIndexMinusOneCenter : lightStyles.zIndexMinusOneCenter}>
-          <Text style={isDarkMode ? darkStyles.boldOnSurfaceSmallText : lightStyles.boldOnSurfaceSmallText}>+ Include ingredient</Text>
+          <Text style={isDarkMode ? darkStyles.boldOnSurfaceMediumText : lightStyles.boldOnSurfaceMediumText}>+ Include ingredient</Text>
         </View>
       </TouchableOpacity>
 
-      <View style={styles.trashIconContainer}>
-        <TrashIcon onClose={onClose} />
+      <View
+        style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
+      >
+        <View>
+          <TouchableOpacity disabled={true}>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8592;</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.trashIconContainer}>
+          <TrashIcon onClose={onClose} />
+        </View>
+        <View>
+          <TouchableOpacity onPress={onNext}>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8594;</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
