@@ -1,8 +1,9 @@
 export const getRecipeKey = (
+  recipeType,
   includedIngredientNames,
   excludedIngredientNames
 ) => {
   const includedString = includedIngredientNames.join(",");
   const excludedString = excludedIngredientNames.join(",");
-  return `${includedString}|${excludedString}`;
+  return `${recipeType}|${includedString}|${excludedString}`;
 };
