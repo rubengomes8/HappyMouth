@@ -275,14 +275,14 @@ const darkStyles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     minHeight: "95%",
-    padding: 20,
+    padding: 15,
   },
   selectIngredientsModalContent: {
     backgroundColor: darkThemeColors.background,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     minHeight: "95%",
-    padding: 20,
+    padding: 15,
   },
 
   // labels

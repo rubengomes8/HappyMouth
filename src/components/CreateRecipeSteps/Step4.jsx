@@ -1,7 +1,5 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { MaterialIcons } from '@expo/vector-icons';
-import { darkColors, lightColors } from "@rneui/base";
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 
 // themes
@@ -25,9 +23,9 @@ const Step4 = ({
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+      <TouchableOpacity onPress={onClose}>
         <View style={isDarkMode ? darkStyles.closeModalCircle : lightStyles.closeModalCircle}>
-          <AntDesign name="down" size={24} color={isDarkMode ? darkThemeColors.primary : lightThemeColors.primary} />
+          <AntDesign style ={{marginTop: 4}} name="down" size={24} color={isDarkMode ? darkThemeColors.primary : lightThemeColors.primary} />
         </View>
       </TouchableOpacity>
       <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Recipe summary</Text>

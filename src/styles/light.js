@@ -278,14 +278,14 @@ const lightStyles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     minHeight: "95%",
-    padding: 20,
+    padding: 15,
   },
   selectIngredientsModalContent: {
     backgroundColor: lightThemeColors.background,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     minHeight: "95%",
-    padding: 20,
+    padding: 15,
   },
 
   // labels

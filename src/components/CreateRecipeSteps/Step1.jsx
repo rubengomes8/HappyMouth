@@ -38,7 +38,7 @@ const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) =
       />
       <TouchableOpacity onPress={onClose} style={styles.closeButton}>
         <View style={isDarkMode ? darkStyles.closeModalCircle : lightStyles.closeModalCircle}>
-          <AntDesign style ={{marginTop: 4}}name="down" size={24} color={isDarkMode ? darkThemeColors.primary : lightThemeColors.primary} />
+          <AntDesign style ={{marginTop: 4}} name="down" size={24} color={isDarkMode ? darkThemeColors.primary : lightThemeColors.primary} />
         </View>
       </TouchableOpacity>
       <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Choose ingredients to include</Text>

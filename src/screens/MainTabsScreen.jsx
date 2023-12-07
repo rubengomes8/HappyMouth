@@ -4,6 +4,7 @@ import RecipesScreen from "./RecipesScreen.jsx";
 import ProfileScreen from "./ProfileScreen.jsx";
 import SettingsScreen from "./SettingsScreen.jsx";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // themes
 import { useTheme } from '../contexts/ThemeContext';
@@ -36,6 +37,10 @@ const MainTabsScreen = () => {
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="user" size={size} color={color} />
           ),
+          tabBarLabelStyle: {
+            fontSize: 12,
+            fontWeight: "bold",
+          },
         }}
       >
         {() => <ProfileScreen username={username} />}
@@ -46,8 +51,12 @@ const MainTabsScreen = () => {
         component={RecipesScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="book" size={size} color={color} />
-          ),
+            <MaterialCommunityIcons name="food" size={size} color={color} />
+            ),
+          tabBarLabelStyle: {
+            fontSize: 12,
+            fontWeight: "bold",
+          },
         }}
       />
       <Tab.Screen
@@ -57,6 +66,10 @@ const MainTabsScreen = () => {
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="gear" size={size} color={color} />
           ),
+          tabBarLabelStyle: {
+            fontSize: 12,
+            fontWeight: "bold",
+          },
         }}
       />
     </Tab.Navigator>
