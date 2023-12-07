@@ -5,6 +5,7 @@ import { darkThemeColors } from "./colors";
 const SMALL_TEXT_FONT_SIZE = 15;
 const MEDIUM_TEXT_FONT_SIZE = 17;
 const BIG_TEXT_FONT_SIZE = 20;
+const EXTRA_BIG_TEXT_FONT_SIZE = 30;
 
 const darkStyles = StyleSheet.create({
   // views
@@ -55,6 +56,12 @@ const darkStyles = StyleSheet.create({
   rowsSpaceBetweenWithBottomMargin: {
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  rowsFlexEndWithBottomMargin: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
     paddingHorizontal: 10,
     marginBottom: 10,
   },
@@ -182,6 +189,12 @@ const darkStyles = StyleSheet.create({
     textAlign: "center",
   },
 
+  // extra big text
+  boldPrimaryExtraBigText: {
+    fontSize: EXTRA_BIG_TEXT_FONT_SIZE,
+    color: darkThemeColors.primary,
+  },
+
   // buttons / touchables
   roundButton: {
     backgroundColor: darkThemeColors.secondary,
@@ -223,8 +236,8 @@ const darkStyles = StyleSheet.create({
     borderWidth: 4,
     borderRadius: 10,
     margin: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   // cards

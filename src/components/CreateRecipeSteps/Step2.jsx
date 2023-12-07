@@ -48,18 +48,11 @@ const Step2 = ({
       <View
         style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
       >
-        <View>
-          <TouchableOpacity onPress={onPrevious}>
-            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Previous</Text>
-          </TouchableOpacity>
-        </View>
-        <View>
-          <TouchableOpacity onPress={onNext}>
-            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Next</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={onClose}>
+          <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Cancel</Text>
+        </TouchableOpacity>
       </View>
-      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Step 2: Ingredients to exclude</Text>
+      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Choose ingredients to exclude</Text>
       <TouchableOpacity
         style={isDarkMode ? darkStyles.addIngredientTouchable : lightStyles.addIngredientTouchable}
         onPress={excludeIngredientHandler}
@@ -83,8 +76,19 @@ const Step2 = ({
           <Text style={isDarkMode ? darkStyles.boldOnSurfaceSmallText : lightStyles.boldOnSurfaceSmallText}>+ Exclude ingredient</Text>
         </View>
       </TouchableOpacity>
-      <View style={styles.trashIconContainer}>
-        <TrashIcon onClose={onClose} />
+      <View
+        style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
+      >
+        <View>
+          <TouchableOpacity onPress={onPrevious}>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8592;</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity onPress={onNext}>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8594;</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );

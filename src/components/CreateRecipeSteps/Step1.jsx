@@ -35,19 +35,14 @@ const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) =
         onAddIngredient={onToggleIngredientIsIncluded}
         onClose={closeSelectIngredientsModal}
       />
-
       <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "flex-end",
-          paddingHorizontal: 10,
-        }}
+        style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
       >
-        <TouchableOpacity onPress={onNext}>
-          <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Next</Text>
+        <TouchableOpacity onPress={onClose}>
+          <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Cancel</Text>
         </TouchableOpacity>
       </View>
-      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Step 1: Ingredients to include</Text>
+      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Choose ingredients to include</Text>
       <TouchableOpacity
         style={isDarkMode ? darkStyles.addIngredientTouchable : lightStyles.addIngredientTouchable}
         onPress={includeIngredientsHandler}
@@ -71,9 +66,14 @@ const Step1 = ({ ingredients, onToggleIngredientIsIncluded, onNext, onClose }) =
           <Text style={isDarkMode ? darkStyles.boldOnSurfaceSmallText : lightStyles.boldOnSurfaceSmallText}>+ Include ingredient</Text>
         </View>
       </TouchableOpacity>
-
-      <View style={styles.trashIconContainer}>
-        <TrashIcon onClose={onClose} />
+      <View
+        style={isDarkMode ? darkStyles.rowsFlexEndWithBottomMargin : lightStyles.rowsFlexEndWithBottomMargin}
+      >
+        <View>
+          <TouchableOpacity onPress={onNext}>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8594;</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );

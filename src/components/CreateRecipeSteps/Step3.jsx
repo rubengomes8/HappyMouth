@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import TrashIcon from "../TrashIcon";
 import RecipeTypeSquareGrid from "./RecipeTypeSquareGrid";
 
 // themes
@@ -27,20 +26,25 @@ const Step3 = ({
       <View
         style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
       >
+        <TouchableOpacity onPress={onClose}>
+          <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Cancel</Text>
+        </TouchableOpacity>
+      </View>
+      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Choose recipe type</Text>
+      <RecipeTypeSquareGrid data={recipeTypes} onSelectSquare={handleSelect}></RecipeTypeSquareGrid>
+      <View
+        style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
+      >
         <View>
           <TouchableOpacity onPress={onPrevious}>
-            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Previous</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8592;</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={onNext}>
-            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Next</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8594;</Text>
           </TouchableOpacity>
         </View>
-      </View>
-      <RecipeTypeSquareGrid data={recipeTypes} onSelectSquare={handleSelect}></RecipeTypeSquareGrid>
-      <View style={styles.trashIconContainer}>
-        <TrashIcon onClose={onClose} />
       </View>
     </View>
   );
