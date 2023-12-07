@@ -22,12 +22,12 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes, userRecip
       id: 1,
       type: "any",
       chosen: true,
-    },
+    }, 
     {
       id: 2,
       type: "soup",
       chosen: false,
-    },
+    }, 
     {
       id: 3,
       type: "pasta",
@@ -170,33 +170,26 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes, userRecip
         .map((item) => item.name);
 
       const chosenRecipeTypes = recipeTypes
-        .filter(t => t.chosen)
+        .filter(t => t.chosen )
 
-      if (chosenRecipeTypes.length != 1) {
-        alert("Invalid recipe type.")
+      const newRecipeKey = getRecipeKey(includedIngredientNames, excludedIngredientNames);
+      recipeAlreadyExists = userRecipes.some((item) => item.id === newRecipeKey);
+      if (recipeAlreadyExists) {
+        alert("You already have this recipe.")
+      } else if (chosenRecipeTypes.length != 1) {
+          alert("Invalid recipe type.")
       } else {
-        const newRecipeKey = getRecipeKey(
-          chosenRecipeTypes[0].type,
+
+        const recipeType = chosenRecipeTypes[0].map(({ id, type }) => ({ id, type }))
+
+        const response = await postGenerateRecipe(
           includedIngredientNames,
-          excludedIngredientNames);
-        recipeAlreadyExists = userRecipes.some((item) => item.id === newRecipeKey);
-        
-        if (recipeAlreadyExists) {
-          alert("You already have this recipe.")
-        } else {
+          excludedIngredientNames,
+          recipeType
+        );
 
-          const recipeType = chosenRecipeTypes[0]
-          console.log(recipeType)
-
-          const response = await postGenerateRecipe(
-            includedIngredientNames,
-            excludedIngredientNames,
-            recipeType
-          );
-
-          if (response.status === 200) {
-            onCloseAndUpdateRecipes(response.data);
-          }
+        if (response.status === 200) {
+          onCloseAndUpdateRecipes(response.data);
         }
       }
 
