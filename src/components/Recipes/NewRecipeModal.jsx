@@ -55,7 +55,7 @@ const NewRecipeModal = ({ isVisible, onClose, onCloseAndUpdateRecipes, userRecip
     },
     {
       id: 8,
-      type: "oven\nroast",
+      type: "oven roast",
       chosen: false,
     },
   ]);

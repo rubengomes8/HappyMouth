@@ -24,28 +24,23 @@ const Step3 = ({
 
   return (
     <View style={styles.container}>
-      <View style={{marginVertical:10}}>
-        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredBigText : lightStyles.boldOnBackgroundCenteredBigText}>Step 3: Recipe type</Text>
-      </View>
-
-      <RecipeTypeSquareGrid data={recipeTypes} onSelectSquare={handleSelect}></RecipeTypeSquareGrid>
-
       <View
         style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
       >
         <View>
           <TouchableOpacity onPress={onPrevious}>
-            <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8592;</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Previous</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.trashIconContainer}>
-          <TrashIcon onClose={onClose} />
         </View>
         <View>
           <TouchableOpacity onPress={onNext}>
-            <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8594;</Text>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Next</Text>
           </TouchableOpacity>
         </View>
+      </View>
+      <RecipeTypeSquareGrid data={recipeTypes} onSelectSquare={handleSelect}></RecipeTypeSquareGrid>
+      <View style={styles.trashIconContainer}>
+        <TrashIcon onClose={onClose} />
       </View>
     </View>
   );

@@ -1,14 +1,12 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import TrashIcon from "../TrashIcon";
-import { MaterialIcons } from '@expo/vector-icons';
 
 // themes
 import { useTheme } from '../../contexts/ThemeContext';
 import darkStyles from '../../styles/dark';
 import lightStyles from '../../styles/light';
 import RecipeIngredientsSummary from "./RecipeIngredientsSummary";
-import { darkColors, lightColors } from "@rneui/base";
 
 const Step4 = ({
   ingredients,
@@ -23,9 +21,25 @@ const Step4 = ({
 
   return (
     <View style={styles.container}>
-      <View style={{ marginVertical: 10 }}>
-        <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredBigText : lightStyles.boldOnBackgroundCenteredBigText}>Summary</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          paddingHorizontal: 10,
+        }}
+      >
+        <View>
+          <TouchableOpacity onPress={onPrevious}>
+            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Previous</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity style={isSubmitButtonDisabled ? styles.disabledButton : null} onPress={isSubmitButtonDisabled ? null : onSubmit} disabled={isSubmitButtonDisabled} >
+            <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Submit</Text>
+          </TouchableOpacity>
+        </View>
       </View>
+      <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Summary</Text>
       <View style={{ marginTop: 10, flexDirection: "row" }}>
         <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>{"Recipe Type: "}</Text>
         <Text style={isDarkMode ? darkStyles.onBackgroundMediumText : lightStyles.onBackgroundMediumText}>{recipeTypes.filter(t => t.chosen)[0].type.toUpperCase()}</Text>
@@ -38,26 +52,10 @@ const Step4 = ({
         <Text style={isDarkMode ? darkStyles.boldOnBackgroundLeftMediumText : lightStyles.boldOnBackgroundLeftMediumText}>Excluded Ingredients</Text>
         <RecipeIngredientsSummary ingredients={ingredients.filter((i) => i.isExcluded)} type="excluded"></RecipeIngredientsSummary>
       </View>
-      <View style={{flex: 1, justifyContent: "flex-end"}}>
-        <View
-          style={[isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin]}
-        >
-          <View>
-            <TouchableOpacity onPress={onPrevious}>
-              <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8592;</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.trashIconContainer}>
-            <TrashIcon onClose={onClose} />
-          </View>
-          <View>
-            <TouchableOpacity style={isSubmitButtonDisabled ? styles.disabledButton : null} onPress={isSubmitButtonDisabled ? null : onSubmit} disabled={isSubmitButtonDisabled} >
-              <MaterialIcons name="send" size={24} color={isDarkMode ? darkColors.primary : lightColors.primary} />
-            </TouchableOpacity>
-          </View>
-        </View>
+      <View style={styles.trashIconContainer}>
+        <TrashIcon onClose={onClose} />
       </View>
-    </View >
+    </View>
   );
 };
 

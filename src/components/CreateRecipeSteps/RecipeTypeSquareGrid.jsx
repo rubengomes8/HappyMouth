@@ -25,7 +25,7 @@ const RecipeTypeSquareGrid = ({ data, onSelectSquare }) => {
                 [lightStyles.recipeTypeTouchableSquare, { backgroundColor: selectedSquare === item.id ? lightThemeColors.primary : lightThemeColors.surface }]}
             onPress={() => handleSelect(item)}
         >
-            <Text style={isDarkMode ? darkStyles.boldOnSurfaceBigText : lightStyles.boldOnSurfaceBigText}>{item.type.toUpperCase()}</Text>
+            <Text style={isDarkMode ? darkStyles.boldOnSurfaceMediumText : lightStyles.boldOnSurfaceMediumText}>{item.type.toUpperCase()}</Text>
         </TouchableOpacity>
     );
 
