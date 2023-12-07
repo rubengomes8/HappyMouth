@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import RecipeTypeSquareGrid from "./RecipeTypeSquareGrid";
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 
 // themes
 import { useTheme } from '../../contexts/ThemeContext';
 import darkStyles from '../../styles/dark';
 import lightStyles from '../../styles/light';
+import { darkThemeColors, lightThemeColors } from "../../styles/colors";
 
 const Step3 = ({
   recipeTypes,
@@ -23,28 +25,26 @@ const Step3 = ({
 
   return (
     <View style={styles.container}>
-      <View
-        style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
-      >
-        <TouchableOpacity onPress={onClose}>
-          <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Cancel</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+        <View style={isDarkMode ? darkStyles.closeModalCircle : lightStyles.closeModalCircle}>
+          <AntDesign style={{ marginTop: 4 }} name="down" size={24} color={isDarkMode ? darkThemeColors.primary : lightThemeColors.primary} />
+        </View>
+      </TouchableOpacity>
       <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Choose recipe type</Text>
       <RecipeTypeSquareGrid data={recipeTypes} onSelectSquare={handleSelect}></RecipeTypeSquareGrid>
       <View
         style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
       >
-        <View>
-          <TouchableOpacity onPress={onPrevious}>
-            <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8592;</Text>
-          </TouchableOpacity>
-        </View>
-        <View>
-          <TouchableOpacity onPress={onNext}>
-            <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8594;</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={onPrevious}>
+          <View style={isDarkMode ? darkStyles.closeModalCircle : lightStyles.closeModalCircle}>
+            <Ionicons name="md-arrow-back" size={24} color={isDarkMode ? darkThemeColors.primary : lightThemeColors.primary} />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onNext}>
+          <View style={isDarkMode ? darkStyles.closeModalCircle : lightStyles.closeModalCircle}>
+            <Ionicons name="md-arrow-forward" size={24} color={isDarkMode ? darkThemeColors.primary : lightThemeColors.primary} />
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );

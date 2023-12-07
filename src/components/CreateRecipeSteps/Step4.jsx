@@ -2,12 +2,14 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import { darkColors, lightColors } from "@rneui/base";
-
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 
 // themes
 import { useTheme } from '../../contexts/ThemeContext';
 import darkStyles from '../../styles/dark';
 import lightStyles from '../../styles/light';
+import { darkThemeColors, lightThemeColors } from "../../styles/colors";
+
 import RecipeIngredientsSummary from "./RecipeIngredientsSummary";
 
 const Step4 = ({
@@ -23,13 +25,11 @@ const Step4 = ({
 
   return (
     <View style={styles.container}>
-      <View
-        style={isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin}
-      >
-        <TouchableOpacity onPress={onClose}>
-          <Text style={isDarkMode ? darkStyles.boldPrimaryMediumText : lightStyles.boldPrimaryMediumText}>Cancel</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+        <View style={isDarkMode ? darkStyles.closeModalCircle : lightStyles.closeModalCircle}>
+          <AntDesign name="down" size={24} color={isDarkMode ? darkThemeColors.primary : lightThemeColors.primary} />
+        </View>
+      </TouchableOpacity>
       <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>Recipe summary</Text>
       <View style={{ marginTop: 10, flexDirection: "row" }}>
         <Text style={isDarkMode ? darkStyles.boldOnBackgroundCenteredMediumText : lightStyles.boldOnBackgroundCenteredMediumText}>{"Recipe Type: "}</Text>
@@ -47,16 +47,16 @@ const Step4 = ({
         <View
           style={[isDarkMode ? darkStyles.rowsSpaceBetweenWithBottomMargin : lightStyles.rowsSpaceBetweenWithBottomMargin]}
         >
-          <View>
-            <TouchableOpacity onPress={onPrevious}>
-              <Text style={isDarkMode ? darkStyles.boldPrimaryExtraBigText : lightStyles.boldPrimaryExtraBigText}>&#8592;</Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity style={isSubmitButtonDisabled ? styles.disabledButton : null} onPress={isSubmitButtonDisabled ? null : onSubmit} disabled={isSubmitButtonDisabled} >
-              <MaterialIcons name="send" size={24} color={isDarkMode ? darkColors.primary : lightColors.primary} />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity onPress={onPrevious}>
+            <View style={isDarkMode ? darkStyles.closeModalCircle : lightStyles.closeModalCircle}>
+              <Ionicons name="md-arrow-back" size={24} color={isDarkMode ? darkThemeColors.primary : lightThemeColors.primary} />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={isSubmitButtonDisabled ? styles.disabledButton : null} onPress={isSubmitButtonDisabled ? null : onSubmit} disabled={isSubmitButtonDisabled}>
+            <View style={isDarkMode ? darkStyles.closeModalCircle : lightStyles.closeModalCircle}>
+              <Ionicons name="md-checkmark" size={24} color={isDarkMode ? darkThemeColors.primary : lightThemeColors.primary} />
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

@@ -212,7 +212,6 @@ const lightStyles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
     marginBottom: 20,
-    opacity: 0.5,
     backgroundColor: lightThemeColors.surface,
     borderRadius: 10,
     justifyContent: "center",
@@ -241,6 +240,16 @@ const lightStyles = StyleSheet.create({
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  closeModalCircle: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: lightThemeColors.surface,
+    backgroundColor: lightThemeColors.surface,
   },
 
   // cards

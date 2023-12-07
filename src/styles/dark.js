@@ -209,7 +209,6 @@ const darkStyles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
     marginBottom: 20,
-    opacity: 0.5,
     backgroundColor: darkThemeColors.surface,
     borderRadius: 10,
     justifyContent: "center",
@@ -238,6 +237,16 @@ const darkStyles = StyleSheet.create({
     margin: 10,
     justifyContent: "center",
     alignItems: "center",
+  },
+  closeModalCircle: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: darkThemeColors.surface,
+    backgroundColor: darkThemeColors.surface,
   },
 
   // cards
