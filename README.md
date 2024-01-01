@@ -1,6 +1,6 @@
 # HappyMouth
 
-This is a project which I created to learn a bit of React native, and explore its capabilities. 
+This is a project which I created to learn a bit of React native, and explore some of its capabilities. 
 
 The goal of  this  project is to create an app that allows the user to create a recipe by providing some informations, such as the ingredients. The [backend](https://github.com/rubengomes8/HappyMouthBackend) uses the OpenAI api to generate the recipe. 
 
