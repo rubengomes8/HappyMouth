@@ -2,7 +2,7 @@
 
 This is a project which I created to learn a bit of React native, and explore its capabilities. 
 
-This is an app that allows us to create a recipe by providing some informations, such as the ingredients. The [backend](https://github.com/rubengomes8/HappyMouthBackend) uses the OpenAI api to generate the recipe. 
+The goal of  this  project is to create an app that allows the user to create a recipe by providing some informations, such as the ingredients. The [backend](https://github.com/rubengomes8/HappyMouthBackend) uses the OpenAI api to generate the recipe. 
 
 ### Demo
 Check the demo video [here](quick_demo.mov)!
@@ -10,7 +10,7 @@ Check the demo video [here](quick_demo.mov)!
 ### Backend
 You can check the corresponding backend [here](https://github.com/rubengomes8/HappyMouthBackend). 
 
-### Set up
+### Set up (with yarn)
 ``` yarn expo start ```
 
 ### TODOs
