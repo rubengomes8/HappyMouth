@@ -1,5 +1,11 @@
 # HappyMouth
 
+### Demo
+Check this [video](quick_demo.mov).
+
+### Set up
+``` yarn expo start ```
+
 ### TODOs
 - [FEATURE] when user submits recipe, go to recipes list screen with a card blurred until receive response / opens a modal with the recipe detail
 - [FEATURE] add user
